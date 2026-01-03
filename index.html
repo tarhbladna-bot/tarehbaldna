@@ -1,508 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>شركة طرح بلدنا للمحاصيل الزراعية | فول سوداني جملة وقطاعي</title>
-  <meta name="" content="شركة طرح بلدنا للمحاصيل الزراعية - أبو رواش الجيزة - فول سوداني: مقشر، بقشرة، مفروك، مجروش - ني ومحمص - السعر عند الطلب - كاش عند الاستلام - توريد داخل مصر وتصدير خارج مصر." />
-  <style>
-    :root{
-      --bg:#0b0f14; --card:#111827; --muted:#9ca3af; --text:#e5e7eb;
-      --brand:#22c55e; --brand2:#16a34a; --line:#1f2937; --warn:#f59e0b;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-    }
-    *{box-sizing:border-box}
-    script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("PWA Ready"))
-    .catch(err => console.log(err));
-}
-</script>
-    body{
-      margin:0; background: radial-gradient(1200px at 15% 15%, #f1e3c6 0%, #2e3d2f 70%);
-      background:  radial-gradient(1200px at 10% 10%, #e6dccf 0%, #4e342e 65%);
-      color:var(--text);
-    }
-    a{color:inherit; text-decoration:none}
-    .container{max-width:1100px; margin:0 auto; padding:22px}
-    .nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(11,15,20,.65);
-      border-bottom:1px solid rgba(31,41,55,.7);
-    }
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:14px}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
-    .logo{
-      width:40px; height:40px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(34,197,94,.95), rgba(245,158,11,.85));
-      box-shadow: var(--shadow);
-      display:grid; place-items:center;
-      font-weight:900; color:#0b0f14;
-    }
-    .nav-links{display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end}
-    .chip{
-      padding:10px 12px; border:1px solid rgba(31,41,55,.9);
-      border-radius:999px; color:var(--muted);
-      background: rgba(17,24,39,.55);
-    }
-    .chip:hover{border-color: rgba(34,197,94,.7); color:var(--text)}
-    .btn{
-      border:none; cursor:pointer; font-weight:800;
-      padding:12px 14px; border-radius:12px;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      color:#05120a;
-      box-shadow: 0 10px 25px rgba(34,197,94,.18);
-    }
-    .btn:active{transform: translateY(1px)}
-    .btn.secondary{
-      background: rgba(17,24,39,.75);
-      color:var(--text);
-      border:1px solid rgba(31,41,55,.95);
-      box-shadow:none;
-    }
-    .hero{display:grid; grid-template-columns: 1.25fr .75fr; gap:18px; align-items:stretch; margin-top:18px;}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}}
-    .card{background: rgba(17,24,39,.75); border:1px solid rgba(31,41,55,.95); border-radius: var(--radius); box-shadow: var(--shadow);}
-    .hero-left{padding:26px}
-    .kicker{color:rgba(34,197,94,.95); font-weight:900; letter-spacing:.3px}
-    h1{margin:10px 0 8px; font-size: clamp(26px, 3vw, 40px); line-height:1.2}
-    .sub{margin:0; color:var(--muted); font-size: clamp(14px, 1.3vw, 16px); line-height:1.8}
-    .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .badge{padding:10px 12px; border-radius:999px; background: rgba(34,197,94,.10); border:1px solid rgba(34,197,94,.35); color:#bbf7d0; font-weight:800;}
-    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
-    .hero-right{padding:0; overflow:hidden}
-    .hero-right img{width:100%; height:100%; object-fit:cover; display:block}
-    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:14px}
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
-    .mini{padding:14px; border-radius:16px; background: rgba(11,15,20,.35); border:1px solid rgba(31,41,55,.8);}
-    .mini b{display:block; margin-bottom:6px}
-    section{margin-top:22px}
-    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin:12px 0;}
-    .section-title h2{margin:0; font-size:22px}
-    .section-title p{margin:0; color:var(--muted)}
-    .products{display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;}
-    @media (max-width:1100px){ .products{grid-template-columns: repeat(2, 1fr);} }
-    @media (max-width:520px){ .products{grid-template-columns: 1fr;} }
-    .product{padding:14px}
-    .pill{display:inline-flex; gap:6px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid rgba(31,41,55,.95); background: rgba(11,15,20,.35); color:var(--muted); font-weight:800; font-size:12px;}
-    .product h3{margin:10px 0 6px; font-size:16px}
-    .product .desc{margin:0; color:var(--muted); font-size:13px; line-height:1.7}
-    .product img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:12px; margin-bottom:8px; transition: transform .3s ease;}
-    .product img:hover{transform: scale(1.05);}
-    .row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px}
-    .price{font-weight:900}
-    .price small{color:var(--muted); font-weight:700}
-    .qty{display:flex; gap:8px; align-items:center}
-    .qty input{width:90px; padding:10px; border-radius:12px; border:1px solid rgba(31,41,55,.95); background: rgba(11,15,20,.4); color: var(--text); outline: none;}
-    .divider{height:1px; background: rgba(31,41,55,.9); margin:14px 0}
-    .cart{display:grid; grid-template-columns: 1fr .9fr; gap:14px;}
-    @media (max-width:900px){ .cart{grid-template-columns:1fr} }
-    .cart-box{padding:16px}
-    table{width:100%; border-collapse: collapse}
-    th,td{padding:10px; border-bottom:1px solid rgba(31,41,55,.8); text-align:right; vertical-align:top}
-    th{color:var(--muted); font-size:12px}
-    .empty{color:var(--muted); padding:10px}
-    .totals{display:grid; gap:10px}
-    .totals .line{display:flex; justify-content:space-between; gap:12px}
-    .note{color:rgba(245,158,11,.95); font-weight:800}
-    .form{display:grid; gap:10px}
-    .form label{font-weight:800; color:var(--muted); font-size:13px}
-    .form input, .form textarea{width:100%; padding:12px; border-radius:12px; border:1px solid rgba(31,41,55,.95); background: rgba(11,15,20,.4); color: var(--text); outline:none; resize: vertical;}
-    .footer{padding:18px; color:var(--muted); font-size:13px}
-    .toast{position: fixed; bottom: 18px; left: 18px; background: rgba(17,24,39,.92); border:1px solid rgba(31,41,55,.95); padding:12px 14px; border-radius: 14px; box-shadow: var(--shadow); opacity:0; transform: translateY(10px); transition: .25s ease; max-width: 340px;}
-    .toast.show{opacity:1; transform: translateY(0)}
-    .tiny{font-size:12px; color:var(--muted)}
-    .whats-float{position: fixed; right: 18px; bottom: 18px; z-index: 60; display:flex; align-items:center; gap:10px; background: rgba(34,197,94,.95); color:#04110a; font-weight:900; padding:12px 14px; border-radius:999px; box-shadow: var(--shadow);}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع طرح بلدنا</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fdf5e6;
+        }
+        h1 {
+            color: #d35400;
+        }
+        .product {
+            display: inline-block;
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .product img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .product p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#top">
-        <div class="logo">ط</div>
-        <div>
-          <div>طرح بلدنا</div>
-          <div class="tiny">للمحاصيل الزراعية</div>
-        </div>
-      </a>
 
-      <div class="nav-links">
-        <a class="chip" href="#products">المنتجات</a>
-        <a class="chip" href="#cart">السلة</a>
-        <a class="chip" href="#about">عن الشركة</a>
-        <a class="chip" href="#contact">تواصل</a>
-        <button class="btn secondary" onclick="scrollToId('cart')">إتمام الطلب</button>
-      </div>
-    </div>
-  </div>
+    <h1>منتجات طرح بلدنا</h1>
 
-  <main id="top" class="container">
-    <div class="hero">
-      <div class="card hero-left">
-        <div class="kicker">فول سوداني — جملة وقطاعي</div>
-        <h1>شركة طرح بلدنا للمحاصيل الزراعية</h1>
-        <p class="sub">
-          أبو رواش – الجيزة – مصر. نوفر فول سوداني <b>مقشر</b> و<b>بقشرة</b> و<b>مفروك</b> و<b>مجروش</b>،
-          <b>ني</b> و<b>محمص</b>.<br/>
-          <span class="note">السعر: عند الطلب</span> • <span class="note">الدفع: كاش عند الاستلام</span><br/>
-          🚚 توريد داخل مصر • 🌍 متاح التصدير خارج مصر حسب الكميات
-        </p>
-
-        <div class="badges">
-          <span class="badge">توريد للمحلات والمصانع</span>
-          <span class="badge">تجهيزات حسب الطلب</span>
-          <span class="badge">تصدير</span>
-        </div>
-
-        <div class="cta">
-          <button class="btn" onclick="scrollToId('products')">شوف المنتجات</button>
-          <button class="btn secondary" onclick="openWhatsAppQuick()">اطلب على واتساب</button>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="grid">
-          <div class="mini"><b>أنواع متاحة</b><span class="tiny">مقشر • بقشرة • مفروك • مجروش</span></div>
-          <div class="mini"><b>حالات التحضير</b><span class="tiny">ني • محمص</span></div>
-          <div class="mini"><b>التوريد</b><span class="tiny">داخل مصر • خارج مصر</span></div>
-        </div>
-      </div>
-
-      <div class="card hero-right">
-        <img src="heroo.jpg" alt="شركة طرح بلدنا - فول سوداني" />
-      </div>
+    <!-- منتج 1 -->
+    <div class="product">
+        <img src="images/product1.jpg" alt="فول سوداني بقشره">
+        <p>فول سوداني بقشره</p>
     </div>
 
-    <section id="products">
-      <div class="section-title">
-        <h2>المنتجات</h2>
-        <p>اختر النوع والكمية (بالكيلو)</p>
-      </div>
+    <!-- منتج 2 -->
+    <div class="product">
+        <img src="images/product2.jpg" alt="فول سوداني مجروش">
+        <p>فول سوداني مجروش</p>
+    </div>
 
-      <div class="products">
-        <div class="card product" data-id="p1" data-name="فول سوداني مقشر (ني)">
-          <span class="pill">مقشر • ني</span>
-          <img src="peeled-raw.jpg" alt="فول سوداني مقشر ني" />
-          <h3>فول سوداني مقشر (ني)</h3>
-          <p class="desc">مناسب للتعبئة، الحلويات، المصانع والمحلات.</p>
-          <div class="row"><div class="price">السعر: <small>عند الطلب</small></div></div>
-          <div class="row">
-            <div class="qty"><input type="number" min="1" step="1" value="1" id="qty-p1" /><span class="tiny">كجم</span></div>
-            <button class="btn" onclick="addToCart('p1')">أضف للسلة</button>
-          </div>
-        </div>
+    <!-- منتج 3 -->
+    <div class="product">
+        <img src="images/product3.jpg" alt="فول سوداني مقشور">
+        <p>فول سوداني مقشور</p>
+    </div>
 
-        <div class="card product" data-id="p2" data-name="فول سوداني مقشر (محمص)">
-          <span class="pill">مقشر • محمص</span>
-          <img src="roasted.jpg" alt="فول سوداني مقشر محمص" />
-          <h3>فول سوداني مقشر (محمص)</h3>
-          <p class="desc">محمص حسب الطلب — مناسب للتسالي والتجزئة.</p>
-          <div class="row"><div class="price">السعر: <small>عند الطلب</small></div></div>
-          <div class="row">
-            <div class="qty"><input type="number" min="1" step="1" value="1" id="qty-p2" /><span class="tiny">كجم</span></div>
-            <button class="btn" onclick="addToCart('p2')">أضف للسلة</button>
-          </div>
-        </div>
+    <!-- منتج 4 -->
+    <div class="product">
+        <img src="images/product4.jpg" alt="فول حلواني">
+        <p>فول حلواني</p>
+    </div>
 
-        <div class="card product" data-id="p3" data-name="فول سوداني بقشرة (ني)">
-          <span class="pill">بقشرة • ني</span>
-          <img src="shell-raw.jpg" alt="فول سوداني بقشرة" />
-          <h3>فول سوداني بقشرة (ني)</h3>
-          <p class="desc">جودة توريد — مناسب للتجار والتجهيز.</p>
-          <div class="row"><div class="price">السعر: <small>عند الطلب</small></div></div>
-          <div class="row">
-            <div class="qty"><input type="number" min="1" step="1" value="1" id="qty-p3" /><span class="tiny">كجم</span></div>
-            <button class="btn" onclick="addToCart('p3')">أضف للسلة</button>
-          </div>
-        </div>
-
-        <div class="card product" data-id="p4" data-name="فول سوداني بقشرة (محمص)">
-          <span class="pill">بقشرة • محمص</span>
-          <img src="shell-raw.jpg" alt="فول سوداني بقشرة محمص" />
-          <h3>فول سوداني بقشرة (محمص)</h3>
-          <p class="desc">محمص للتسالي — متاح كميات حسب الطلب.</p>
-          <div class="row"><div class="price">السعر: <small>عند الطلب</small></div></div>
-          <div class="row">
-            <div class="qty"><input type="number" min="1" step="1" value="1" id="qty-p4" /><span class="tiny">كجم</span></div>
-            <button class="btn" onclick="addToCart('p4')">أضف للسلة</button>
-          </div>
-        </div>
-
-        <div class="card product" data-id="p5" data-name="فول سوداني مفروك (ني)">
-          <span class="pill">مفروك • ني</span>
-          <img src="split.jpg" alt="فول سوداني مفروك" />
-          <h3>فول سوداني مفروك (ني)</h3>
-          <p class="desc">مناسب للمخابز والحلويات والتتبيلات.</p>
-          <div class="row"><div class="price">السعر: <small>عند الطلب</small></div></div>
-          <div class="row">
-            <div class="qty"><input type="number" min="1" step="1" value="1" id="qty-p5" /><span class="tiny">كجم</span></div>
-            <button class="btn" onclick="addToCart('p5')">أضف للسلة</button>
-          </div>
-        </div>
-
-        <div class="card product" data-id="p6" data-name="فول سوداني مفروك (محمص)">
-          <span class="pill">مفروك • محمص</span>
-          <img src="split.jpg" alt="فول سوداني مفروك محمص" />
-          <h3>فول سوداني مفروك (محمص)</h3>
-          <p class="desc">للحلويات والتسالي — طعم قوي.</p>
-          <div class="row"><div class="price">السعر: <small>عند الطلب</small></div></div>
-          <div class="row">
-            <div class="qty"><input type="number" min="1" step="1" value="1" id="qty-p6" /><span class="tiny">كجم</span></div>
-            <button class="btn" onclick="addToCart('p6')">أضف للسلة</button>
-          </div>
-        </div>
-
-        <div class="card product" data-id="p7" data-name="فول سوداني مجروش (ني)">
-          <span class="pill">مجروش • ني</span>
-          <img src="crushed.jpg" alt="فول سوداني مجروش" />
-          <h3>فول سوداني مجروش (ني)</h3>
-          <p class="desc">تحضير حسب درجة الجرش المطلوبة.</p>
-          <div class="row"><div class="price">السعر: <small>عند الطلب</small></div></div>
-          <div class="row">
-            <div class="qty"><input type="number" min="1" step="1" value="1" id="qty-p7" /><span class="tiny">كجم</span></div>
-            <button class="btn" onclick="addToCart('p7')">أضف للسلة</button>
-          </div>
-        </div>
-
-        <div class="card product" data-id="p8" data-name="فول سوداني مجروش (محمص)">
-          <span class="pill">مجروش • محمص</span>
-          <img src="crushed.jpg" alt="فول سوداني مجروش محمص" />
-          <h3>فول سوداني مجروش (محمص)</h3>
-          <p class="desc">مناسب لإضافات الحلويات والمكسرات.</p>
-          <div class="row"><div class="price">السعر: <small>عند الطلب</small></div></div>
-          <div class="row">
-            <div class="qty"><input type="number" min="1" step="1" value="1" id="qty-p8" /><span class="tiny">كجم</span></div>
-            <button class="btn" onclick="addToCart('p8')">أضف للسلة</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="cart">
-      <div class="section-title">
-        <h2>السلة وإتمام الطلب</h2>
-        <p>السعر عند الطلب — الدفع كاش عند الاستلام</p>
-      </div>
-
-      <div class="cart">
-        <div class="card cart-box">
-          <h3 style="margin:0 0 10px">محتويات السلة</h3>
-          <div id="cartArea"></div>
-          <div class="divider"></div>
-          <button class="btn secondary" onclick="clearCart()">تفريغ السلة</button>
-        </div>
-
-        <div class="card cart-box">
-          <h3 style="margin:0 0 10px">بيانات العميل</h3>
-          <div class="form">
-            <div><label>الاسم</label><input id="custName" placeholder="الاسم بالكامل" /></div>
-            <div><label>رقم الموبايل</label><input id="custPhone" placeholder="مثال: 01xxxxxxxxx" inputmode="tel" /></div>
-            <div><label>العنوان بالتفصيل</label><input id="custAddress" placeholder="المحافظة - المدينة - الشارع - رقم..." /></div>
-            <div><label>ملاحظات (اختياري)</label><textarea id="custNotes" rows="3" placeholder="درجة التحميص / تجهيزات / طلب تصدير / دولة..."></textarea></div>
-
-            <div class="mini">
-              <b>التوريد</b>
-              <span class="tiny">داخل مصر • متاح التصدير خارج مصر حسب الكميات</span>
-            </div>
-
-            <button class="btn" onclick="sendOrder()">إرسال الطلب على واتساب</button>
-            <div class="tiny">سيتم فتح واتساب برسالة جاهزة تحتوي تفاصيل الطلب.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="section-title">
-        <h2>عن شركة طرح بلدنا</h2>
-        <p>محاصيل زراعية — جودة توريد</p>
-      </div>
-
-      <div class="card" style="padding:16px">
-        <p class="tiny" style="margin:0; line-height:1.9">
-          نحن <b>شركة طرح بلدنا للمحاصيل الزراعية</b> مقرنا <b>أبو رواش – الجيزة – مصر</b>.
-          نوفر فول سوداني بأنواعه وتجهيزاته المختلفة (مقشر/بقشرة/مفروك/مجروش) وفي حالتي (ني/محمص)،
-          مع إمكانية التجهيز حسب طلب العملاء (جملة وقطاعي) و<strong>التوريد داخل مصر</strong> و<strong>التصدير خارج مصر</strong> حسب الكميات.
-        </p>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-title">
-        <h2>تواصل معنا</h2>
-        <p>أبو رواش – الجيزة – مصر</p>
-      </div>
-
-      <div class="card" style="padding:16px">
-        <div class="grid">
-          <div class="mini"><b>المقر</b><span class="tiny">أبو رواش – الجيزة – مصر</span></div>
-          <div class="mini"><b>اتصال</b><span class="tiny">01126773698 • 01020508423</span></div>
-          <div class="mini"><b>واتساب</b><span class="tiny">01020508423</span></div>
-        </div>
-        <div class="divider"></div>
-        <button class="btn" onclick="openWhatsAppQuick()">فتح واتساب الآن</button>
-      </div>
-    </section>
-
-    <div class="footer">© <span id="year"></span> شركة طرح بلدنا للمحاصيل الزراعية — أبو رواش، الجيزة، مصر.</div>
-  </main>
-
-  <a class="whats-float" href="javascript:void(0)" onclick="openWhatsAppQuick()" aria-label="WhatsApp">
-    واتساب <span style="opacity:.8; font-weight:900">💬</span>
-  </a>
-
-  <div class="toast" id="toast"></div>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0b1c2d">
-  <script>
-    const WHATSAPP_NUMBER = "201020508423";
-
-    const PRODUCTS = {
-      p1: { name: "فول سوداني مقشر (ني)" },
-      p2: { name: "فول سوداني مقشر (محمص)" },
-      p3: { name: "فول سوداني بقشرة (ني)" },
-      p4: { name: "فول سوداني بقشرة (محمص)" },
-      p5: { name: "فول سوداني مفروك (ني)" },
-      p6: { name: "فول سوداني مفروك (محمص)" },
-      p7: { name: "فول سوداني مجروش (ني)" },
-      p8: { name: "فول سوداني مجروش (محمص)" },
-    };
-
-    const cart = {};
-
-    function scrollToId(id){ document.getElementById(id).scrollIntoView({behavior:"smooth", block:"start"}); }
-
-    function toast(msg){
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(()=>t.classList.remove("show"), 2200);
-    }
-
-    function addToCart(pid){
-      const qtyInput = document.getElementById("qty-" + pid);
-      let qty = Number(qtyInput?.value || 1);
-      if (!Number.isFinite(qty) || qty < 1) qty = 1;
-      cart[pid] = (cart[pid] || 0) + qty;
-      renderCart();
-      toast("تمت الإضافة للسلة ✅");
-      scrollToId("cart");
-    }
-
-    function removeFromCart(pid){ delete cart[pid]; renderCart(); }
-
-    function updateCartQty(pid, newQty){
-      const q = Number(newQty);
-      if (!Number.isFinite(q) || q <= 0){ removeFromCart(pid); return; }
-      cart[pid] = q;
-      renderCart(false);
-    }
-
-    function clearCart(){
-      for (const k of Object.keys(cart)) delete cart[k];
-      renderCart();
-      toast("تم تفريغ السلة");
-    }
-
-    function renderCart(){
-      const area = document.getElementById("cartArea");
-      const pids = Object.keys(cart);
-      if (pids.length === 0){
-        area.innerHTML = `<div class="empty">السلة فاضية. اختار منتجات من قسم "المنتجات".</div>`;
-        return;
-      }
-      let rows = "";
-      for (const pid of pids){
-        const name = PRODUCTS[pid]?.name || pid;
-        const qty = cart[pid];
-        rows += `
-          <tr>
-            <td style="font-weight:900">${escapeHtml(name)}</td>
-            <td>
-              <input value="${qty}" type="number" min="1" step="1" style="width:110px"
-                     oninput="updateCartQty('${pid}', this.value)" />
-              <span class="tiny">كجم</span>
-            </td>
-            <td><button class="btn secondary" onclick="removeFromCart('${pid}')">حذف</button></td>
-          </tr>
-        `;
-      }
-      area.innerHTML = `
-        <table>
-          <thead><tr><th>المنتج</th><th>الكمية</th><th>إجراء</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-        <div class="divider"></div>
-        <div class="totals">
-          <div class="line"><span class="tiny">طريقة الدفع</span><span style="font-weight:900">كاش عند الاستلام</span></div>
-          <div class="line"><span class="tiny">الأسعار</span><span class="note">عند الطلب</span></div>
-        </div>
-      `;
-    }
-
-    function buildOrderText(){
-      const name = (document.getElementById("custName").value || "").trim();
-      const phone = (document.getElementById("custPhone").value || "").trim();
-      const address = (document.getElementById("custAddress").value || "").trim();
-      const notes = (document.getElementById("custNotes").value || "").trim();
-
-      const pids = Object.keys(cart);
-      let items = "";
-      pids.forEach((pid, i)=>{
-        const pname = PRODUCTS[pid]?.name || pid;
-        items += `${i+1}) ${pname} — ${cart[pid]} كجم\n`;
-      });
-
-      return `طلب جديد — شركة طرح بلدنا للمحاصيل الزراعية
---------------------------------
-العميل: ${name || "—"}
-الموبايل: ${phone || "—"}
-العنوان: ${address || "—"}
-
-الدفع: كاش عند الاستلام
-السعر: عند الطلب
-التوريد: داخل مصر / خارج مصر (تصدير)
-
-تفاصيل الطلب:
-${items || "—"}
-
-ملاحظات:
-${notes || "—"}
-
-برجاء تأكيد السعر وموعد التسليم.`;
-    }
-
-    function sendOrder(){
-      const pids = Object.keys(cart);
-      if (pids.length === 0){ toast("السلة فاضية — اختار منتجات الأول"); scrollToId("products"); return; }
-
-      const phone = (document.getElementById("custPhone").value || "").trim();
-      const address = (document.getElementById("custAddress").value || "").trim();
-      if (!phone){ toast("اكتب رقم الموبايل"); document.getElementById("custPhone").focus(); return; }
-      if (!address){ toast("اكتب العنوان بالتفصيل"); document.getElementById("custAddress").focus(); return; }
-
-      const text = buildOrderText();
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank");
-    }
-
-    function openWhatsAppQuick(){
-      const msg = `أهلاً شركة طرح بلدنا 👋\nعايز أستفسر عن فول سوداني (مقشر/بقشرة/مفروك/مجروش) (ني/محمص) وأسعار الجملة والتسليم والتصدير.`;
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-      window.open(url, "_blank");
-    }
-
-    function escapeHtml(str){
-      return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;").replaceAll("'","&#039;");
-    }
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-    renderCart(false);
-  </script>
 </body>
 </html>
