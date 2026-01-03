@@ -7,19 +7,33 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             background-color: #fdf5e6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
         }
         h1 {
             color: #d35400;
+            margin: 30px 0;
+        }
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         .product {
-            display: inline-block;
-            margin: 20px;
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
             background-color: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .product img {
             width: 200px;
@@ -32,34 +46,54 @@
             font-size: 16px;
             color: #333;
         }
+        .contact {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+        .logo {
+            margin-top: 10px;
+            width: 50px;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
 
     <h1>منتجات طرح بلدنا</h1>
 
-    <!-- منتج 1 -->
-    <div class="product">
-        <img src="images/product1.jpg" alt="فول سوداني بقشره">
-        <p>فول سوداني بقشره</p>
-    </div>
+    <div class="products-container">
+        <!-- منتج 1 -->
+        <div class="product">
+            <img src="images/product1.jpg" alt="فول سوداني بقشره">
+            <p>فول سوداني بقشره</p>
+            <div class="contact">تواصل: 01126773698</div>
+            <img class="logo" src="images/logo.png" alt="شعار الشركة">
+        </div>
 
-    <!-- منتج 2 -->
-    <div class="product">
-        <img src="images/product2.jpg" alt="فول سوداني مجروش">
-        <p>فول سوداني مجروش</p>
-    </div>
+        <!-- منتج 2 -->
+        <div class="product">
+            <img src="images/product2.jpg" alt="فول سوداني مجروش">
+            <p>فول سوداني مجروش</p>
+            <div class="contact">تواصل: 01126773698</div>
+            <img class="logo" src="images/logo.png" alt="شعار الشركة">
+        </div>
 
-    <!-- منتج 3 -->
-    <div class="product">
-        <img src="images/product3.jpg" alt="فول سوداني مقشور">
-        <p>فول سوداني مقشور</p>
-    </div>
+        <!-- منتج 3 -->
+        <div class="product">
+            <img src="images/product3.jpg" alt="فول سوداني مقشور">
+            <p>فول سوداني مقشور</p>
+            <div class="contact">تواصل: 01126773698</div>
+            <img class="logo" src="images/logo.png" alt="شعار الشركة">
+        </div>
 
-    <!-- منتج 4 -->
-    <div class="product">
-        <img src="images/product4.jpg" alt="فول حلواني">
-        <p>فول حلواني</p>
+        <!-- منتج 4 -->
+        <div class="product">
+            <img src="images/product4.jpg" alt="فول حلواني">
+            <p>فول حلواني</p>
+            <div class="contact">تواصل: 01126773698</div>
+            <img class="logo" src="images/logo.png" alt="شعار الشركة">
+        </div>
     </div>
 
 </body>
