@@ -1,165 +1,119 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>طرح بلدنا</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع طرح بلدنا</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf5e6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#fdf5e6;
-    margin:0;
-    text-align:center;
-}
-h1{
-    color:#d35400;
-    margin:20px;
-}
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
-}
-.product{
-    background:#fff;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,.1);
-    padding:10px;
-    transition:.3s;
-}
-.product:hover{transform:translateY(-5px)}
-.product img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    border-radius:10px;
-}
-.product h3{
-    color:#d35400;
-}
-button{
-    background:#d35400;
-    color:#fff;
-    border:none;
-    padding:8px 15px;
-    border-radius:8px;
-    cursor:pointer;
-    margin-top:5px;
-}
-button:hover{background:#e67e22}
+        h1 {
+            color: #d35400;
+            margin: 30px 0;
+        }
 
-/* سلة */
-.cart{
-    position:fixed;
-    top:20px;
-    left:20px;
-    background:#fff;
-    padding:15px;
-    width:260px;
-    border-radius:12px;
-    box-shadow:0 4px 12px rgba(0,0,0,.2);
-}
-.cart h3{margin-top:0;color:#d35400}
-.cart ul{
-    list-style:none;
-    padding:0;
-    max-height:200px;
-    overflow:auto;
-}
-.cart li{
-    font-size:14px;
-    margin-bottom:5px;
-}
-.whatsapp{
-    display:block;
-    margin-top:10px;
-    background:#25d366;
-    color:#fff;
-    padding:10px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
-}
-</style>
+        /* حاوية المنتجات */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* كل منتج */
+        .product {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product p {
+            margin: 10px 0 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .contact {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>منتجات طرح بلدنا</h1>
+    <h1>منتجات طرح بلدنا</h1>
 
-<div class="products">
+    <!-- المنتجات -->
+    <div class="products-container">
+        <div class="product">
+            <img src="images/product01.jpg.jpeg" alt="فول سوداني">
+            <p>فول سوداني 01</p>
+        </div>
+        <div class="product">
+            <img src="images/product02.jpg.jpeg" alt="فول سوداني">
+            <p>فول سوداني 02</p>
+        </div>
+        <div class="product">
+            <img src="images/product03.jpg.jpeg" alt="فول سوداني">
+            <p>فول سوداني 03</p>
+        </div>
+        <div class="product">
+            <img src="images/product04.jpg.jpeg" alt="فول سوداني">
+            <p>فول سوداني 04</p>
+        </div>
+        <div class="product">
+            <img src="images/product07.jpg.jpeg" alt="فول سوداني">
+            <p>فول سوداني 07</p>
+        </div>
+        <div class="product">
+            <img src="images/product08.jpg.jpeg" alt="فول سوداني">
+            <p>فول سوداني 08</p>
+        </div>
+        <div class="product">
+            <img src="images/product09.jpg.jpeg" alt="فول سوداني">
+            <p>فول سوداني 09</p>
+        </div>
+        <div class="product">
+            <img src="images/product1.jpg" alt="فول سوداني">
+            <p>فول سوداني 1</p>
+        </div>
+    </div>
 
-<!-- منتج 1 -->
-<div class="product">
-<img src="images/product01.jpg.jpeg">
-<h3>فول سوداني بقشره</h3>
-<p>50 جنيه</p>
-<button onclick="addToCart('فول بقشره',50)">أضف للسلة</button>
-</div>
-
-<!-- منتج 2 -->
-<div class="product">
-<img src="images/product02.jpg.jpeg">
-<h3>فول سوداني مجروش</h3>
-<p>55 جنيه</p>
-<button onclick="addToCart('فول مجروش',55)">أضف للسلة</button>
-</div>
-
-<!-- منتج 3 -->
-<div class="product">
-<img src="images/product03.jpg.jpeg">
-<h3>فول سوداني مقشور</h3>
-<p>60 جنيه</p>
-<button onclick="addToCart('فول مقشور',60)">أضف للسلة</button>
-</div>
-
-<!-- منتج 4 -->
-<div class="product">
-<img src="images/product04.jpg.jpeg">
-<h3>فول حلواني</h3>
-<p>65 جنيه</p>
-<button onclick="addToCart('فول حلواني',65)">أضف للسلة</button>
-</div>
-
-</div>
-
-<!-- السلة -->
-<div class="cart">
-<h3>🛒 سلة الطلب</h3>
-<ul id="cartItems"></ul>
-<p><strong>الإجمالي: <span id="total">0</span> جنيه</strong></p>
-<a id="whats" class="whatsapp" target="_blank">اطلب واتساب</a>
-</div>
-
-<script>
-let cart=[];
-let total=0;
-
-function addToCart(name,price){
-    cart.push({name,price});
-    total+=price;
-    renderCart();
-}
-
-function renderCart(){
-    let list=document.getElementById("cartItems");
-    list.innerHTML="";
-    let text="";
-    cart.forEach(item=>{
-        let li=document.createElement("li");
-        li.textContent=item.name+" - "+item.price+" جنيه";
-        list.appendChild(li);
-        text+=item.name+" - "+item.price+" جنيه%0A";
-    });
-    document.getElementById("total").textContent=total;
-    document.getElementById("whats").href=
-    "https://wa.me/201126773698?text=طلب من موقع طرح بلدنا%0A"+text+"الإجمالي: "+total+" جنيه";
-}
-</script>
+    <!-- معلومات التواصل + شعار الشركة -->
+    <div class="contact">
+        تواصل: 01126773698
+        <br>
+        <img class="logo" src="images/logo.png" alt="شعار الشركة">
+    </div>
 
 </body>
 </html>
