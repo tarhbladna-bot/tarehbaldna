@@ -76,9 +76,21 @@ footer{background:#111;color:#fff;text-align:center;padding:2rem;margin-top:3rem
    <h1 id="title">طرح بلدنا</h1>
   <div class="contact" id="contactInfo">
     📞 01126773698 — واتساب: 01020508423<br>📧 tarhbladna@gmail.com
-  </div>
-  <button onclick="toggleLang()">EN / AR</button>
-</header>
+  <div style="display:flex;gap:10px;align-items:center">
+  <a href="export.html" style="
+    color:#000;
+    background:#d4af37;
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:bold;
+    text-decoration:none
+  ">
+    🌍 Export
+  </a>
+
+  <button onclick="toggleLang()">AR / EN</button>
+  <button onclick="openCart()">🛒</button>
+</div>
 
 <div class="floating-buttons">
   <button onclick="scrollToSection('products')">المنتجات</button>
