@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>طرح بلدنا</title>
+<title>طرح بلدنا | Tarh Baldna</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* عام */
 body {
   font-family: 'Cairo', sans-serif;
   margin: 0;
@@ -13,7 +14,9 @@ body {
   background-color: #000;
   color: #fff;
   scroll-behavior: smooth;
+  transition: all 0.3s;
 }
+body.ltr { direction: ltr; text-align: left; }
 
 /* الهيدر */
 header {
@@ -21,13 +24,23 @@ header {
   padding: 25px 20px;
   text-align: center;
   border-bottom: 2px solid #FF6600;
+  position: relative;
 }
-header h1 {
-  font-size: 2.5rem;
-  color: #FF6600;
-  margin: 0;
-  letter-spacing: 1px;
+header h1 { font-size: 2.5rem; color: #FF6600; margin:0; letter-spacing:1px; }
+.lang-switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color:#FF6600;
+  color:#fff;
+  border:none;
+  padding:8px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
 }
+.lang-switch:hover { background-color:#e65c00; transform: scale(1.05); }
 
 /* المنتجات */
 .products {
@@ -48,233 +61,67 @@ header h1 {
   opacity: 0;
   transition: all 0.8s ease;
 }
-.product.visible {
-  transform: translateY(0);
-  opacity: 1;
-}
-.product:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(255,102,0,0.6);
-}
-.product img {
-  width: 100%;
-  border-radius: 15px;
-  margin-bottom: 15px;
-}
-.product h2 {
-  font-size: 1.3rem;
-  margin: 10px 0 5px 0;
-  color: #FF6600;
-}
-.product p {
-  margin: 5px 0;
-  font-weight: bold;
-  color: #fff;
-}
-.product button {
-  background-color: #FF6600;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
-}
-.product button:hover {
-  background-color: #e65c00;
-  transform: scale(1.05);
-}
+.product.visible { transform: translateY(0); opacity:1; }
+.product:hover { transform: translateY(-10px) scale(1.05); box-shadow:0 15px 35px rgba(255,102,0,0.6);}
+.product img { width:100%; border-radius:15px; margin-bottom:15px; }
+.product h2 { font-size:1.3rem; margin:10px 0 5px 0; color:#FF6600; }
+.product p { margin:5px 0; font-weight:bold; color:#fff; }
+.product button { background-color:#FF6600; color:#fff; border:none; padding:10px 15px; border-radius:12px; cursor:pointer; font-weight:bold; transition:0.3s; }
+.product button:hover { background-color:#e65c00; transform:scale(1.05); }
 
-/* السلة الجانبية */
-.cart {
-  position: fixed;
-  top: 20px;
-  left: -350px;
-  width: 300px;
-  background-color: #111;
-  border: 2px solid #FF6600;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 8px 35px rgba(255,102,0,0.4);
-  transition: left 0.4s ease;
-  z-index: 999;
-}
-.cart.active {
-  left: 20px;
-}
-.cart h3 {
-  color: #FF6600;
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-.cart ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.cart li {
-  margin-bottom: 10px;
-  padding: 8px;
-  background: #222;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  transition: transform 0.3s;
-}
-.cart li.added {
-  animation: pulse 0.4s;
-}
+/* السلة */
+.cart { position: fixed; top:20px; left:-350px; width:300px; background:#111; border:2px solid #FF6600; border-radius:15px; padding:20px; box-shadow:0 8px 35px rgba(255,102,0,0.4); transition:left 0.4s ease; z-index:999; }
+.cart.active { left:20px; }
+.cart h3 { color:#FF6600; margin-top:0;margin-bottom:15px; }
+.cart ul { list-style:none; padding:0;margin:0; }
+.cart li { margin-bottom:10px; padding:8px; background:#222; border-radius:10px; font-size:0.95rem; transition: transform 0.3s; }
+.cart li.added { animation: pulse 0.4s; }
+@keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
+.cart button { margin-top:15px;width:100%; background:#FF6600; color:#fff; border:none; padding:12px; font-weight:bold; border-radius:12px; cursor:pointer;}
+.cart button:hover { background:#e65c00; }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
+/* زر السلة */
+.cart-toggle { position: fixed; top:20px; left:20px; background:#FF6600; color:#fff; padding:12px 18px; border-radius:50px; cursor:pointer; font-weight:bold; box-shadow:0 4px 15px rgba(255,102,0,0.5); z-index:1000; transition:0.3s;}
+.cart-toggle:hover { background:#e65c00; transform:scale(1.05); }
 
-.cart button {
-  margin-top: 15px;
-  width: 100%;
-  background-color: #FF6600;
-  color: #fff;
-  border: none;
-  padding: 12px;
-  font-weight: bold;
-  border-radius: 12px;
-  cursor: pointer;
-}
-.cart button:hover {
-  background-color: #e65c00;
-}
-
-/* زر فتح السلة */
-.cart-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background-color: #FF6600;
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 4px 15px rgba(255,102,0,0.5);
-  z-index: 1000;
-  transition: background 0.3s, transform 0.2s;
-}
-.cart-toggle:hover {
-  background-color: #e65c00;
-  transform: scale(1.05);
-}
-
-/* أيقونات عائمة */
-.floating-icons {
-  position: fixed;
-  bottom: 25px;
-  left: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  z-index: 1000;
-}
-.floating-icons a {
-  background-color: #FF6600;
-  color: #fff;
-  width: 55px;
-  height: 55px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  text-decoration: none;
-  font-size: 24px;
-  box-shadow: 0 6px 25px rgba(255,102,0,0.5);
-  transition: background 0.3s, transform 0.3s;
-}
-.floating-icons a:hover {
-  background-color: #e65c00;
-  transform: scale(1.1);
-}
+/* الأيقونات العائمة */
+.floating-icons { position: fixed; bottom:25px; left:25px; display:flex; flex-direction:column; gap:15px; z-index:1000; }
+.floating-icons a { background:#FF6600; color:#fff; width:55px; height:55px; display:flex; justify-content:center; align-items:center; border-radius:50%; text-decoration:none; font-size:24px; box-shadow:0 6px 25px rgba(255,102,0,0.5); transition:0.3s; }
+.floating-icons a:hover { background:#e65c00; transform:scale(1.1); }
 
 /* واتساب */
-.whatsapp-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: #FF6600;
-  color: #fff;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 28px;
-  text-decoration: none;
-  box-shadow: 0 6px 25px rgba(255,102,0,0.5);
-  transition: background 0.3s, transform 0.2s;
-  z-index: 1000;
-}
-.whatsapp-btn:hover {
-  background-color: #e65c00;
-  transform: scale(1.1);
-}
+.whatsapp-btn { position:fixed; bottom:25px; right:25px; background:#FF6600; color:#fff; border-radius:50%; width:60px; height:60px; display:flex; justify-content:center; align-items:center; font-size:28px; text-decoration:none; box-shadow:0 6px 25px rgba(255,102,0,0.5); transition:0.3s; z-index:1000;}
+.whatsapp-btn:hover { background:#e65c00; transform:scale(1.1); }
 
 /* نافذة النبذة */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.85);
-}
-.modal-content {
-  background-color: #111;
-  margin: 10% auto;
-  padding: 30px;
-  border: 2px solid #FF6600;
-  border-radius: 15px;
-  width: 80%;
-  max-width: 500px;
-  color: #fff;
-  text-align: center;
-  position: relative;
-}
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  color: #FF6600;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close-btn:hover {
-  color: #e65c00;
-}
+.modal { display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.85);}
+.modal-content { background:#111; margin:10% auto; padding:30px; border:2px solid #FF6600; border-radius:15px; width:80%; max-width:500px; color:#fff; text-align:center; position:relative;}
+.close-btn { position:absolute; top:15px; right:20px; color:#FF6600; font-size:28px; font-weight:bold; cursor:pointer; }
+.close-btn:hover { color:#e65c00; }
+
+/* Responsive */
+@media(max-width:768px){ .products { flex-direction:column; align-items:center; } .cart{width:260px;} }
 </style>
 </head>
-<body>
+<body class="rtl">
 
 <header>
-  <h1>طرح بلدنا</h1>
+  <h1 data-lang-ar="طرح بلدنا" data-lang-en="Tarh Baldna">طرح بلدنا</h1>
+  <button class="lang-switch" onclick="switchLang()">English</button>
 </header>
 
 <div class="products">
-  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+1" alt="منتج 1"><h2>فول سوداني بقشره</h2><p>السعر عند الطلب</p><button onclick="addToCart('فول سوداني بقشره')">أضف للسلة</button></div>
-  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+2" alt="منتج 2"><h2>فول سوداني مجروش</h2><p>السعر عند الطلب</p><button onclick="addToCart('فول سوداني مجروش')">أضف للسلة</button></div>
-  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+3" alt="منتج 3"><h2>فول سوداني مقشر</h2><p>السعر عند الطلب</p><button onclick="addToCart('فول سوداني مقشر')">أضف للسلة</button></div>
+  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+1" alt="منتج 1"><h2 data-lang-ar="فول سوداني بقشره" data-lang-en="Peanut with shell">فول سوداني بقشره</h2><p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p><button onclick="addToCart('فول سوداني بقشره')">أضف للسلة</button></div>
+  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+2" alt="منتج 2"><h2 data-lang-ar="فول سوداني مجروش" data-lang-en="Crushed Peanut">فول سوداني مجروش</h2><p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p><button onclick="addToCart('فول سوداني مجروش')">أضف للسلة</button></div>
+  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+3" alt="منتج 3"><h2 data-lang-ar="فول سوداني مقشر" data-lang-en="Shelled Peanut">فول سوداني مقشر</h2><p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p><button onclick="addToCart('فول سوداني مقشر')">أضف للسلة</button></div>
 </div>
 
-<div class="cart-toggle" onclick="toggleCart()">السلة</div>
+<div class="cart-toggle" onclick="toggleCart()" data-lang-ar="السلة" data-lang-en="Cart">السلة</div>
 
 <div class="cart" id="cart">
-  <h3>سلة مشترياتك</h3>
+  <h3 data-lang-ar="سلة مشترياتك" data-lang-en="Your Cart">سلة مشترياتك</h3>
   <ul id="cart-items"></ul>
-  <button onclick="sendWhatsApp()">اطلب الآن</button>
+  <button onclick="sendWhatsApp()" data-lang-ar="اطلب الآن" data-lang-en="Order Now">اطلب الآن</button>
 </div>
 
 <div class="floating-icons">
@@ -287,62 +134,32 @@ header h1 {
 <div id="aboutModal" class="modal">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h2>نبذة عن شركة طرح بلدنا</h2>
-    <p>شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني بأعلى جودة وبمختلف أنواعه.  
-    نسعى لتقديم أفضل المنتجات لعملائنا مع خدمة عملاء متميزة وسريعة.</p>
+    <h2 data-lang-ar="نبذة عن شركة طرح بلدنا" data-lang-en="About Tarh Baldna">نبذة عن شركة طرح بلدنا</h2>
+    <p data-lang-ar="شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني بأعلى جودة وبمختلف أنواعه. نسعى لتقديم أفضل المنتجات لعملائنا مع خدمة عملاء متميزة وسريعة." data-lang-en="Tarh Baldna specializes in producing and supplying peanuts of the highest quality in various types. We strive to offer the best products to our customers with excellent and fast customer service.">شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني بأعلى جودة وبمختلف أنواعه. نسعى لتقديم أفضل المنتجات لعملائنا مع خدمة عملاء متميزة وسريعة.</p>
   </div>
 </div>
 
 <script>
-let cartItems = [];
-
-function addToCart(item){
-  cartItems.push(item);
-  updateCart();
-  animateCartItem();
-  alert(item + " تم إضافته للسلة");
-}
-
-function updateCart(){
-  const cartList = document.getElementById('cart-items');
-  cartList.innerHTML = '';
-  cartItems.forEach(i => {
-    const li = document.createElement('li');
-    li.textContent = i + " - السعر عند الطلب";
-    li.classList.add('added');
-    cartList.appendChild(li);
-  });
-}
-
-function animateCartItem(){
-  setTimeout(()=>{document.querySelectorAll('.cart li').forEach(el=>el.classList.remove('added'))},400);
-}
-
-function toggleCart(){
-  document.getElementById('cart').classList.toggle('active');
-}
-
-function sendWhatsApp(){
-  if(cartItems.length===0){ alert("السلة فارغة"); return;}
-  const message="مرحبًا، أرغب في طلب:\n"+cartItems.join("\n");
-  window.open("https://wa.me/201126773698?text="+encodeURIComponent(message),"_blank");
-}
-
-/* نافذة النبذة */
+let cartItems=[];
+function addToCart(item){cartItems.push(item);updateCart();animateCartItem();alert(item+" تم إضافته للسلة");}
+function updateCart(){const cartList=document.getElementById('cart-items');cartList.innerHTML='';cartItems.forEach(i=>{const li=document.createElement('li');li.textContent=i+" - السعر عند الطلب";li.classList.add('added');cartList.appendChild(li);});}
+function animateCartItem(){setTimeout(()=>{document.querySelectorAll('.cart li').forEach(el=>el.classList.remove('added'))},400);}
+function toggleCart(){document.getElementById('cart').classList.toggle('active');}
+function sendWhatsApp(){if(cartItems.length===0){alert("السلة فارغة");return;}const message="مرحبًا، أرغب في طلب:\n"+cartItems.join("\n");window.open("https://wa.me/201126773698?text="+encodeURIComponent(message),"_blank");}
 function openModal(){document.getElementById('aboutModal').style.display="block";}
 function closeModal(){document.getElementById('aboutModal').style.display="none";}
 window.onclick=function(e){if(e.target==document.getElementById('aboutModal')) closeModal();}
+window.addEventListener('scroll',revealProducts);window.addEventListener('load',revealProducts);
+function revealProducts(){document.querySelectorAll('.product').forEach(product=>{const top=product.getBoundingClientRect().top;const height=window.innerHeight;if(top<height-50){product.classList.add('visible');}});}
 
-/* تأثير ظهور المنتجات تدريجي */
-window.addEventListener('scroll', revealProducts);
-window.addEventListener('load', revealProducts);
-
-function revealProducts(){
-  document.querySelectorAll('.product').forEach(product=>{
-    const top = product.getBoundingClientRect().top;
-    const height = window.innerHeight;
-    if(top < height - 50){ product.classList.add('visible'); }
-  });
+/* تبديل اللغة */
+let currentLang='ar';
+function switchLang(){
+  const elements=document.querySelectorAll('[data-lang-ar]');
+  currentLang=(currentLang==='ar')?'en':'ar';
+  document.body.className=currentLang==='ar'?'rtl':'ltr';
+  document.querySelector('.lang-switch').textContent=currentLang==='ar'?'English':'عربي';
+  elements.forEach(el=>{el.textContent=currentLang==='ar'?el.getAttribute('data-lang-ar'):el.getAttribute('data-lang-en');});
 }
 </script>
 
