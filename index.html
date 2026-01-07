@@ -3,183 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شركة طرح بلدنا | Tarh Baldna</title>
+<title>سلة الطلب | طرح بلدنا</title>
 
 <style>
-*{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Tahoma, Arial, sans-serif;
-  background:#000;
+  font-family:Tahoma, Arial;
+  background:#111;
   color:#fff;
 }
-header{
-  background:#000;
-  padding:25px 15px;
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:20px;
+}
+h1,h2{
   text-align:center;
-  border-bottom:2px solid #d4af37;
+  color:#ff4d2d;
 }
-header h1{
-  margin:0;
-  color:#d4af37;
-  font-size:32px;
+input, select{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:5px;
+  border:none;
+  font-size:15px;
 }
-header p{
-  margin:10px 0 0;
+.row{
+  display:flex;
+  gap:10px;
+}
+button{
+  width:100%;
+  padding:15px;
+  margin-top:10px;
+  background:#ff4d2d;
+  color:#fff;
+  border:none;
+  font-size:18px;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover{
+  opacity:.9;
+}
+.card{
+  background:#1a1a1a;
+  padding:20px;
+  border-radius:10px;
+  margin-top:25px;
+}
+.info{
+  margin-top:15px;
+  line-height:2;
   font-size:16px;
 }
-nav{
-  margin-top:20px;
-}
-nav a{
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  background:#25d366;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  text-decoration:none;
   color:#fff;
-  margin:0 12px;
-  text-decoration:none;
-  font-weight:bold;
 }
-nav a:hover{
-  color:#d4af37;
-}
-section{
-  padding:60px 20px;
-}
-h2{
-  text-align:center;
-  color:#d4af37;
-  margin-bottom:35px;
-  font-size:28px;
-}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
-  max-width:1100px;
-  margin:auto;
-}
-.product{
-  border:1px solid #d4af37;
-  padding:20px;
-  text-align:center;
-}
-.product img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  margin-bottom:15px;
-  border-radius:6px;
-}
-.product h3{
-  margin:10px 0 5px;
-}
-.product p{
-  color:#ccc;
-}
-.text-box{
-  max-width:950px;
-  margin:auto;
-  text-align:center;
-  line-height:2;
-  font-size:17px;
-}
-.contact-box{
-  text-align:center;
+.total{
+  color:#00ff7f;
   font-size:18px;
-  line-height:2.2;
-}
-.contact-box a{
-  color:#d4af37;
-  text-decoration:none;
-  font-weight:bold;
-}
-footer{
-  background:#000;
-  border-top:2px solid #d4af37;
-  padding:20px;
-  text-align:center;
-  font-size:14px;
-  color:#ccc;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>شركة طرح بلدنا</h1>
-  <p>لتجارة وتوريد وتصدير الفول السوداني</p>
+<div class="container">
 
-  <nav>
-    <a href="#products">المنتجات</a>
-    <a href="#about">عن الشركة</a>
-    <a href="#export">التصدير</a>
-    <a href="#contact">تواصل معنا</a>
-  </nav>
-</header>
+<h1>🛒 سلة الطلب</h1>
 
-<section id="products">
-  <h2>منتجاتنا</h2>
+<input type="text" id="name" placeholder="الاسم">
+<input type="tel" id="phone" placeholder="رقم الموبايل">
 
-  <div class="products">
+<select id="type">
+  <option>فول سوداني مقشر</option>
+  <option>فول سوداني بقشره</option>
+  <option>فول سوداني حلواني</option>
+</select>
 
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1604908554025-e4771dbbc35d" alt="فول سوداني بقشره">
-      <h3>فول سوداني بقشره</h3>
-      <p>جودة عالية – مناسب للتجارة والتصدير</p>
-    </div>
+<div class="row">
+  <select id="quality">
+    <option>مقشر</option>
+    <option>درجة أولى</option>
+  </select>
+  <select id="sale">
+    <option>جملة</option>
+    <option>قطاعي</option>
+  </select>
+  <select id="pack">
+    <option>شيكارة</option>
+    <option>كرتونة</option>
+  </select>
+</div>
 
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1627485937980-8c4f7f7cde2b" alt="فول سوداني مقشر">
-      <h3>فول سوداني مقشر</h3>
-      <p>نظيف – جاهز للاستخدام الصناعي</p>
-    </div>
+<input type="number" id="qty" placeholder="الكمية بالكيلو">
 
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1598515213692-98c3c1d9fa38" alt="فول سوداني مجروش">
-      <h3>فول سوداني مجروش</h3>
-      <p>مناسب للمصانع والحلويات</p>
-    </div>
+<button onclick="sendOrder()">➕ إضافة للسلة</button>
 
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25" alt="فول سوداني حلواني">
-      <h3>فول سوداني حلواني</h3>
-      <p>طعم مميز – نسبة زيت عالية</p>
-    </div>
+<p style="text-align:center;margin-top:10px">السلة فارغة</p>
+<p style="text-align:center">💰 طريقة الدفع: الدفع عند الاستلام</p>
+<p class="total" style="text-align:center">السعر الإجمالي: 0 جنيه</p>
 
-  </div>
-</section>
-
-<section id="about">
-  <h2>نبذة عن الشركة</h2>
-  <div class="text-box">
-    شركة <strong>طرح بلدنا</strong> متخصصة في تجارة وتوريد وتصدير
-    الفول السوداني بجميع أنواعه، ونلتزم بتقديم أعلى جودة
-    وفقًا للمعايير المحلية والعالمية مع أسعار تنافسية
-    وتوريد كميات كبيرة للسوق المحلي وأسواق التصدير.
-  </div>
-</section>
-
-<section id="export">
-  <h2>التصدير</h2>
-  <div class="text-box">
-    نوفر خدمات تصدير الفول السوداني إلى جميع الدول العربية
-    والأفريقية طبقًا لمواصفات التصدير المطلوبة مع
-    إمكانية التعبئة حسب طلب العميل وتوفير شهادات الجودة.
-  </div>
-</section>
-
-<section id="contact">
+<div class="card">
   <h2>تواصل معنا</h2>
-  <div class="contact-box">
-    📞 واتساب:
-    <a href="https://wa.me/201126773698">01126773698</a><br>
-    📧 البريد الإلكتروني:
-    <a href="mailto:tarhbladna@gmail.com">tarhbladna@gmail.com</a>
+  <div class="info">
+    📞 01126773698<br>
+    💬 واتساب: 01020508423<br>
+    📧 tarhbladna@gmail.com
   </div>
-</section>
+</div>
 
-<footer>
-  © 2026 شركة طرح بلدنا – جميع الحقوق محفوظة
-</footer>
+</div>
+
+<a class="whatsapp" href="https://wa.me/201126773698">💬</a>
+
+<script>
+function sendOrder(){
+  let msg = 
+  "طلب جديد من موقع طرح بلدنا%0A"+
+  "الاسم: "+name.value+"%0A"+
+  "الهاتف: "+phone.value+"%0A"+
+  "النوع: "+type.value+"%0A"+
+  "الجودة: "+quality.value+"%0A"+
+  "البيع: "+sale.value+"%0A"+
+  "التعبئة: "+pack.value+"%0A"+
+  "الكمية: "+qty.value;
+
+  window.open("https://wa.me/201126773698?text="+msg,"_blank");
+}
+</script>
 
 </body>
 </html>
