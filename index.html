@@ -6,234 +6,255 @@
 <title>طرح بلدنا</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  body {
-    font-family: 'Cairo', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    color: #fff;
-  }
+body {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  scroll-behavior: smooth;
+}
 
-  header {
-    background-color: #111;
-    padding: 25px 20px;
-    text-align: center;
-    border-bottom: 2px solid #FF6600;
-  }
-  header h1 {
-    font-size: 2.5rem;
-    color: #FF6600;
-    margin: 0;
-    letter-spacing: 1px;
-  }
+/* الهيدر */
+header {
+  background-color: #111;
+  padding: 25px 20px;
+  text-align: center;
+  border-bottom: 2px solid #FF6600;
+}
+header h1 {
+  font-size: 2.5rem;
+  color: #FF6600;
+  margin: 0;
+  letter-spacing: 1px;
+}
 
-  .products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 30px 20px;
-  }
+/* المنتجات */
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 30px 20px;
+}
+.product {
+  background: #111;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(255,102,0,0.3);
+  width: 220px;
+  padding: 20px;
+  text-align: center;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+.product.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+.product:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(255,102,0,0.6);
+}
+.product img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+.product h2 {
+  font-size: 1.3rem;
+  margin: 10px 0 5px 0;
+  color: #FF6600;
+}
+.product p {
+  margin: 5px 0;
+  font-weight: bold;
+  color: #fff;
+}
+.product button {
+  background-color: #FF6600;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+.product button:hover {
+  background-color: #e65c00;
+  transform: scale(1.05);
+}
 
-  .product {
-    background: #111;
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(255,102,0,0.3);
-    width: 220px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.4s, box-shadow 0.4s;
-  }
-  .product:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(255,102,0,0.6);
-  }
+/* السلة الجانبية */
+.cart {
+  position: fixed;
+  top: 20px;
+  left: -350px;
+  width: 300px;
+  background-color: #111;
+  border: 2px solid #FF6600;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 35px rgba(255,102,0,0.4);
+  transition: left 0.4s ease;
+  z-index: 999;
+}
+.cart.active {
+  left: 20px;
+}
+.cart h3 {
+  color: #FF6600;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.cart li {
+  margin-bottom: 10px;
+  padding: 8px;
+  background: #222;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: transform 0.3s;
+}
+.cart li.added {
+  animation: pulse 0.4s;
+}
 
-  .product img {
-    width: 100%;
-    border-radius: 15px;
-    margin-bottom: 15px;
-  }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
 
-  .product h2 {
-    font-size: 1.3rem;
-    margin: 10px 0 5px 0;
-    color: #FF6600;
-  }
+.cart button {
+  margin-top: 15px;
+  width: 100%;
+  background-color: #FF6600;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.cart button:hover {
+  background-color: #e65c00;
+}
 
-  .product p {
-    margin: 5px 0;
-    font-weight: bold;
-    color: #fff;
-  }
+/* زر فتح السلة */
+.cart-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #FF6600;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(255,102,0,0.5);
+  z-index: 1000;
+  transition: background 0.3s, transform 0.2s;
+}
+.cart-toggle:hover {
+  background-color: #e65c00;
+  transform: scale(1.05);
+}
 
-  .product button {
-    background-color: #FF6600;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-  }
-  .product button:hover {
-    background-color: #e65c00;
-  }
+/* أيقونات عائمة */
+.floating-icons {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+.floating-icons a {
+  background-color: #FF6600;
+  color: #fff;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 24px;
+  box-shadow: 0 6px 25px rgba(255,102,0,0.5);
+  transition: background 0.3s, transform 0.3s;
+}
+.floating-icons a:hover {
+  background-color: #e65c00;
+  transform: scale(1.1);
+}
 
-  .cart {
-    position: fixed;
-    top: 20px;
-    left: -350px;
-    width: 300px;
-    background-color: #111;
-    border: 2px solid #FF6600;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 8px 25px rgba(255,102,0,0.3);
-    transition: left 0.4s ease;
-    z-index: 999;
-  }
-  .cart.active {
-    left: 20px;
-  }
-  .cart h3 {
-    color: #FF6600;
-    margin-top: 0;
-    margin-bottom: 15px;
-  }
-  .cart ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .cart li {
-    margin-bottom: 10px;
-    padding: 8px;
-    background: #222;
-    border-radius: 10px;
-    font-size: 0.95rem;
-  }
+/* واتساب */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #FF6600;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 6px 25px rgba(255,102,0,0.5);
+  transition: background 0.3s, transform 0.2s;
+  z-index: 1000;
+}
+.whatsapp-btn:hover {
+  background-color: #e65c00;
+  transform: scale(1.1);
+}
 
-  .cart button {
-    margin-top: 15px;
-    width: 100%;
-    background-color: #FF6600;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    font-weight: bold;
-    border-radius: 12px;
-    cursor: pointer;
-  }
-  .cart button:hover {
-    background-color: #e65c00;
-  }
-
-  .cart-toggle {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background-color: #FF6600;
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(255,102,0,0.5);
-    z-index: 1000;
-    transition: background 0.3s;
-  }
-  .cart-toggle:hover {
-    background-color: #e65c00;
-  }
-
-  .floating-icons {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
-  }
-  .floating-icons a {
-    background-color: #FF6600;
-    color: #fff;
-    width: 55px;
-    height: 55px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    text-decoration: none;
-    font-size: 24px;
-    box-shadow: 0 6px 20px rgba(255,102,0,0.5);
-    transition: background 0.3s;
-  }
-  .floating-icons a:hover {
-    background-color: #e65c00;
-  }
-
-  .whatsapp-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #FF6600;
-    color: #fff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    text-decoration: none;
-    box-shadow: 0 6px 20px rgba(255,102,0,0.5);
-    transition: background 0.3s;
-    z-index: 1000;
-  }
-  .whatsapp-btn:hover {
-    background-color: #e65c00;
-  }
-
-  /* نافذة النبذة */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.8);
-  }
-  .modal-content {
-    background-color: #111;
-    margin: 10% auto;
-    padding: 30px;
-    border: 2px solid #FF6600;
-    border-radius: 15px;
-    width: 80%;
-    max-width: 500px;
-    color: #fff;
-    text-align: center;
-    position: relative;
-  }
-  .close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: #FF6600;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .close-btn:hover {
-    color: #e65c00;
-  }
-
+/* نافذة النبذة */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+}
+.modal-content {
+  background-color: #111;
+  margin: 10% auto;
+  padding: 30px;
+  border: 2px solid #FF6600;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 500px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #FF6600;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-btn:hover {
+  color: #e65c00;
+}
 </style>
 </head>
 <body>
@@ -243,24 +264,9 @@
 </header>
 
 <div class="products">
-  <div class="product">
-    <img src="https://via.placeholder.com/220x150?text=منتج+1" alt="منتج 1">
-    <h2>فول سوداني بقشره</h2>
-    <p>السعر عند الطلب</p>
-    <button onclick="addToCart('فول سوداني بقشره')">أضف للسلة</button>
-  </div>
-  <div class="product">
-    <img src="https://via.placeholder.com/220x150?text=منتج+2" alt="منتج 2">
-    <h2>فول سوداني مجروش</h2>
-    <p>السعر عند الطلب</p>
-    <button onclick="addToCart('فول سوداني مجروش')">أضف للسلة</button>
-  </div>
-  <div class="product">
-    <img src="https://via.placeholder.com/220x150?text=منتج+3" alt="منتج 3">
-    <h2>فول سوداني مقشر</h2>
-    <p>السعر عند الطلب</p>
-    <button onclick="addToCart('فول سوداني مقشر')">أضف للسلة</button>
-  </div>
+  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+1" alt="منتج 1"><h2>فول سوداني بقشره</h2><p>السعر عند الطلب</p><button onclick="addToCart('فول سوداني بقشره')">أضف للسلة</button></div>
+  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+2" alt="منتج 2"><h2>فول سوداني مجروش</h2><p>السعر عند الطلب</p><button onclick="addToCart('فول سوداني مجروش')">أضف للسلة</button></div>
+  <div class="product"><img src="https://via.placeholder.com/220x150?text=منتج+3" alt="منتج 3"><h2>فول سوداني مقشر</h2><p>السعر عند الطلب</p><button onclick="addToCart('فول سوداني مقشر')">أضف للسلة</button></div>
 </div>
 
 <div class="cart-toggle" onclick="toggleCart()">السلة</div>
@@ -271,16 +277,13 @@
   <button onclick="sendWhatsApp()">اطلب الآن</button>
 </div>
 
-<!-- أيقونات عائمة -->
 <div class="floating-icons">
   <a href="javascript:void(0)" onclick="openModal()" title="نبذة عن الشركة">ℹ️</a>
   <a href="mailto:info@tarhbladna.com" title="البريد الإلكتروني">✉️</a>
 </div>
 
-<!-- زر واتساب عائم -->
 <a href="https://wa.me/201126773698" target="_blank" class="whatsapp-btn">📞</a>
 
-<!-- نافذة النبذة -->
 <div id="aboutModal" class="modal">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -293,47 +296,53 @@
 <script>
 let cartItems = [];
 
-function addToCart(item) {
+function addToCart(item){
   cartItems.push(item);
   updateCart();
+  animateCartItem();
   alert(item + " تم إضافته للسلة");
 }
 
-function updateCart() {
+function updateCart(){
   const cartList = document.getElementById('cart-items');
   cartList.innerHTML = '';
   cartItems.forEach(i => {
     const li = document.createElement('li');
     li.textContent = i + " - السعر عند الطلب";
+    li.classList.add('added');
     cartList.appendChild(li);
   });
 }
 
-function toggleCart() {
+function animateCartItem(){
+  setTimeout(()=>{document.querySelectorAll('.cart li').forEach(el=>el.classList.remove('added'))},400);
+}
+
+function toggleCart(){
   document.getElementById('cart').classList.toggle('active');
 }
 
-function sendWhatsApp() {
-  if(cartItems.length === 0){
-    alert("السلة فارغة");
-    return;
-  }
-  const message = "مرحبًا، أرغب في طلب:\n" + cartItems.join("\n");
-  const url = "https://wa.me/201126773698?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
+function sendWhatsApp(){
+  if(cartItems.length===0){ alert("السلة فارغة"); return;}
+  const message="مرحبًا، أرغب في طلب:\n"+cartItems.join("\n");
+  window.open("https://wa.me/201126773698?text="+encodeURIComponent(message),"_blank");
 }
 
-/* نوافذ النبذة */
-function openModal() {
-  document.getElementById('aboutModal').style.display = "block";
-}
-function closeModal() {
-  document.getElementById('aboutModal').style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == document.getElementById('aboutModal')) {
-    closeModal();
-  }
+/* نافذة النبذة */
+function openModal(){document.getElementById('aboutModal').style.display="block";}
+function closeModal(){document.getElementById('aboutModal').style.display="none";}
+window.onclick=function(e){if(e.target==document.getElementById('aboutModal')) closeModal();}
+
+/* تأثير ظهور المنتجات تدريجي */
+window.addEventListener('scroll', revealProducts);
+window.addEventListener('load', revealProducts);
+
+function revealProducts(){
+  document.querySelectorAll('.product').forEach(product=>{
+    const top = product.getBoundingClientRect().top;
+    const height = window.innerHeight;
+    if(top < height - 50){ product.classList.add('visible'); }
+  });
 }
 </script>
 
