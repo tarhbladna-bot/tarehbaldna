@@ -120,68 +120,85 @@ footer{background:#111;color:#fff;text-align:center;padding:2rem;margin-top:3rem
   </div>
    <div class="product-grid" id="productGrid"></div>
 </section>
-
 <section class="cart">
   <h2 id="cartTitle">🛒 سلة الطلب</h2>
+
   <form id="orderForm">
+
+    <!-- اسم العميل -->
     <input id="name" placeholder="اسم العميل" required>
+
+    <!-- رقم الهاتف -->
     <input id="phone" placeholder="رقم الهاتف" required>
-<!-- نوعية الفول -->
-<label>نوعية الفول</label>
-<select id="peanutType" required>
-  <option value="">اختر النوع</option>
-  <option value="بقشرة">بقشرة</option>
-  <option value="مقشر">مقشر</option>
-  <option value="مفروك">مفروك</option>
-  <option value="مجروش">مجروش</option>
-</select>
 
-<!-- ني / محمص -->
-<label>الحالة</label>
-<select id="peanutStatus" required>
-  <option value="">اختر الحالة</option>
-  <option value="ني">ني</option>
-  <option value="محمص">محمص</option>
-</select>
-    <select id="customerType">
-      <option>جملة</option>
-      <option>قطاعي</option>
+    <!-- نوعية الفول -->
+    <label>نوعية الفول</label>
+    <select id="peanutType" required>
+      <option value="">اختر النوع</option>
+      <option value="بقشرة">بقشرة</option>
+      <option value="مقشر">مقشر</option>
+      <option value="مفروك">مفروك</option>
+      <option value="مجروش">مجروش</option>
+    </select> 
+     <!-- ني / محمص -->
+    <label>الحالة</label>
+    <select id="peanutStatus" required>
+      <option value="">اختر الحالة</option>
+      <option value="ني">ني</option>
+      <option value="محمص">محمص</option>
     </select>
 
-    <select id="packing">
-      <option value="1">شيكارة</option>
-      <option value="1.1">كرتونة</option>
-    </select>
-    <input id="qty" placeholder="الكمية (كجم)">
-    <button type="button" onclick="addItemFromCard()">➕ إضافة للسلة</button>
-
+    <!-- السلة -->
     <div class="cart-items" id="cartItems">السلة فارغة</div>
+
+    <!-- طريقة الدفع -->
     <div class="payment" id="paymentText">💰 طريقة الدفع: الدفع عند الاستلام</div>
+
+    <!-- السعر الإجمالي -->
     <div class="payment" id="totalPrice">💲 السعر الإجمالي: 0 جنيه</div>
-<button type="button" onclick="sendOrder
-  </form>
+
+    <!-- زر الإرسال -->
+    <button type="button" onclick="sendOrder( 
+      </form>
 </section>
-
-<section id="contactSection" class="about">
-  <h2 id="contactTitle">تواصل معنا</h2>
-  <p>📞 01126773698 — واتساب: 01020508423<br>📧 tarhbladna@gmail.com</p> 
-
-
-<!-- حالة الفول -->
-<label for="peanutStatus">الحالة</label>
-<select id="peanutStatus" required>
-  <option value="">اختر الحالة</option>
-  <option value="ني">ني</option>
-  <option value="محمص">محمص</option>
-</select>
-</section>
-<footer id="footerText">
-  © 2026 طرح بلدنا
-</footer>
-
-<a class="whatsapp" href="https://wa.me/201126773698">💬 واتساب</a>
 
 <script>
+function sendOrder() {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const type = document.getElementById("peanutType").value;
+  const status = document.getElementById("peanutStatus").value;
+
+  // التحقق من كل البيانات
+  if (!name || !phone || !type || !status) {
+    alert("من فضلك اكمل كل البيانات");
+    return;
+  } 
+     // نص الرسالة واضح بدون تكرار
+  const message = `
+فول سوداني 🔥
+اسم العميل: ${name}
+رقم الهاتف: ${phone}
+نوعية الفول: ${type}
+الحالة: ${status}
+
+📞 01020508423
+📞 01126773698
+  `;
+
+  // رقم واتساب الشركة
+  const whatsappNumber = "201020508423";
+  const url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+
+  // فتح واتساب في تبويب جديد
+  window.open(url, "_blank");
+}
+</script>        
+
+
+
+
+
 const productsData=[
   {id:1,nameAr:"فول سوداني مقشر",nameEn:"Shelled Peanut",price:50,img:"images/product01.jpg",type:"مقشر",packing:["شيكارة","كرتونة"]},
   {id:2,nameAr:"بقشرة",nameEn:"With Shell",price:40,img:"images/product02.jpg",type:"بقشرة",packing:["شيكارة","كرتونة"]},
