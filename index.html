@@ -126,7 +126,23 @@ footer{background:#111;color:#fff;text-align:center;padding:2rem;margin-top:3rem
   <form id="orderForm">
     <input id="name" placeholder="اسم العميل" required>
     <input id="phone" placeholder="رقم الهاتف" required>
+<!-- نوعية الفول -->
+<label>نوعية الفول</label>
+<select id="peanutType" required>
+  <option value="">اختر النوع</option>
+  <option value="بقشرة">بقشرة</option>
+  <option value="مقشر">مقشر</option>
+  <option value="مفروك">مفروك</option>
+  <option value="مجروش">مجروش</option>
+</select>
 
+<!-- ني / محمص -->
+<label>الحالة</label>
+<select id="peanutStatus" required>
+  <option value="">اختر الحالة</option>
+  <option value="ني">ني</option>
+  <option value="محمص">محمص</option>
+</select>
     <select id="customerType">
       <option>جملة</option>
       <option>قطاعي</option>
