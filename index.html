@@ -19,7 +19,7 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 .filter-search select, .filter-search input{ padding:8px 12px; border-radius:12px; border:none; outline:none; font-size:1rem; }
 .filter-search input{ width:200px;}
 .products{ display:flex; flex-wrap:wrap; justify-content:center; gap:25px; padding:20px;}
-.product{ background:#111; border-radius:20px; box-shadow:0 6px 20px rgba(255,102,0,0.3); width:220px; padding:15px; text-align:center; transform:translateY(50px); opacity:0; transition:all 0.8s ease; position:relative;}
+.product{ background:#111; border-radius:20px; box-shadow:0 6px 20px rgba(255,102,0,0.3); width:220px; padding:15px; text-align:center; transform:translateY(50px); opacity:0; transition:all 0.8s ease; position:relative; cursor:grab;}
 .product.visible{ transform:translateY(0); opacity:1;}
 .product:hover{ transform:translateY(-10px) scale(1.05); box-shadow:0 20px 40px rgba(255,102,0,0.6);}
 .product img{ width:100%; border-radius:15px; margin-bottom:10px; transition:0.3s;}
@@ -29,9 +29,9 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 .product-footer p{ margin:0; font-weight:bold; color:#fff;}
 .product-footer button{ background:#FF6600; color:#fff; border:none; padding:8px 12px; border-radius:12px; cursor:pointer; font-weight:bold; transition:0.3s;}
 .product-footer button:hover{ background:#e65c00; transform:scale(1.05);}
-.social-share{ display:flex; justify-content:center; gap:8px; margin-top:5px;}
+.social-share{ display:flex; justify-content:center; gap:10px; margin-top:8px;}
 .social-share a{ color:#fff; font-size:18px; transition:0.3s;}
-.social-share a:hover{ color:#FF6600; transform:scale(1.2);}
+.social-share a:hover{ color:#FF6600; transform:scale(1.3);}
 .cart{ position:fixed; top:20px; left:-350px; width:300px; background:#111; border:2px solid #FF6600; border-radius:15px; padding:20px; box-shadow:0 8px 35px rgba(255,102,0,0.4); transition:left 0.4s ease; z-index:999;}
 .cart.active{ left:20px;}
 .cart h3{ color:#FF6600; margin-top:0;margin-bottom:15px;}
@@ -114,6 +114,7 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 <button onclick="clearProducts()">حذف كل المنتجات</button>
 <button onclick="exportProducts()">تصدير JSON</button>
 <button onclick="exportCSV()">تصدير CSV</button>
+<p style="font-size:0.85rem; color:#FF6600; text-align:center;">يمكن سحب المنتجات لإعادة ترتيبها</p>
 </div>
 
 <script>
@@ -124,9 +125,14 @@ let currentImg='';
 function saveProducts(){localStorage.setItem('products',JSON.stringify(products));}
 function saveCart(){localStorage.setItem('cartItems',JSON.stringify(cartItems));}
 
+// رفع الصور من الكمبيوتر
 document.getElementById('prod-upload').addEventListener('change',function(e){
 const file=e.target.files[0];
-if(file){const reader=new FileReader();reader.onload=function(ev){currentImg=ev.target.result;document.getElementById('preview-img').src=currentImg;};reader.readAsDataURL(file);}
+if(file){
+const reader=new FileReader();
+reader.onload=function(ev){currentImg=ev.target.result;document.getElementById('preview-img').src=currentImg;};
+reader.readAsDataURL(file);
+}
 });
 
 function addProduct(){
@@ -145,17 +151,34 @@ function clearProducts(){if(confirm('هل تريد حذف كل المنتجات�
 
 function renderProducts(){
 const container=document.getElementById('products');container.innerHTML='';
-products.forEach(p=>{
-const div=document.createElement('div');div.className='product';div.setAttribute('data-type',p.type);
-div.innerHTML=`<img src="${p.img}"><div class="product-footer"><h2 data-lang-ar="${p.nameAr}" data-lang-en="${p.nameEn}">${p.nameAr}</h2><p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p><button onclick="addToCart('${p.nameAr}')">أضف للسلة</button></div>`;
+products.forEach((p,index)=>{
+const div=document.createElement('div');div.className='product';div.setAttribute('data-type',p.type);div.setAttribute('draggable','true');
+div.dataset.index=index;
+div.innerHTML=`<img src="${p.img}"><div class="product-footer"><h2 data-lang-ar="${p.nameAr}" data-lang-en="${p.nameEn}">${p.nameAr}</h2><p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p><button onclick="addToCart('${p.nameAr}')">أضف للسلة</button><div class="social-share"><a href='https://wa.me/201126773698' target='_blank'>📞</a><a href='mailto:info@tarhbladna.com'>✉️</a><a href='#'>🌐</a></div></div>`;
 container.appendChild(div);
 });
-revealProducts();}
+revealProducts();
+addDragAndDrop();
+}
+
+function addDragAndDrop(){
+const container=document.getElementById('products');
+let dragged;
+container.querySelectorAll('.product').forEach(item=>{
+item.addEventListener('dragstart',e=>{dragged=item;e.dataTransfer.effectAllowed='move';});
+item.addEventListener('dragover',e=>{e.preventDefault();});
+item.addEventListener('drop',e=>{
+e.preventDefault();if(dragged===item)return;
+let fromIndex=parseInt(dragged.dataset.index);
+let toIndex=parseInt(item.dataset.index);
+products.splice(toIndex,0,products.splice(fromIndex,1)[0]);
+saveProducts();renderProducts();});
+});
+}
 
 function exportProducts(){const dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(products,null,2));const dlAnchor=document.createElement('a');dlAnchor.setAttribute('href',dataStr);dlAnchor.setAttribute('download','products.json');dlAnchor.click();}
 
-function exportCSV(){
-if(products.length===0){alert('لا يوجد منتجات للتصدير'); return;}
+function exportCSV(){if(products.length===0){alert('لا يوجد منتجات للتصدير'); return;}
 let csv='"اسم المنتج بالعربي","اسم المنتج بالإنجليزي","النوع","رابط الصورة"\n';
 products.forEach(p=>{csv+=`"${p.nameAr}","${p.nameEn}","${p.type}","${p.img}"\n`;});
 const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
@@ -172,9 +195,4 @@ window.addEventListener('scroll',revealProducts);
 window.addEventListener('load',()=>{renderProducts();updateCart();revealProducts();});
 function revealProducts(){document.querySelectorAll('.product').forEach(product=>{const top=product.getBoundingClientRect().top;const height=window.innerHeight;if(top<height-50){product.classList.add('visible');}});}
 let currentLang='ar';
-function switchLang(){const elements=document.querySelectorAll('[data-lang-ar]');currentLang=(currentLang==='ar')?'en':'ar';document.body.className=currentLang==='ar'?'rtl':'ltr';document.querySelector('.lang-switch').textContent=currentLang==='ar'?'English':'عربي';elements.forEach(el=>{el.textContent=currentLang==='ar'?el.getAttribute('data-lang-ar'):el.getAttribute('data-lang-en');});}
-function filterProducts(){const type=document.getElementById('filter').value;document.querySelectorAll('.product').forEach(p=>{p.style.display=(type==='all'||p.getAttribute('data-type')===type)?'block':'none';});}
-function searchProducts(){const keyword=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.product').forEach(p=>{const name=p.querySelector('h2').textContent.toLowerCase();p.style.display=name.includes(keyword)?'block':'none';});}
-</script>
-</body>
-</html>
+function switchLang(){const elements=document.querySelector
