@@ -6,7 +6,6 @@
 <title>طرح بلدنا</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  /* الخطوط والbody */
   body {
     font-family: 'Cairo', sans-serif;
     margin: 0;
@@ -15,7 +14,6 @@
     color: #fff;
   }
 
-  /* الهيدر */
   header {
     background-color: #111;
     padding: 25px 20px;
@@ -29,7 +27,6 @@
     letter-spacing: 1px;
   }
 
-  /* قسم المنتجات */
   .products {
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +81,6 @@
     background-color: #e65c00;
   }
 
-  /* السلة الجانبية */
   .cart {
     position: fixed;
     top: 20px;
@@ -134,7 +130,6 @@
     background-color: #e65c00;
   }
 
-  /* زر فتح السلة */
   .cart-toggle {
     position: fixed;
     top: 20px;
@@ -153,7 +148,6 @@
     background-color: #e65c00;
   }
 
-  /* أيقونات عائمة إضافية */
   .floating-icons {
     position: fixed;
     bottom: 25px;
@@ -181,7 +175,6 @@
     background-color: #e65c00;
   }
 
-  /* أيقونة واتساب عائمة */
   .whatsapp-btn {
     position: fixed;
     bottom: 25px;
@@ -204,6 +197,43 @@
     background-color: #e65c00;
   }
 
+  /* نافذة النبذة */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+  }
+  .modal-content {
+    background-color: #111;
+    margin: 10% auto;
+    padding: 30px;
+    border: 2px solid #FF6600;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+  }
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #FF6600;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .close-btn:hover {
+    color: #e65c00;
+  }
+
 </style>
 </head>
 <body>
@@ -212,7 +242,6 @@
   <h1>طرح بلدنا</h1>
 </header>
 
-<!-- قسم المنتجات -->
 <div class="products">
   <div class="product">
     <img src="https://via.placeholder.com/220x150?text=منتج+1" alt="منتج 1">
@@ -234,57 +263,78 @@
   </div>
 </div>
 
-<!-- زر فتح السلة -->
 <div class="cart-toggle" onclick="toggleCart()">السلة</div>
 
-<!-- سلة التسوق -->
 <div class="cart" id="cart">
   <h3>سلة مشترياتك</h3>
   <ul id="cart-items"></ul>
   <button onclick="sendWhatsApp()">اطلب الآن</button>
 </div>
 
-<!-- أيقونات عائمة إضافية -->
+<!-- أيقونات عائمة -->
 <div class="floating-icons">
-  <a href="#about" title="نبذة عن الشركة">ℹ️</a>
+  <a href="javascript:void(0)" onclick="openModal()" title="نبذة عن الشركة">ℹ️</a>
   <a href="mailto:info@tarhbladna.com" title="البريد الإلكتروني">✉️</a>
 </div>
 
 <!-- زر واتساب عائم -->
 <a href="https://wa.me/201126773698" target="_blank" class="whatsapp-btn">📞</a>
 
+<!-- نافذة النبذة -->
+<div id="aboutModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>نبذة عن شركة طرح بلدنا</h2>
+    <p>شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني بأعلى جودة وبمختلف أنواعه.  
+    نسعى لتقديم أفضل المنتجات لعملائنا مع خدمة عملاء متميزة وسريعة.</p>
+  </div>
+</div>
+
 <script>
-  let cartItems = [];
+let cartItems = [];
 
-  function addToCart(item) {
-    cartItems.push(item);
-    updateCart();
-    alert(item + " تم إضافته للسلة");
-  }
+function addToCart(item) {
+  cartItems.push(item);
+  updateCart();
+  alert(item + " تم إضافته للسلة");
+}
 
-  function updateCart() {
-    const cartList = document.getElementById('cart-items');
-    cartList.innerHTML = '';
-    cartItems.forEach(i => {
-      const li = document.createElement('li');
-      li.textContent = i + " - السعر عند الطلب";
-      cartList.appendChild(li);
-    });
-  }
+function updateCart() {
+  const cartList = document.getElementById('cart-items');
+  cartList.innerHTML = '';
+  cartItems.forEach(i => {
+    const li = document.createElement('li');
+    li.textContent = i + " - السعر عند الطلب";
+    cartList.appendChild(li);
+  });
+}
 
-  function toggleCart() {
-    document.getElementById('cart').classList.toggle('active');
-  }
+function toggleCart() {
+  document.getElementById('cart').classList.toggle('active');
+}
 
-  function sendWhatsApp() {
-    if(cartItems.length === 0) {
-      alert("السلة فارغة");
-      return;
-    }
-    const message = "مرحبًا، أرغب في طلب:\n" + cartItems.join("\n");
-    const url = "https://wa.me/201126773698?text=" + encodeURIComponent(message);
-    window.open(url, "_blank");
+function sendWhatsApp() {
+  if(cartItems.length === 0){
+    alert("السلة فارغة");
+    return;
   }
+  const message = "مرحبًا، أرغب في طلب:\n" + cartItems.join("\n");
+  const url = "https://wa.me/201126773698?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+
+/* نوافذ النبذة */
+function openModal() {
+  document.getElementById('aboutModal').style.display = "block";
+}
+function closeModal() {
+  document.getElementById('aboutModal').style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == document.getElementById('aboutModal')) {
+    closeModal();
+  }
+}
 </script>
 
 </body>
