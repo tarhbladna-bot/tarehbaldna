@@ -1,150 +1,256 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سلة الطلب | طرح بلدنا</title>
-
+<title>طرح بلدنا</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body{
-  margin:0;
-  font-family:Tahoma, Arial;
-  background:#111;
-  color:#fff;
-}
-.container{
-  max-width:420px;
-  margin:auto;
-  padding:20px;
-}
-h1,h2{
-  text-align:center;
-  color:#ff4d2d;
-}
-input, select{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:5px;
-  border:none;
-  font-size:15px;
-}
-.row{
-  display:flex;
-  gap:10px;
-}
-button{
-  width:100%;
-  padding:15px;
-  margin-top:10px;
-  background:#ff4d2d;
-  color:#fff;
-  border:none;
-  font-size:18px;
-  border-radius:6px;
-  cursor:pointer;
-}
-button:hover{
-  opacity:.9;
-}
-.card{
-  background:#1a1a1a;
-  padding:20px;
-  border-radius:10px;
-  margin-top:25px;
-}
-.info{
-  margin-top:15px;
-  line-height:2;
-  font-size:16px;
-}
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:60px;
-  height:60px;
-  background:#25d366;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:32px;
-  text-decoration:none;
-  color:#fff;
-}
-.total{
-  color:#00ff7f;
-  font-size:18px;
-}
+  /* الخطوط والbody */
+  body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+  }
+
+  /* الهيدر */
+  header {
+    background-color: #111;
+    padding: 25px 20px;
+    text-align: center;
+    border-bottom: 2px solid #FF6600;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    color: #FF6600;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  /* قسم المنتجات */
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 30px 20px;
+  }
+
+  .product {
+    background: #111;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(255,102,0,0.3);
+    width: 220px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255,102,0,0.5);
+  }
+
+  .product img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+
+  .product h2 {
+    font-size: 1.3rem;
+    margin: 10px 0 5px 0;
+    color: #FF6600;
+  }
+
+  .product p {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .product button {
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  .product button:hover {
+    background-color: #e65c00;
+  }
+
+  /* السلة الجانبية */
+  .cart {
+    position: fixed;
+    top: 20px;
+    left: -350px;
+    width: 300px;
+    background-color: #111;
+    border: 2px solid #FF6600;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(255,102,0,0.3);
+    transition: left 0.4s ease;
+    z-index: 999;
+  }
+  .cart.active {
+    left: 20px;
+  }
+  .cart h3 {
+    color: #FF6600;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  .cart ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cart li {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #222;
+    border-radius: 10px;
+    font-size: 0.95rem;
+  }
+
+  .cart button {
+    margin-top: 15px;
+    width: 100%;
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .cart button:hover {
+    background-color: #e65c00;
+  }
+
+  /* زر فتح السلة */
+  .cart-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #FF6600;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255,102,0,0.5);
+    z-index: 1000;
+    transition: background 0.3s;
+  }
+  .cart-toggle:hover {
+    background-color: #e65c00;
+  }
+
+  /* زر واتساب عائم */
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #FF6600;
+    color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(255,102,0,0.5);
+    transition: background 0.3s;
+    z-index: 1000;
+  }
+  .whatsapp-btn:hover {
+    background-color: #e65c00;
+  }
+
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<header>
+  <h1>طرح بلدنا</h1>
+</header>
 
-<h1>🛒 سلة الطلب</h1>
-
-<input type="text" id="name" placeholder="الاسم">
-<input type="tel" id="phone" placeholder="رقم الموبايل">
-
-<select id="type">
-  <option>فول سوداني مقشر</option>
-  <option>فول سوداني بقشره</option>
-  <option>فول سوداني حلواني</option>
-</select>
-
-<div class="row">
-  <select id="quality">
-    <option>مقشر</option>
-    <option>درجة أولى</option>
-  </select>
-  <select id="sale">
-    <option>جملة</option>
-    <option>قطاعي</option>
-  </select>
-  <select id="pack">
-    <option>شيكارة</option>
-    <option>كرتونة</option>
-  </select>
-</div>
-
-<input type="number" id="qty" placeholder="الكمية بالكيلو">
-
-<button onclick="sendOrder()">➕ إضافة للسلة</button>
-
-<p style="text-align:center;margin-top:10px">السلة فارغة</p>
-<p style="text-align:center">💰 طريقة الدفع: الدفع عند الاستلام</p>
-<p class="total" style="text-align:center">السعر الإجمالي: 0 جنيه</p>
-
-<div class="card">
-  <h2>تواصل معنا</h2>
-  <div class="info">
-    📞 01126773698<br>
-    💬 واتساب: 01020508423<br>
-    📧 tarhbladna@gmail.com
+<!-- قسم المنتجات -->
+<div class="products">
+  <div class="product">
+    <img src="https://via.placeholder.com/220x150?text=منتج+1" alt="منتج 1">
+    <h2>فول سوداني بقشره</h2>
+    <p>السعر عند الطلب</p>
+    <button onclick="addToCart('فول سوداني بقشره')">أضف للسلة</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/220x150?text=منتج+2" alt="منتج 2">
+    <h2>فول سوداني مجروش</h2>
+    <p>السعر عند الطلب</p>
+    <button onclick="addToCart('فول سوداني مجروش')">أضف للسلة</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/220x150?text=منتج+3" alt="منتج 3">
+    <h2>فول سوداني مقشر</h2>
+    <p>السعر عند الطلب</p>
+    <button onclick="addToCart('فول سوداني مقشر')">أضف للسلة</button>
   </div>
 </div>
 
+<!-- زر فتح السلة -->
+<div class="cart-toggle" onclick="toggleCart()">السلة</div>
+
+<!-- سلة التسوق -->
+<div class="cart" id="cart">
+  <h3>سلة مشترياتك</h3>
+  <ul id="cart-items"></ul>
+  <button onclick="sendWhatsApp()">اطلب الآن</button>
 </div>
 
-<a class="whatsapp" href="https://wa.me/201126773698">💬</a>
+<!-- زر واتساب مباشر -->
+<a href="https://wa.me/201126773698" target="_blank" class="whatsapp-btn">📞</a>
 
 <script>
-function sendOrder(){
-  let msg = 
-  "طلب جديد من موقع طرح بلدنا%0A"+
-  "الاسم: "+name.value+"%0A"+
-  "الهاتف: "+phone.value+"%0A"+
-  "النوع: "+type.value+"%0A"+
-  "الجودة: "+quality.value+"%0A"+
-  "البيع: "+sale.value+"%0A"+
-  "التعبئة: "+pack.value+"%0A"+
-  "الكمية: "+qty.value;
+  let cartItems = [];
 
-  window.open("https://wa.me/201126773698?text="+msg,"_blank");
-}
+  function addToCart(item) {
+    cartItems.push(item);
+    updateCart();
+    alert(item + " تم إضافته للسلة");
+  }
+
+  function updateCart() {
+    const cartList = document.getElementById('cart-items');
+    cartList.innerHTML = '';
+    cartItems.forEach(i => {
+      const li = document.createElement('li');
+      li.textContent = i + " - السعر عند الطلب";
+      cartList.appendChild(li);
+    });
+  }
+
+  function toggleCart() {
+    document.getElementById('cart').classList.toggle('active');
+  }
+
+  function sendWhatsApp() {
+    if(cartItems.length === 0) {
+      alert("السلة فارغة");
+      return;
+    }
+    const message = "مرحبًا، أرغب في طلب:\n" + cartItems.join("\n");
+    const url = "https://wa.me/201126773698?text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+  }
 </script>
 
 </body>
