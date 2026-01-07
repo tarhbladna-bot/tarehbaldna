@@ -183,6 +183,92 @@
     URL.revokeObjectURL(url);
   }
 </script>
+<!-- **** أضف هذا داخل <body> في أي مكان قبل نهاية </body> **** -->
 
+<!-- زر واتساب عائم -->
+<a href="https://wa.me/201020508423" target="_blank" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 24px;
+    text-align: center;
+    z-index: 1000;
+    text-decoration: none;
+">
+📱
+</a>
+ <!-- سلة مشتريات عائمة -->
+<div id="cart" style="
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    background-color: #e57c00;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000;
+">
+🛒
+</div>
+  <!-- زر اكسبورت بيانات المشترى -->
+<section id="export" style="
+    text-align:center; 
+    margin: 20px auto; 
+    max-width: 500px; 
+    background-color: #3f3f3f; 
+    padding: 20px; 
+    border-radius: 10px;
+">
+  <h2 style="color:#e57c00;">تحميل بيانات المشترى</h2>
+  <button onclick="exportData()" style="
+    background-color: #e57c00;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  ">تحميل CSV</button>
+</section>
+  <!-- رابط الايميل بارز -->
+<section style="text-align:center; margin:20px auto;">
+  <p>
+    تواصل معنا: 
+    <a href="mailto:tarhbladna@gmail.com" style="color:#e57c00; font-weight:bold; text-decoration:underline;">
+      tarhbladna@gmail.com
+    </a>
+  </p>
+</section>
+
+<script>
+  // زر سلة المشتريات
+  const cart = document.getElementById('cart');
+  cart.addEventListener('click', () => {
+    alert('سلة مشترياتك ستظهر هنا (يمكنك تطويرها لاحقًا)');
+  });
+    // اكسبورت بيانات المشترى
+  function exportData() {
+    const buyers = JSON.parse(localStorage.getItem('buyers') || '[]');
+    if(buyers.length === 0) { 
+      alert('لا توجد بيانات للتصدير'); 
+      return; 
+    }
+    const csv = buyers.map(b => `${b.name},${b.phone},${b.email},${b.address}`).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'buyers.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+</script> 
 </body>
 </html> 
