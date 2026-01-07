@@ -1,154 +1,251 @@
+
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>طرح بلدنا — متجر الفول السوداني</title>
+
+<title>طرح بلدنا | منتجات الفول السوداني</title>
+
 <style>
-body { font-family: Arial, sans-serif; background:#f8f8f8; margin:0; padding:0; }
-h2 { color:#d4af37; text-align:center; }
-.product-card { border:1px solid #ddd; border-radius:8px; padding:10px; margin:10px; display:inline-block; vertical-align:top; width:200px; background:#fff; }
-.product-card img { width:100%; border-radius:5px; }
-label { display:block; margin-top:10px; }
-select, input { width:100%; padding:5px; margin-top:5px; border-radius:4px; border:1px solid #ccc; }
-button { margin-top:10px; padding:8px 12px; border:none; border-radius:5px; background:#d4af37; color:#fff; cursor:pointer; font-weight:bold; }
-button:hover { background:#b5932f; }
-.cart { background:#fff; padding:15px; margin:15px; border-radius:8px; box-shadow:0 0 5px #ccc; }
-.cart-items { margin-top:10px; }
-.payment { margin-top:5px; font-weight:bold; }
-.filter-buttons button { margin:5px; }
+:root{
+  --bg:#0b0f14;
+  --card:#111827;
+  --primary:#22d3c5;
+  --gold:#d4af37;
+  --white:#e5e7eb;
+}
+
+*{box-sizing:border-box;font-family:Tahoma,Arial}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--primary);
+}
+
+/* ===== NAV ===== */
+nav{
+  position:sticky;
+  top:0;
+  background:#000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  z-index:1000;
+}
+   nav a{
+  color:var(--gold);
+  text-decoration:none;
+  margin:0 8px;
+  font-weight:bold;
+}
+
+nav a:hover{color:var(--primary)}
+
+/* ===== HERO ===== */
+.hero{
+  padding:60px 20px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+   .hero p{
+  color:var(--white);
+  max-width:600px;
+  margin:auto;
+}
+
+.btn{
+  display:inline-block;
+  margin:10px;
+  padding:12px 20px;
+  border-radius:30px;
+  background:var(--primary);
+  color:#000;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.btn.whatsapp{
+  background:#25D366;
+  color:#000;
+    }
+
+/* ===== SECTIONS ===== */
+section{
+  padding:50px 20px;
+}
+
+h2{
+  text-align:center;
+  color:var(--gold);
+  margin-bottom:30px;
+}
+
+/* ===== PRODUCTS ===== */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+ .card{
+  background:var(--card);
+  border-radius:15px;
+  padding:15px;
+  text-align:center;
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.card h3{color:var(--primary)}
+
+.card a{
+  display:block;
+  margin-top:10px;
+  background:var(--gold);
+    color:#000;
+  padding:10px;
+  border-radius:20px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* ===== ABOUT ===== */
+.about{
+  max-width:800px;
+  margin:auto;
+  color:var(--white);
+  line-height:1.8;
+}
+
+/* ===== CONTACT ===== */
+.contact{
+  text-align:center;
+}
+  .contact a{
+  display:block;
+  margin:10px auto;
+  max-width:300px;
+}
+
+/* ===== FLOATING WHATSAPP ===== */
+.float-whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+  font-size:22px;
+  color:#000;
+  text-decoration:none;
+  z-index:2000;
+}
+   /* ===== MOBILE ===== */
+@media(max-width:600px){
+  .hero h1{font-size:22px}
+  nav{flex-wrap:wrap}
+}
 </style>
 </head>
-<body> 
-         
-  <h2>طرح بلدنا — متجر الفول السوداني</h2>
 
-<!-- أزرار تصفية المنتجات -->
-<div class="filter-buttons" style="text-align:center;">
-  <button onclick="filterProducts('all')">الكل</button>
-  <button onclick="filterProducts('مقشر')">مقشر</button>
-  <button onclick="filterProducts('بقشرة')">بقشرة</button>
-  <button onclick="filterProducts('مجروش')">مجروش / مفروك</button>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div>
+    <a href="#home">الرئيسية</a>
+    <a href="#products">المنتجات</a>
+    <a href="#about">نبذة</a>
+    <a href="#contact">تواصل</a>
+    <a href="export.html">🌍 Export</a>
+  </div>
+</nav>
+  <!-- HERO -->
+<section class="hero" id="home">
+  <h1>طرح بلدنا</h1>
+  <p>شركة متخصصة في جميع منتجات الفول السوداني بجودة عالية للتجارة المحلية والتصدير</p>
+
+  <a class="btn whatsapp"
+     href="https://wa.me/201020508423?text=السلام%20عليكم%20عايز%20عرض%20سعر">
+     💬 اطلب عرض سعر
+  </a>
+
+  <a class="btn"
+     href="Tarh_Baldna_Quotation_With_Prices.pdf"
+     target="_blank">
+     📄 تحميل عرض السعر PDF
+  </a>
+</section>
+ <!-- PRODUCTS -->
+<section id="products">
+<h2>منتجاتنا</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="images/product01.jpg">
+<h3>فول سوداني بقشره</h3>
+<a href="https://wa.me/201020508423?text=عايز%20سعر%20فول%20بقشره">
+اطلب السعر
+</a>
 </div>
 
-<!-- المنتجات -->
-<div id="products" style="text-align:center;">
-  <div class="product product-item" data-type="بقشرة">
-    <img src="images/peanut-shell.jpg" alt="فول سوداني بقشرة">
-    <h3>فول سوداني بقشرة</h3>
-  </div>
-  <div class="product product-item" data-type="مقشر">
-    <img src="images/peanut-peeled.jpg" alt="فول سوداني مقشر">
-    <h3>فول سوداني مقشر</h3>
-  </div> 
-     <div class="product product-item" data-type="مجروش">
-    <img src="images/peanut-crushed.jpg" alt="فول سوداني مجروش">
-    <h3>فول سوداني مجروش</h3>
-  </div>
-  <div class="product product-item" data-type="مفروك">
-    <img src="images/peanut-crushed.jpg" alt="فول سوداني مفروك">
-    <h3>فول سوداني مفروك</h3>
-  </div>
+<div class="card">
+<img src="images/product02.jpg">
+<h3>فول سوداني مقشر</h3>
+<a href="https://wa.me/201020508423?text=عايز%20سعر%20فول%20مقشر">
+اطلب السعر
+  </a>
 </div>
 
-<!-- سلة الطلب -->
-<section class="cart">
-  <h2>🛒 سلة الطلب</h2>
-  <form id="orderForm">
-    <input id="name" placeholder="اسم العميل" required>
-    <input id="phone" placeholder="رقم الهاتف" required>
+<div class="card">
+<img src="images/product03.jpg">
+<h3>فول سوداني بلانشد</h3>
+<a href="https://wa.me/201020508423?text=عايز%20سعر%20فول%20بلانشد">
+اطلب السعر
+</a>
+</div>
 
-    <label>نوعية الفول</label>
-    <select id="peanutType" required>
-      <option value="">اختر النوع</option> 
-      <option value="بقشرة">بقشرة</option>
-      <option value="مقشر">مقشر</option>
-      <option value="مفروك">مفروك</option>
-      <option value="مجروش">مجروش</option>
-    </select>
+</div>
+</section>
 
-    <label>الحالة</label>
-    <select id="peanutStatus" required>
-      <option value="">اختر الحالة</option>
-      <option value="ني">ني</option>
-      <option value="محمص">محمص</option>
-    </select>
+<!-- ABOUT -->
+<section id="about">
+<h2>نبذة عن الشركة</h2>
+<div class="about">
+نحن شركة طرح بلدنا لتجارة وتصدير المحاصيل الزراعية، متخصصون في جميع أنواع الفول السوداني
+بأعلى جودة ومعايير تعبئة مناسبة للسوق المحلي والتصدير.
+</div>
+ </section>
 
-    <div class="cart-items" id="cartItems">السلة فارغة</div>
-    <div class="payment" id="paymentText">💰 طريقة الدفع: الدفع عند الاستلام</div>
-    <div class="payment" id="totalPrice">💲 السعر الإجمالي: 0 جنيه</div>
-
-    <button type="button" onclick="sendOrder()">إرسال الطلب</button>
-    <button type="button" onclick="exportOrder()">Export الطلب</button>
-  </form>
-      </section>
-
-<script>
-// فلترة المنتجات
-function filterProducts(type) {
-  const products = document.querySelectorAll(".product-item");
-  products.forEach(product => {
-    const productType = product.getAttribute("data-type");
-    if (type === "all" || productType === type || (type === "مجروش" && productType === "مفروك")) {
-      product.style.display = "inline-block";
-    } else {
-      product.style.display = "none";
-    }
-  });
-}
-
-// إرسال الطلب على واتساب
-function sendOrder() {
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const type = document.getElementById("peanutType").value;
-  const status = document.getElementById("peanutStatus").value;
-
-  if (!name || !phone || !type || !status) {
-    alert("من فضلك اكمل كل البيانات");
-    return;
-  }
-
-  const message = `
-فول سوداني 🔥
-اسم العميل: ${name}
-رقم الهاتف: ${phone}
-نوعية الفول: ${type}
-الحالة: ${status} 
+<!-- CONTACT -->
+<section id="contact">
+<h2>تواصل معنا</h2>
+<div class="contact">
+<a class="btn whatsapp"
+href="https://wa.me/201020508423">
 📞 01020508423
-  `;
+</a>
 
-  const whatsappNumber = "20102050823";
-  const url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
-}
+<a class="btn whatsapp"
+href="https://wa.me/201126773698">
+📞 01126773698
+</a>
+</div>
+</section>
+ <!-- FLOAT WHATSAPP -->
+<a class="float-whatsapp"
+href="https://wa.me/201020508423">💬</a>
 
-// تصدير الطلب
-function exportOrder() {
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const type = document.getElementById("peanutType").value;
-  const status = document.getElementById("peanutStatus").value;
-
-  if (!name || !phone || !type || !status) {
-    alert("من فضلك اكمل كل البيانات لتصدير الطلب");
-    return;
-   }
-
-  const content = `
-سلة الطلب:
-اسم العميل: ${name}
-رقم الهاتف: ${phone}
-نوعية الفول: ${type}
-الحالة: ${status}
-  `;
-
-  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "طلب_الفول.txt";
-  link.click();
-}
-</script>
- </body>
+</body>
 </html>         
