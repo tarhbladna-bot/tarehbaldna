@@ -112,7 +112,8 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 </select>
 <button onclick="addProduct()">إضافة المنتج</button>
 <button onclick="clearProducts()">حذف كل المنتجات</button>
-<button onclick="exportProducts()">تصدير المنتجات</button>
+<button onclick="exportProducts()">تصدير JSON</button>
+<button onclick="exportCSV()">تصدير CSV</button>
 </div>
 
 <script>
@@ -123,14 +124,9 @@ let currentImg='';
 function saveProducts(){localStorage.setItem('products',JSON.stringify(products));}
 function saveCart(){localStorage.setItem('cartItems',JSON.stringify(cartItems));}
 
-// رفع الصور من الكمبيوتر
 document.getElementById('prod-upload').addEventListener('change',function(e){
 const file=e.target.files[0];
-if(file){
-const reader=new FileReader();
-reader.onload=function(ev){currentImg=ev.target.result;document.getElementById('preview-img').src=currentImg;};
-reader.readAsDataURL(file);
-}
+if(file){const reader=new FileReader();reader.onload=function(ev){currentImg=ev.target.result;document.getElementById('preview-img').src=currentImg;};reader.readAsDataURL(file);}
 });
 
 function addProduct(){
@@ -139,30 +135,31 @@ const nameEn=document.getElementById('prod-name-en').value;
 const type=document.getElementById('prod-type').value;
 if(!currentImg || !nameAr || !nameEn){alert('اكمل كل الحقول!'); return;}
 const product={img:currentImg,nameAr,nameEn,type};
-products.push(product);
-saveProducts();
-renderProducts();
+products.push(product);saveProducts();renderProducts();
 document.getElementById('prod-name-ar').value='';
 document.getElementById('prod-name-en').value='';
-document.getElementById('preview-img').src='';
-currentImg='';
+document.getElementById('preview-img').src='';currentImg='';
 }
 
 function clearProducts(){if(confirm('هل تريد حذف كل المنتجات؟')){products=[];saveProducts();renderProducts();}}
 
 function renderProducts(){
-const container=document.getElementById('products');
-container.innerHTML='';
+const container=document.getElementById('products');container.innerHTML='';
 products.forEach(p=>{
-const div=document.createElement('div');
-div.className='product';
-div.setAttribute('data-type',p.type);
+const div=document.createElement('div');div.className='product';div.setAttribute('data-type',p.type);
 div.innerHTML=`<img src="${p.img}"><div class="product-footer"><h2 data-lang-ar="${p.nameAr}" data-lang-en="${p.nameEn}">${p.nameAr}</h2><p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p><button onclick="addToCart('${p.nameAr}')">أضف للسلة</button></div>`;
 container.appendChild(div);
 });
 revealProducts();}
 
 function exportProducts(){const dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(products,null,2));const dlAnchor=document.createElement('a');dlAnchor.setAttribute('href',dataStr);dlAnchor.setAttribute('download','products.json');dlAnchor.click();}
+
+function exportCSV(){
+if(products.length===0){alert('لا يوجد منتجات للتصدير'); return;}
+let csv='"اسم المنتج بالعربي","اسم المنتج بالإنجليزي","النوع","رابط الصورة"\n';
+products.forEach(p=>{csv+=`"${p.nameAr}","${p.nameEn}","${p.type}","${p.img}"\n`;});
+const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='products.csv';link.click();}
 
 function addToCart(item){cartItems.push(item);saveCart();updateCart();alert(item+" تم إضافته للسلة");}
 function updateCart(){const cartList=document.getElementById('cart-items');cartList.innerHTML='';cartItems.forEach(i=>{const li=document.createElement('li');li.textContent=i+" - السعر عند الطلب";cartList.appendChild(li);});}
