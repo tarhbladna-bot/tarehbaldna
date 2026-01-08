@@ -54,12 +54,14 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 .cart-toggle{ position:fixed; top:20px; left:20px; background:#FF6600; color:#fff; padding:12px 18px; border-radius:50px; cursor:pointer; font-weight:bold; box-shadow:0 4px 15px rgba(255,102,0,0.5); z-index:1000; transition:0.3s;}
 .cart-toggle:hover{ background:#e65c00; transform:scale(1.05);}
 
-/* لوحة التحكم */
-.admin-panel{ position:fixed; top:80px; right:20px; background:#111; border:2px solid #FF6600; border-radius:15px; padding:15px; width:250px; box-shadow:0 8px 35px rgba(255,102,0,0.4); z-index:999;}
-.admin-panel h3{ color:#FF6600; margin:0 0 10px 0; text-align:center;}
-.admin-panel input, .admin-panel select, .admin-panel button{ width:100%; margin-bottom:8px; padding:6px 8px; border-radius:10px; border:none; outline:none;}
-.admin-panel button{ background:#FF6600; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s;}
-.admin-panel button:hover{ background:#e65c00; transform:scale(1.05);}
+/* أيقونات عائمة */
+.floating-icons{ position:fixed; bottom:25px; left:25px; display:flex; flex-direction:column; gap:15px; z-index:1000;}
+.floating-icons a{ background:#FF6600; color:#fff; width:55px; height:55px; display:flex; justify-content:center; align-items:center; border-radius:50%; text-decoration:none; font-size:24px; box-shadow:0 6px 25px rgba(255,102,0,0.5); transition:0.3s;}
+.floating-icons a:hover{ background:#e65c00; transform:scale(1.1);}
+
+/* واتساب */
+.whatsapp-btn{ position:fixed; bottom:25px; right:25px; background:#FF6600; color:#fff; border-radius:50%; width:60px; height:60px; display:flex; justify-content:center; align-items:center; font-size:28px; text-decoration:none; box-shadow:0 6px 25px rgba(255,102,0,0.5); transition:0.3s; z-index:1000;}
+.whatsapp-btn:hover{ background:#e65c00; transform:scale(1.1);}
 
 /* نافذة النبذة */
 .modal{ display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.85);}
@@ -68,7 +70,7 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 .close-btn:hover{ color:#e65c00;}
 
 /* Responsive */
-@media(max-width:768px){ .products{ flex-direction:column; align-items:center;} .cart{width:260px;} .filter-search input{ width:100%; } header{ flex-direction:column; gap:10px; } .header-icons{ gap:8px;} .admin-panel{ position:static; width:90%; margin:10px auto;} }
+@media(max-width:768px){ .products{ flex-direction:column; align-items:center;} .cart{width:260px;} .filter-search input{ width:100%; } header{ flex-direction:column; gap:10px; } .header-icons{ gap:8px; }}
 </style>
 </head>
 <body class="rtl">
@@ -97,7 +99,20 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 </div>
 
 <div class="products" id="products">
-<!-- المنتجات تظهر هنا ديناميكيًا -->
+<!-- كرر البلوك لكل منتج -->
+<div class="product" data-type="shell">
+<img src="https://via.placeholder.com/220x150?text=منتج+1">
+<div class="product-footer">
+<h2 data-lang-ar="فول سوداني بقشره" data-lang-en="Peanut with shell">فول سوداني بقشره</h2>
+<p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
+<button onclick="addToCart('فول سوداني بقشره')">أضف للسلة</button>
+<div class="social-share">
+<a href="#" onclick="share('whatsapp','فول سوداني بقشره')">📞</a>
+<a href="#" onclick="share('facebook','فول سوداني بقشره')">📘</a>
+<a href="#" onclick="share('twitter','فول سوداني بقشره')">🐦</a>
+</div>
+</div>
+</div>
 </div>
 
 <div class="cart-toggle" onclick="toggleCart()" data-lang-ar="السلة" data-lang-en="Cart">السلة</div>
@@ -115,88 +130,23 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 </div>
 </div>
 
-<!-- لوحة التحكم -->
-<div class="admin-panel">
-<h3>لوحة التحكم</h3>
-<input type="text" id="prod-img" placeholder="رابط صورة المنتج">
-<input type="text" id="prod-name-ar" placeholder="اسم المنتج بالعربي">
-<input type="text" id="prod-name-en" placeholder="اسم المنتج بالإنجليزي">
-<select id="prod-type">
-<option value="shell">بقشره</option>
-<option value="crushed">مجروش</option>
-<option value="shelled">مقشر</option>
-<option value="halawani">حلواني</option>
-</select>
-<button onclick="addProduct()">إضافة المنتج</button>
-<button onclick="clearProducts()">حذف كل المنتجات</button>
-</div>
-
 <a href="https://wa.me/201126773698" target="_blank" class="whatsapp-btn">📞</a>
 
 <script>
 let cartItems=[];
-let products=[];
-
-/* إضافة المنتج ديناميكي */
-function addProduct(){
-const img=document.getElementById('prod-img').value;
-const nameAr=document.getElementById('prod-name-ar').value;
-const nameEn=document.getElementById('prod-name-en').value;
-const type=document.getElementById('prod-type').value;
-if(!img || !nameAr || !nameEn){alert("اكمل كل الحقول!"); return;}
-const product={img,nameAr,nameEn,type};
-products.push(product);
-renderProducts();
-document.getElementById('prod-img').value='';
-document.getElementById('prod-name-ar').value='';
-document.getElementById('prod-name-en').value='';
-}
-
-/* حذف كل المنتجات */
-function clearProducts(){if(confirm("هل تريد حذف كل المنتجات؟")){products=[];renderProducts();}}
-
-/* عرض المنتجات */
-function renderProducts(){
-const container=document.getElementById('products');
-container.innerHTML='';
-products.forEach((p,index)=>{
-const div=document.createElement('div');
-div.className='product';
-div.setAttribute('data-type',p.type);
-div.innerHTML=`<img src="${p.img}">
-<div class="product-footer">
-<h2 data-lang-ar="${p.nameAr}" data-lang-en="${p.nameEn}">${p.nameAr}</h2>
-<p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
-<button onclick="addToCart('${p.nameAr}')">أضف للسلة</button>
-<div class="social-share">
-<a href="#" onclick="share('whatsapp','${p.nameAr}')">📞</a>
-<a href="#" onclick="share('facebook','${p.nameAr}')">📘</a>
-<a href="#" onclick="share('twitter','${p.nameAr}')">🐦</a>
-</div>
-</div>`;
-container.appendChild(div);
-});
-revealProducts();
-}
-
-/* سلة الشراء */
 function addToCart(item){cartItems.push(item);updateCart();animateCartItem();alert(item+" تم إضافته للسلة");}
 function updateCart(){const cartList=document.getElementById('cart-items');cartList.innerHTML='';cartItems.forEach(i=>{const li=document.createElement('li');li.textContent=i+" - السعر عند الطلب";li.classList.add('added');cartList.appendChild(li);});}
 function animateCartItem(){setTimeout(()=>{document.querySelectorAll('.cart li').forEach(el=>el.classList.remove('added'))},400);}
 function toggleCart(){document.getElementById('cart').classList.toggle('active');}
 function sendWhatsApp(){if(cartItems.length===0){alert("السلة فارغة");return;}const message="مرحبًا، أرغب في طلب:\n"+cartItems.join("\n");window.open("https://wa.me/201126773698?text="+encodeURIComponent(message),"_blank");}
-
-/* نبذة */
 function openModal(){document.getElementById('aboutModal').style.display="block";}
 function closeModal(){document.getElementById('aboutModal').style.display="none";}
 window.onclick=function(e){if(e.target==document.getElementById('aboutModal')) closeModal();}
-
-/* ظهور المنتجات */
 window.addEventListener('scroll',revealProducts);
 window.addEventListener('load',revealProducts);
 function revealProducts(){document.querySelectorAll('.product').forEach(product=>{const top=product.getBoundingClientRect().top;const height=window.innerHeight;if(top<height-50){product.classList.add('visible');}});}
 
-/* اللغة */
+/* تبديل اللغة */
 let currentLang='ar';
 function switchLang(){
 const elements=document.querySelectorAll('[data-lang-ar]');
@@ -206,11 +156,13 @@ document.querySelector('.lang-switch').textContent=currentLang==='ar'?'English':
 elements.forEach(el=>{el.textContent=currentLang==='ar'?el.getAttribute('data-lang-ar'):el.getAttribute('data-lang-en');});
 }
 
-/* فلتر وبحث */
+/* فلتر المنتجات */
 function filterProducts(){
 const type=document.getElementById('filter').value;
 document.querySelectorAll('.product').forEach(p=>{p.style.display=(type==='all'||p.getAttribute('data-type')===type)?'block':'none';});
 }
+
+/* بحث المنتجات */
 function searchProducts(){
 const keyword=document.getElementById('search').value.toLowerCase();
 document.querySelectorAll('.product').forEach(p=>{
@@ -219,7 +171,7 @@ p.style.display=name.includes(keyword)?'block':'none';
 });
 }
 
-/* مشاركة */
+/* مشاركة على وسائل التواصل */
 function share(platform,item){
 let url='';
 const text=encodeURIComponent('منتج: '+item);
