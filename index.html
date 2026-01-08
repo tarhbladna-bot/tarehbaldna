@@ -1,251 +1,233 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>شركة طرح بلدنا</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>طرح بلدنا | Tarh Baldna</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body{
-    margin:0;
-    font-family:Tahoma, Arial;
-    background:linear-gradient(180deg,#000,#0f0f0f);
-    color:#fff;
-}
-header{
-    background:radial-gradient(circle at top,#1a1a1a,#000);
-    padding:25px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.8);
-}
-header h1{
-    color:#c4161c;
-    margin:0;
-    font-size:30px;
-}
-header p{
-    color:#ccc;
-    margin-top:8px;
-}
+body { font-family: 'Cairo', sans-serif; margin:0; padding:0; background:#000; color:#fff; scroll-behavior:smooth; transition:0.3s;}
+body.ltr{ direction:ltr; text-align:left;}
 
-section{
-    padding:40px 15px;
-    max-width:1100px;
-    margin:auto;
-}
+/* الهيدر */
+header{background:#111; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; border-bottom:2px solid #FF6600; position:sticky; top:0; z-index:1000;}
+header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:flex; align-items:center; gap:10px;}
+.header-icons{ display:flex; align-items:center; gap:12px;}
+.header-icons a{ color:#FF6600; background:#111; padding:8px 12px; border-radius:12px; font-size:18px; cursor:pointer; transition:0.3s; display:flex; align-items:center; gap:5px;}
+.header-icons a:hover{ background:#222; transform:scale(1.1);}
+.lang-switch{ background:#FF6600; color:#fff; border:none; padding:6px 12px; border-radius:12px; cursor:pointer; font-weight:bold; transition:0.3s;}
+.lang-switch:hover{ background:#e65c00; transform:scale(1.05);}
 
-h2{
-    color:#c4161c;
-    text-align:center;
-    margin-bottom:25px;
-    letter-spacing:1px;
-}
-
-/* نبذة */
-.about{
-    background:linear-gradient(145deg,#111,#050505);
-    border-radius:15px;
-    padding:25px;
-    line-height:2;
-    box-shadow:0 0 25px rgba(196,22,28,.15);
-    border:1px solid #1e1e1e;
-}
-
-/* كتالوج */
-.catalog{
-    text-align:center;
-    margin-top:25px;
-}
-.catalog a{
-    background:linear-gradient(145deg,#c4161c,#8f0f14);
-    color:#fff;
-    padding:14px 30px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
-    box-shadow:0 0 20px rgba(196,22,28,.4);
-}
+/* فلتر وبحث */
+.filter-search{ display:flex; justify-content:center; gap:15px; flex-wrap:wrap; padding:20px;}
+.filter-search select, .filter-search input{ padding:8px 12px; border-radius:12px; border:none; outline:none; font-size:1rem; }
+.filter-search input{ width:200px;}
 
 /* المنتجات */
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-.product{
-    background:linear-gradient(160deg,#111,#000);
-    border-radius:18px;
-    padding:15px;
-    text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,.9);
-    border:1px solid #1c1c1c;
-}
-.product img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    border-radius:12px;
-}
-.product h3{
-    margin:15px 0;
-}
-
-/* زر السلة */
-.cart-btn{
-    background:linear-gradient(145deg,#c4161c,#8f0f14);
-    color:#fff;
-    border:none;
-    padding:11px 22px;
-    border-radius:25px;
-    cursor:pointer;
-    font-weight:bold;
-    box-shadow:0 0 18px rgba(196,22,28,.5);
-}
-.cart-btn span{
-    margin-left:6px;
-}
+.products{ display:flex; flex-wrap:wrap; justify-content:center; gap:25px; padding:20px;}
+.product{ background:#111; border-radius:20px; box-shadow:0 6px 20px rgba(255,102,0,0.3); width:220px; padding:15px; text-align:center; transform:translateY(50px); opacity:0; transition:all 0.8s ease; position:relative;}
+.product.visible{ transform:translateY(0); opacity:1;}
+.product:hover{ transform:translateY(-10px) scale(1.05); box-shadow:0 20px 40px rgba(255,102,0,0.6);}
+.product img{ width:100%; border-radius:15px; margin-bottom:10px; transition:0.3s;}
+.product:hover img{ transform:scale(1.05);}
+.product-footer{ margin-top:10px; background:rgba(255,102,0,0.08); padding:6px 8px; border-radius:12px; display:flex; flex-direction:column; gap:5px;}
+.product-footer h2{ font-size:1.2rem; margin:0; color:#FF6600;}
+.product-footer p{ margin:0; font-weight:bold; color:#fff;}
+.product-footer button{ background:#FF6600; color:#fff; border:none; padding:8px 12px; border-radius:12px; cursor:pointer; font-weight:bold; transition:0.3s;}
+.product-footer button:hover{ background:#e65c00; transform:scale(1.05);}
+.social-share{ display:flex; justify-content:center; gap:8px; margin-top:5px;}
+.social-share a{ color:#fff; font-size:18px; transition:0.3s;}
+.social-share a:hover{ color:#FF6600; transform:scale(1.2);}
 
 /* السلة */
-#cart{
-    background:linear-gradient(160deg,#0e0e0e,#000);
-    border-radius:18px;
-    padding:22px;
-    margin-top:35px;
-    box-shadow:0 0 30px rgba(196,22,28,.15);
-}
-#cart h3{
-    color:#c4161c;
-}
-#cart ul{
-    list-style:none;
-    padding:0;
-}
-#cart li{
-    margin-bottom:8px;
-    color:#eee;
-}
+.cart{ position:fixed; top:20px; left:-350px; width:300px; background:#111; border:2px solid #FF6600; border-radius:15px; padding:20px; box-shadow:0 8px 35px rgba(255,102,0,0.4); transition:left 0.4s ease; z-index:999;}
+.cart.active{ left:20px;}
+.cart h3{ color:#FF6600; margin-top:0;margin-bottom:15px;}
+.cart ul{ list-style:none; padding:0;margin:0;}
+.cart li{ margin-bottom:10px; padding:8px; background:#222; border-radius:10px; font-size:0.95rem; transition: transform 0.3s;}
+.cart li.added{ animation:pulse 0.4s;}
+@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
+.cart button{ margin-top:15px;width:100%; background:#FF6600; color:#fff; border:none; padding:12px; font-weight:bold; border-radius:12px; cursor:pointer;}
+.cart button:hover{ background:#e65c00;}
 
-/* واتساب */
-.order-btn{
-    background:linear-gradient(145deg,#25D366,#1aa952);
-    color:#fff;
-    padding:13px 30px;
-    border-radius:30px;
-    text-decoration:none;
-    display:inline-block;
-    margin-top:15px;
-    font-weight:bold;
-}
+/* زر السلة */
+.cart-toggle{ position:fixed; top:20px; left:20px; background:#FF6600; color:#fff; padding:12px 18px; border-radius:50px; cursor:pointer; font-weight:bold; box-shadow:0 4px 15px rgba(255,102,0,0.5); z-index:1000; transition:0.3s;}
+.cart-toggle:hover{ background:#e65c00; transform:scale(1.05);}
 
-/* الفوتر */
-footer{
-    background:#000;
-    padding:25px;
-    text-align:center;
-    margin-top:40px;
-    border-top:1px solid #1a1a1a;
-}
-footer p{
-    margin:6px 0;
-}
-footer a{
-    color:#c4161c;
-    text-decoration:none;
-}
+/* لوحة التحكم */
+.admin-panel{ position:fixed; top:80px; right:20px; background:#111; border:2px solid #FF6600; border-radius:15px; padding:15px; width:250px; box-shadow:0 8px 35px rgba(255,102,0,0.4); z-index:999;}
+.admin-panel h3{ color:#FF6600; margin:0 0 10px 0; text-align:center;}
+.admin-panel input, .admin-panel select, .admin-panel button{ width:100%; margin-bottom:8px; padding:6px 8px; border-radius:10px; border:none; outline:none;}
+.admin-panel button{ background:#FF6600; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s;}
+.admin-panel button:hover{ background:#e65c00; transform:scale(1.05);}
+
+/* نافذة النبذة */
+.modal{ display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.85);}
+.modal-content{ background:#111; margin:10% auto; padding:30px; border:2px solid #FF6600; border-radius:15px; width:80%; max-width:500px; color:#fff; text-align:center; position:relative;}
+.close-btn{ position:absolute; top:15px; right:20px; color:#FF6600; font-size:28px; font-weight:bold; cursor:pointer;}
+.close-btn:hover{ color:#e65c00;}
+
+/* Responsive */
+@media(max-width:768px){ .products{ flex-direction:column; align-items:center;} .cart{width:260px;} .filter-search input{ width:100%; } header{ flex-direction:column; gap:10px; } .header-icons{ gap:8px;} .admin-panel{ position:static; width:90%; margin:10px auto;} }
 </style>
 </head>
-
-<body>
+<body class="rtl">
 
 <header>
-<h1>شركة طرح بلدنا</h1>
-<p>منتجات زراعية طبيعية – فول سوداني</p>
+<h1 data-lang-ar="طرح بلدنا" data-lang-en="Tarh Baldna">طرح بلدنا</h1>
+<div class="header-icons">
+<a href="javascript:void(0)" onclick="toggleCart()" title="السلة">🛒</a>
+<a href="#products" title="المنتجات">📦</a>
+<a href="javascript:void(0)" onclick="openModal()" title="نبذة عن الشركة">ℹ️</a>
+<a href="mailto:info@tarhbladna.com" title="البريد الإلكتروني">✉️</a>
+<a href="https://wa.me/201126773698" target="_blank" title="واتساب">📞</a>
+</div>
+<button class="lang-switch" onclick="switchLang()">English</button>
 </header>
 
-<section>
-<h2>نبذة عن الشركة</h2>
-<div class="about">
-شركة <strong>طرح بلدنا</strong> متخصصة في تجارة وتصنيع
-وتوريد الفول السوداني والمنتجات الزراعية الطبيعية.
-نمتلك خبرة أكثر من 15 عامًا في السوق المصري،
-ونلتزم بأعلى معايير الجودة والتوريد المنتظم.
+<div class="filter-search">
+<select id="filter" onchange="filterProducts()">
+<option value="all" data-lang-ar="الكل" data-lang-en="All">الكل</option>
+<option value="shell" data-lang-ar="بقشره" data-lang-en="With shell">بقشره</option>
+<option value="crushed" data-lang-ar="مجروش" data-lang-en="Crushed">مجروش</option>
+<option value="shelled" data-lang-ar="مقشر" data-lang-en="Shelled">مقشر</option>
+<option value="halawani" data-lang-ar="حلواني" data-lang-en="Halawani">حلواني</option>
+</select>
+<input type="text" id="search" placeholder="بحث..." onkeyup="searchProducts()">
 </div>
 
-<div class="catalog">
-<a href="catalog.pdf" target="_blank">📄 تحميل الكتالوج (إكسبورد)</a>
-</div>
-</section>
-
-<section>
-<h2>المنتجات</h2>
-
-<div class="products">
-
-<div class="product">
-<img src="images/peanut1.jpg">
-<h3>فول سوداني بقشره</h3>
-<button class="cart-btn" onclick="addToCart('فول سوداني بقشره')">
-<span>🛒</span> أضف للسلة
-</button>
+<div class="products" id="products">
+<!-- المنتجات تظهر هنا ديناميكيًا -->
 </div>
 
-<div class="product">
-<img src="images/peanut2.jpg">
-<h3>فول سوداني مقشر</h3>
-<button class="cart-btn" onclick="addToCart('فول سوداني مقشر')">
-<span>🛒</span> أضف للسلة
-</button>
+<div class="cart-toggle" onclick="toggleCart()" data-lang-ar="السلة" data-lang-en="Cart">السلة</div>
+<div class="cart" id="cart">
+<h3 data-lang-ar="سلة مشترياتك" data-lang-en="Your Cart">سلة مشترياتك</h3>
+<ul id="cart-items"></ul>
+<button onclick="sendWhatsApp()" data-lang-ar="اطلب الآن" data-lang-en="Order Now">اطلب الآن</button>
 </div>
 
-<div class="product">
-<img src="images/peanut3.jpg">
-<h3>فول سوداني مجروش</h3>
-<button class="cart-btn" onclick="addToCart('فول سوداني مجروش')">
-<span>🛒</span> أضف للسلة
-</button>
+<div id="aboutModal" class="modal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeModal()">&times;</span>
+<h2 data-lang-ar="نبذة عن شركة طرح بلدنا" data-lang-en="About Tarh Baldna">نبذة عن شركة طرح بلدنا</h2>
+<p data-lang-ar="شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني بأعلى جودة وبمختلف أنواعه. نسعى لتقديم أفضل المنتجات لعملائنا مع خدمة عملاء متميزة وسريعة." data-lang-en="Tarh Baldna specializes in producing and supplying peanuts of the highest quality in various types. We strive to offer the best products to our customers with excellent and fast customer service.">شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني بأعلى جودة وبمختلف أنواعه. نسعى لتقديم أفضل المنتجات لعملائنا مع خدمة عملاء متميزة وسريعة.</p>
+</div>
 </div>
 
+<!-- لوحة التحكم -->
+<div class="admin-panel">
+<h3>لوحة التحكم</h3>
+<input type="text" id="prod-img" placeholder="رابط صورة المنتج">
+<input type="text" id="prod-name-ar" placeholder="اسم المنتج بالعربي">
+<input type="text" id="prod-name-en" placeholder="اسم المنتج بالإنجليزي">
+<select id="prod-type">
+<option value="shell">بقشره</option>
+<option value="crushed">مجروش</option>
+<option value="shelled">مقشر</option>
+<option value="halawani">حلواني</option>
+</select>
+<button onclick="addProduct()">إضافة المنتج</button>
+<button onclick="clearProducts()">حذف كل المنتجات</button>
 </div>
 
-<div id="cart">
-<h3>🛒 سلة الطلب</h3>
-<ul id="cartItems"></ul>
-<a id="orderLink" class="order-btn" href="#" target="_blank">
-إرسال طلب عرض سعر عبر واتساب
-</a>
-</div>
-</section>
-
-<footer>
-<p>📞 01126773698</p>
-<p>
-<a href="https://wa.me/201126773698" target="_blank">واتساب</a> |
-<a href="mailto:info@tarhbladna.com">إيميل</a>
-</p>
-</footer>
+<a href="https://wa.me/201126773698" target="_blank" class="whatsapp-btn">📞</a>
 
 <script>
-let cart = [];
+let cartItems=[];
+let products=[];
 
-function addToCart(item){
-    cart.push(item);
-    renderCart();
+/* إضافة المنتج ديناميكي */
+function addProduct(){
+const img=document.getElementById('prod-img').value;
+const nameAr=document.getElementById('prod-name-ar').value;
+const nameEn=document.getElementById('prod-name-en').value;
+const type=document.getElementById('prod-type').value;
+if(!img || !nameAr || !nameEn){alert("اكمل كل الحقول!"); return;}
+const product={img,nameAr,nameEn,type};
+products.push(product);
+renderProducts();
+document.getElementById('prod-img').value='';
+document.getElementById('prod-name-ar').value='';
+document.getElementById('prod-name-en').value='';
 }
 
-function renderCart(){
-    let list = document.getElementById("cartItems");
-    list.innerHTML = "";
-    cart.forEach(p=>{
-        let li = document.createElement("li");
-        li.textContent = "• " + p;
-        list.appendChild(li);
-    });
+/* حذف كل المنتجات */
+function clearProducts(){if(confirm("هل تريد حذف كل المنتجات؟")){products=[];renderProducts();}}
 
-    let text = "طلب عرض سعر:%0A" + cart.join("%0A");
-    document.getElementById("orderLink").href =
-    "https://wa.me/201126773698?text=" + text;
+/* عرض المنتجات */
+function renderProducts(){
+const container=document.getElementById('products');
+container.innerHTML='';
+products.forEach((p,index)=>{
+const div=document.createElement('div');
+div.className='product';
+div.setAttribute('data-type',p.type);
+div.innerHTML=`<img src="${p.img}">
+<div class="product-footer">
+<h2 data-lang-ar="${p.nameAr}" data-lang-en="${p.nameEn}">${p.nameAr}</h2>
+<p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
+<button onclick="addToCart('${p.nameAr}')">أضف للسلة</button>
+<div class="social-share">
+<a href="#" onclick="share('whatsapp','${p.nameAr}')">📞</a>
+<a href="#" onclick="share('facebook','${p.nameAr}')">📘</a>
+<a href="#" onclick="share('twitter','${p.nameAr}')">🐦</a>
+</div>
+</div>`;
+container.appendChild(div);
+});
+revealProducts();
+}
+
+/* سلة الشراء */
+function addToCart(item){cartItems.push(item);updateCart();animateCartItem();alert(item+" تم إضافته للسلة");}
+function updateCart(){const cartList=document.getElementById('cart-items');cartList.innerHTML='';cartItems.forEach(i=>{const li=document.createElement('li');li.textContent=i+" - السعر عند الطلب";li.classList.add('added');cartList.appendChild(li);});}
+function animateCartItem(){setTimeout(()=>{document.querySelectorAll('.cart li').forEach(el=>el.classList.remove('added'))},400);}
+function toggleCart(){document.getElementById('cart').classList.toggle('active');}
+function sendWhatsApp(){if(cartItems.length===0){alert("السلة فارغة");return;}const message="مرحبًا، أرغب في طلب:\n"+cartItems.join("\n");window.open("https://wa.me/201126773698?text="+encodeURIComponent(message),"_blank");}
+
+/* نبذة */
+function openModal(){document.getElementById('aboutModal').style.display="block";}
+function closeModal(){document.getElementById('aboutModal').style.display="none";}
+window.onclick=function(e){if(e.target==document.getElementById('aboutModal')) closeModal();}
+
+/* ظهور المنتجات */
+window.addEventListener('scroll',revealProducts);
+window.addEventListener('load',revealProducts);
+function revealProducts(){document.querySelectorAll('.product').forEach(product=>{const top=product.getBoundingClientRect().top;const height=window.innerHeight;if(top<height-50){product.classList.add('visible');}});}
+
+/* اللغة */
+let currentLang='ar';
+function switchLang(){
+const elements=document.querySelectorAll('[data-lang-ar]');
+currentLang=(currentLang==='ar')?'en':'ar';
+document.body.className=currentLang==='ar'?'rtl':'ltr';
+document.querySelector('.lang-switch').textContent=currentLang==='ar'?'English':'عربي';
+elements.forEach(el=>{el.textContent=currentLang==='ar'?el.getAttribute('data-lang-ar'):el.getAttribute('data-lang-en');});
+}
+
+/* فلتر وبحث */
+function filterProducts(){
+const type=document.getElementById('filter').value;
+document.querySelectorAll('.product').forEach(p=>{p.style.display=(type==='all'||p.getAttribute('data-type')===type)?'block':'none';});
+}
+function searchProducts(){
+const keyword=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.product').forEach(p=>{
+const name=p.querySelector('h2').textContent.toLowerCase();
+p.style.display=name.includes(keyword)?'block':'none';
+});
+}
+
+/* مشاركة */
+function share(platform,item){
+let url='';
+const text=encodeURIComponent('منتج: '+item);
+if(platform==='whatsapp'){url='https://wa.me/201126773698?text='+text;}
+if(platform==='facebook'){url='https://www.facebook.com/sharer/sharer.php?u='+text;}
+if(platform==='twitter'){url='https://twitter.com/intent/tweet?text='+text;}
+window.open(url,'_blank');
 }
 </script>
-
 </body>
 </html>
