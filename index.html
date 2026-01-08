@@ -207,6 +207,41 @@ if(platform==='facebook'){url='https://www.facebook.com/sharer/sharer.php?u='+te
 if(platform==='twitter'){url='https://twitter.com/intent/tweet?text='+text;}
 window.open(url,'_blank');
 }
+</script> 
+<!-- زر التصدير -->
+<button id="exportBtn" style="position:fixed; bottom:100px; right:20px; padding:10px 15px; background:#ffd700; border:none; border-radius:5px; cursor:pointer; z-index:1000;">
+  تصدير الطلبات
+</button>
+
+<script>
+// افترض أن بيانات السلة موجودة في مصفوفة اسمها cartItems
+// شكل كل عنصر: {name: "اسم المنتج", quantity: 2, price: 50}
+
+let cartItems = []; // هنا ضيف الكود الحالي للسلة أو خليها مرتبطة بالـ JS الموجود عندك
+
+// وظيفة إضافة بيانات وهمية للتجربة
+// cartItems.push({name:"منتج 1", quantity:2, price:50});
+// cartItems.push({name:"منتج 2", quantity:1, price:100});
+
+document.getElementById("exportBtn").addEventListener("click", function() {
+    if(cartItems.length === 0) {
+        alert("السلة فارغة!");
+        return;
+    }
+
+    // تحويل البيانات إلى CSV
+    let csv = "المنتج,الكمية,السعر\n";
+    cartItems.forEach(item => {
+        csv += `${item.name},${item.quantity},${item.price}\n`;
+    });
+
+    // إنشاء رابط تحميل
+    let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "طلبات_السلة.csv";
+    link.click();
+});
 </script>
 </body>
 </html>
