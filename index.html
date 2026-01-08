@@ -11,13 +11,13 @@
 body{
     margin:0;
     font-family: Arial, sans-serif;
-    background:#fff;
-    color:#222;
+    background:#000; /* خلفية سوداء */
+    color:#fff;
 }
 
 /* ===== الهيدر ===== */
 header{
-    background:#f57c00;
+    background:#c0392b; /* أحمر غامق */
     color:#fff;
     text-align:center;
     padding:20px 10px;
@@ -39,11 +39,11 @@ header h1{
 
 .product{
     width:280px;
-    border:1px solid #ddd;
+    border:1px solid #c0392b;
     border-radius:8px;
     padding:12px;
     text-align:center;
-    background:#fafafa;
+    background:#1c1c1c; /* خلفية داكنة للمنتجات */
 }
 
 .product img{
@@ -52,7 +52,7 @@ header h1{
 }
 
 .product h3{
-    color:#f57c00;
+    color:#e74c3c; /* أحمر فاتح للعناوين */
     margin:10px 0;
 }
 
@@ -61,12 +61,17 @@ header h1{
 }
 
 .product button{
-    background:#f57c00;
+    background:#e74c3c; /* أحمر فاتح */
     color:#fff;
     border:none;
     padding:10px 15px;
     border-radius:5px;
     cursor:pointer;
+    transition:0.3s;
+}
+
+.product button:hover{
+    background:#c0392b;
 }
 
 /* ===== نبذة عن الشركة ===== */
@@ -75,11 +80,11 @@ header h1{
     margin:30px auto;
     padding:20px;
     text-align:center;
-    border-top:2px solid #eee;
+    border-top:2px solid #c0392b;
 }
 
 .about h2{
-    color:#f57c00;
+    color:#e74c3c;
 }
 
 .about p{
@@ -91,6 +96,16 @@ header h1{
 .contact{
     margin-top:20px;
     font-weight:bold;
+    font-size:16px;
+}
+
+.contact a{
+    color:#e74c3c;
+    text-decoration:none;
+}
+
+.contact a:hover{
+    text-decoration:underline;
 }
 
 /* ===== زر واتساب العائم ===== */
@@ -110,11 +125,12 @@ header h1{
 
 /* ===== الفوتر ===== */
 footer{
-    background:#f4f4f4;
+    background:#1c1c1c;
     text-align:center;
     padding:15px;
     margin-top:30px;
     font-size:14px;
+    border-top:2px solid #c0392b;
 }
 </style>
 </head>
@@ -159,8 +175,9 @@ footer{
     </p>
 
     <div class="contact">
-        <p>📞 01126773698 / 01020508423</p>
-        <p>✉️ tarhbladna@gmail.com</p>
+        <p>📞 الهاتف: 01126773698 / 01020508423</p>
+        <p>✉️ البريد الإلكتروني: <a href="mailto:tarhbladna@gmail.com">tarhbladna@gmail.com</a></p>
+        <p>💬 واتساب مباشر: <a href="https://wa.me/201126773698" target="_blank">اضغط هنا</a></p>
     </div>
 </section>
 
