@@ -3,194 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>طرح بلدنا</title>
+
 <style>
-/* ===== عام ===== */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff; /* حافظ على اللون الأبيض الأساسي */
-  color: #222;
+/* ===== إعدادات عامة ===== */
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#fff;
+    color:#222;
 }
 
 /* ===== الهيدر ===== */
-header {
-  background: #f57c00; /* نفس لون الموقع الأصلي */
-  color: #fff;
-  text-align: center;
-  padding: 20px 10px;
+header{
+    background:#f57c00;
+    color:#fff;
+    text-align:center;
+    padding:20px 10px;
 }
-header h1 {
-  margin: 0;
-  font-size: 28px;
+
+header h1{
+    margin:0;
+    font-size:28px;
 }
 
 /* ===== المنتجات ===== */
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 25px 15px;
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    padding:25px 15px;
 }
-.product {
-  width: 280px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 12px;
-  text-align: center;
-  background: #fafafa;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: 0.3s;
+
+.product{
+    width:280px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:12px;
+    text-align:center;
+    background:#fafafa;
 }
-.product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+
+.product img{
+    width:100%;
+    border-radius:6px;
 }
-.product img {
-  width: 100%;
-  border-radius: 6px;
+
+.product h3{
+    color:#f57c00;
+    margin:10px 0;
 }
-.product h3 {
-  color: #f57c00;
-  margin: 10px 0;
+
+.product p{
+    margin:5px 0 10px;
 }
-.product p {
-  margin: 5px 0 10px;
-}
-.product button {
-  background: #f57c00;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.product button:hover {
-  background: #d35400;
+
+.product button{
+    background:#f57c00;
+    color:#fff;
+    border:none;
+    padding:10px 15px;
+    border-radius:5px;
+    cursor:pointer;
 }
 
 /* ===== نبذة عن الشركة ===== */
-.about {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 25px;
-  text-align: center;
-  border-top: 2px solid #ddd;
-  background: #fcfcfc;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+.about{
+    max-width:900px;
+    margin:30px auto;
+    padding:20px;
+    text-align:center;
+    border-top:2px solid #eee;
 }
-.about h2 {
-  color: #f57c00;
-  margin-bottom: 15px;
+
+.about h2{
+    color:#f57c00;
 }
-.about p {
-  line-height: 1.8;
+
+.about p{
+    line-height:1.8;
+    margin-top:10px;
 }
 
 /* ===== التواصل ===== */
-.contact {
-  margin-top: 20px;
-  font-weight: bold;
-  font-size: 16px;
-}
-.contact a {
-  color: #f57c00;
-  text-decoration: none;
-}
-.contact a:hover {
-  text-decoration: underline;
+.contact{
+    margin-top:20px;
+    font-weight:bold;
 }
 
-/* ===== أزرار عائمة ===== */
-.float-button {
-  position: fixed;
-  right: 20px;
-  padding: 15px 20px;
-  border-radius: 50px;
-  font-size: 18px;
-  color: white;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 999;
-  transition: 0.3s;
-}
-
-.whatsapp-float {
-  bottom: 90px;
-  background: #25d366;
-}
-.whatsapp-float:hover {
-  background: #1ebe5d;
-}
-
-.cart-float {
-  bottom: 20px;
-  background: #f57c00;
-}
-.cart-float:hover {
-  background: #d35400;
+/* ===== زر واتساب العائم ===== */
+.whatsapp-float{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25d366;
+    color:#fff;
+    padding:14px 20px;
+    border-radius:50px;
+    text-decoration:none;
+    font-size:18px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.25);
+    z-index:999;
 }
 
 /* ===== الفوتر ===== */
-footer {
-  background: #f4f4f4;
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-  font-size: 14px;
-  border-top: 2px solid #ddd;
+footer{
+    background:#f4f4f4;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+    font-size:14px;
 }
 </style>
 </head>
+
 <body>
 
 <header>
-  <h1>شركة طرح بلدنا</h1>
+    <h1>شركة طرح بلدنا</h1>
 </header>
 
 <section class="products">
-  <div class="product">
-    <img src="peanut1.jpg" alt="فول سوداني بقشره">
-    <h3>فول سوداني بقشره</h3>
-    <p>السعر: عند الطلب</p>
-    <button>اطلب عرض سعر</button>
-  </div>
-  <div class="product">
-    <img src="peanut2.jpg" alt="فول سوداني مجروش">
-    <h3>فول سوداني مجروش</h3>
-    <p>السعر: عند الطلب</p>
-    <button>اطلب عرض سعر</button>
-  </div>
-  <div class="product">
-    <img src="peanut3.jpg" alt="فول سوداني مقشر">
-    <h3>فول سوداني مقشر</h3>
-    <p>السعر: عند الطلب</p>
-    <button>اطلب عرض سعر</button>
-  </div>
+
+    <div class="product">
+        <img src="peanut1.jpg" alt="فول سوداني بقشره">
+        <h3>فول سوداني بقشره</h3>
+        <p>السعر: عند الطلب</p>
+        <button>اطلب عرض سعر</button>
+    </div>
+
+    <div class="product">
+        <img src="peanut2.jpg" alt="فول سوداني مجروش">
+        <h3>فول سوداني مجروش</h3>
+        <p>السعر: عند الطلب</p>
+        <button>اطلب عرض سعر</button>
+    </div>
+
+    <div class="product">
+        <img src="peanut3.jpg" alt="فول سوداني مقشر">
+        <h3>فول سوداني مقشر</h3>
+        <p>السعر: عند الطلب</p>
+        <button>اطلب عرض سعر</button>
+    </div>
+
 </section>
 
 <section class="about">
-  <h2>نبذة عن الشركة</h2>
-  <p>
-    شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني بأعلى جودة وبمختلف أنواعه.
-    نسعى دائمًا لتقديم أفضل المنتجات لعملائنا مع خدمة عملاء سريعة ومتميزة.
-  </p>
-  <div class="contact">
-    <p>📞 الهاتف: 01126773698 / 01020508423</p>
-    <p>✉️ البريد الإلكتروني: <a href="mailto:tarhbladna@gmail.com">tarhbladna@gmail.com</a></p>
-    <p>💬 واتساب مباشر: <a href="https://wa.me/201126773698" target="_blank">اضغط هنا</a></p>
-  </div>
+    <h2>نبذة عن الشركة</h2>
+    <p>
+        شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني
+        بأعلى جودة وبمختلف أنواعه، ونحرص دائمًا على تلبية
+        احتياجات السوق المحلي بأفضل سعر وخدمة.
+    </p>
+
+    <div class="contact">
+        <p>📞 01126773698 / 01020508423</p>
+        <p>✉️ tarhbladna@gmail.com</p>
+    </div>
 </section>
 
-<!-- أزرار عائمة -->
-<a href="https://wa.me/201126773698" target="_blank" class="float-button whatsapp-float">💬 واتساب</a>
-<a href="#" class="float-button cart-float">🛒 سلة الطلبات</a>
+<a class="whatsapp-float"
+   href="https://wa.me/201126773698"
+   target="_blank">
+   💬 واتساب
+</a>
 
 <footer>
-  جميع الحقوق محفوظة © طرح بلدنا
+    جميع الحقوق محفوظة © طرح بلدنا
 </footer>
 
 </body>
