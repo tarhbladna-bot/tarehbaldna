@@ -9,80 +9,97 @@
 body{
     margin:0;
     font-family:Tahoma, Arial;
-    background:#111;
+    background:linear-gradient(180deg,#000,#0f0f0f);
     color:#fff;
 }
 header{
-    background:#000;
-    padding:20px;
+    background:radial-gradient(circle at top,#1a1a1a,#000);
+    padding:25px;
     text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.8);
 }
 header h1{
-    color:#d4af37;
+    color:#c4161c;
     margin:0;
+    font-size:30px;
 }
+header p{
+    color:#ccc;
+    margin-top:8px;
+}
+
 section{
     padding:40px 15px;
     max-width:1100px;
     margin:auto;
 }
+
 h2{
-    color:#d4af37;
+    color:#c4161c;
     text-align:center;
     margin-bottom:25px;
+    letter-spacing:1px;
 }
 
 /* نبذة */
 .about{
-    background:#181818;
-    border-radius:12px;
+    background:linear-gradient(145deg,#111,#050505);
+    border-radius:15px;
     padding:25px;
-    line-height:1.9;
+    line-height:2;
+    box-shadow:0 0 25px rgba(196,22,28,.15);
+    border:1px solid #1e1e1e;
 }
 
-/* زر كتالوج */
+/* كتالوج */
 .catalog{
     text-align:center;
-    margin-top:20px;
+    margin-top:25px;
 }
 .catalog a{
-    background:#d4af37;
-    color:#000;
-    padding:12px 25px;
-    border-radius:25px;
+    background:linear-gradient(145deg,#c4161c,#8f0f14);
+    color:#fff;
+    padding:14px 30px;
+    border-radius:30px;
     text-decoration:none;
     font-weight:bold;
+    box-shadow:0 0 20px rgba(196,22,28,.4);
 }
 
 /* المنتجات */
 .products{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    gap:25px;
 }
 .product{
-    background:#1c1c1c;
-    border-radius:15px;
+    background:linear-gradient(160deg,#111,#000);
+    border-radius:18px;
     padding:15px;
     text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.9);
+    border:1px solid #1c1c1c;
 }
 .product img{
     width:100%;
     height:180px;
     object-fit:cover;
-    border-radius:10px;
+    border-radius:12px;
 }
 .product h3{
-    margin:15px 0 10px;
+    margin:15px 0;
 }
+
+/* زر السلة */
 .cart-btn{
-    background:#d4af37;
-    color:#000;
+    background:linear-gradient(145deg,#c4161c,#8f0f14);
+    color:#fff;
     border:none;
-    padding:10px 20px;
-    border-radius:20px;
+    padding:11px 22px;
+    border-radius:25px;
     cursor:pointer;
     font-weight:bold;
+    box-shadow:0 0 18px rgba(196,22,28,.5);
 }
 .cart-btn span{
     margin-left:6px;
@@ -90,10 +107,14 @@ h2{
 
 /* السلة */
 #cart{
-    background:#181818;
-    border-radius:15px;
-    padding:20px;
-    margin-top:30px;
+    background:linear-gradient(160deg,#0e0e0e,#000);
+    border-radius:18px;
+    padding:22px;
+    margin-top:35px;
+    box-shadow:0 0 30px rgba(196,22,28,.15);
+}
+#cart h3{
+    color:#c4161c;
 }
 #cart ul{
     list-style:none;
@@ -101,26 +122,34 @@ h2{
 }
 #cart li{
     margin-bottom:8px;
+    color:#eee;
 }
+
+/* واتساب */
 .order-btn{
-    background:#25D366;
+    background:linear-gradient(145deg,#25D366,#1aa952);
     color:#fff;
-    padding:12px 25px;
-    border-radius:25px;
+    padding:13px 30px;
+    border-radius:30px;
     text-decoration:none;
     display:inline-block;
     margin-top:15px;
+    font-weight:bold;
 }
 
-/* تواصل */
+/* الفوتر */
 footer{
     background:#000;
-    padding:20px;
+    padding:25px;
     text-align:center;
     margin-top:40px;
+    border-top:1px solid #1a1a1a;
+}
+footer p{
+    margin:6px 0;
 }
 footer a{
-    color:#d4af37;
+    color:#c4161c;
     text-decoration:none;
 }
 </style>
@@ -136,10 +165,10 @@ footer a{
 <section>
 <h2>نبذة عن الشركة</h2>
 <div class="about">
-شركة <strong>طرح بلدنا</strong> متخصصة في تجارة وتصنيع وتوريد
-الفول السوداني وجميع المنتجات الزراعية الطبيعية.
-خبرة أكثر من 15 عامًا في السوق المصري،
-نلتزم بالجودة العالية والتوريد المنتظم للمصانع والتجار.
+شركة <strong>طرح بلدنا</strong> متخصصة في تجارة وتصنيع
+وتوريد الفول السوداني والمنتجات الزراعية الطبيعية.
+نمتلك خبرة أكثر من 15 عامًا في السوق المصري،
+ونلتزم بأعلى معايير الجودة والتوريد المنتظم.
 </div>
 
 <div class="catalog">
@@ -149,6 +178,7 @@ footer a{
 
 <section>
 <h2>المنتجات</h2>
+
 <div class="products">
 
 <div class="product">
