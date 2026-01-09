@@ -102,43 +102,37 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 <a class="whatsapp-btn" href="https://wa.me/201126773698" target="_blank">💬</a>
 
 <script>
-// ⚡️ هنا نعرض كل الصور من مجلد "images"
-const productsContainer = document.getElementById('products');
-
-// ⚠️ ملاحظة: في متصفح عادي لا يمكن قراءة الملفات من المجلد مباشرة بسبب أمان المتصفح.
-// لتجربة محلية، يجب تشغيل سيرفر محلي مثل Live Server في VSCode.
-// ضع كل الصور في مجلد images/ وأسمها بأي اسم.
-
-// ⚠️ يمكنك إنشاء مصفوفة يدوية للصور أو استخدام سيرفر محلي مع JS لعرض كل الصور.
-// مثال مصفوفة يدوية:
-const allImages = [
-  {src:'images/peanut1.jpg', type:'shell', name:'فول سوداني بقشره'},
-  {src:'images/peanut2.jpg', type:'crushed', name:'فول سوداني مجروش'},
-  {src:'images/peanut3.jpg', type:'shelled', name:'فول سوداني مقشر'},
-  {src:'images/peanut4.jpg', type:'halawani', name:'فول حلواني'}
+// ===== بيانات المنتجات لكل نوع مع عدة صور
+const productsData = [
+  { type:'shell', name_ar:'فول سوداني بقشره', name_en:'Peanut with shell', images:['images/peanut1.jpg','images/peanut1b.jpg'] },
+  { type:'crushed', name_ar:'فول سوداني مجروش', name_en:'Crushed Peanut', images:['images/peanut2.jpg','images/peanut2b.jpg'] },
+  { type:'shelled', name_ar:'فول سوداني مقشر', name_en:'Shelled Peanut', images:['images/peanut3.jpg','images/peanut3b.jpg'] },
+  { type:'halawani', name_ar:'فول حلواني', name_en:'Halawani Peanut', images:['images/peanut4.jpg','images/peanut4b.jpg'] }
 ];
 
-// عرض كل الصور
-allImages.forEach(img=>{
-    const div = document.createElement('div');
-    div.className='product';
-    div.setAttribute('data-type',img.type);
-    div.innerHTML = `
-      <img src="${img.src}" alt="${img.name}">
-      <div class="product-footer">
-        <h2 data-lang-ar="${img.name}" data-lang-en="${img.name}">${img.name}</h2>
-        <p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
-        <button onclick="addToCart('${img.name}')">أضف للسلة</button>
-        <div class="social-share">
-          <a href="#" onclick="share('whatsapp','${img.name}')">📞</a>
-          <a href="#" onclick="share('facebook','${img.name}')">📘</a>
-          <a href="#" onclick="share('twitter','${img.name}')">🐦</a>
-        </div>
-      </div>`;
-    productsContainer.appendChild(div);
+const productsContainer = document.getElementById('products');
+productsData.forEach(prod=>{
+    prod.images.forEach(img=>{
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.setAttribute('data-type', prod.type);
+        div.innerHTML = `
+        <img src="${img}" alt="${prod.name_ar}">
+        <div class="product-footer">
+          <h2 data-lang-ar="${prod.name_ar}" data-lang-en="${prod.name_en}">${prod.name_ar}</h2>
+          <p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
+          <button onclick="addToCart('${prod.name_ar}')">أضف للسلة</button>
+          <div class="social-share">
+            <a href="#" onclick="share('whatsapp','${prod.name_ar}')">📞</a>
+            <a href="#" onclick="share('facebook','${prod.name_ar}')">📘</a>
+            <a href="#" onclick="share('twitter','${prod.name_ar}')">🐦</a>
+          </div>
+        </div>`;
+        productsContainer.appendChild(div);
+    });
 });
 
-// ===== الكود الأساسي للسلة، الفلتر، البحث، اللغة
+// ===== الكود الأساسي للسلة، الواتساب، الفلتر، البحث، اللغة
 let cartItems = [];
 function addToCart(item){ cartItems.push(item); updateCart(); animateCartItem(); alert(item+" تم إضافته للسلة"); }
 function updateCart(){ const cartList=document.getElementById('cart-items'); cartList.innerHTML=''; cartItems.forEach(i=>{ const li=document.createElement('li'); li.textContent=i+" - السعر عند الطلب"; li.classList.add('added'); cartList.appendChild(li); });}
