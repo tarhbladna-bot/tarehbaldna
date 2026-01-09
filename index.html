@@ -8,6 +8,7 @@
 <style>
 body { font-family: 'Cairo', sans-serif; margin:0; padding:0; background:#000; color:#fff; scroll-behavior:smooth; transition:0.3s;}
 body.ltr{ direction:ltr; text-align:left;}
+
 header{background:#111; padding:20px 25px; display:flex; align-items:center; justify-content:space-between; border-bottom:2px solid #FF6600; position:sticky; top:0; z-index:1000;}
 header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:flex; align-items:center; gap:10px;}
 .header-icons{ display:flex; align-items:center; gap:12px;}
@@ -15,9 +16,11 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 .header-icons a:hover{ background:#222; transform:scale(1.1);}
 .lang-switch{ background:#FF6600; color:#fff; border:none; padding:6px 12px; border-radius:12px; cursor:pointer; font-weight:bold; transition:0.3s;}
 .lang-switch:hover{ background:#e65c00; transform:scale(1.05);}
+
 .filter-search{ display:flex; justify-content:center; gap:15px; flex-wrap:wrap; padding:20px;}
 .filter-search select, .filter-search input{ padding:8px 12px; border-radius:12px; border:none; outline:none; font-size:1rem; }
 .filter-search input{ width:200px;}
+
 .products{ display:flex; flex-wrap:wrap; justify-content:center; gap:25px; padding:20px;}
 .product{ background:#111; border-radius:20px; box-shadow:0 6px 20px rgba(255,102,0,0.3); width:220px; padding:15px; text-align:center; transform:translateY(30px); opacity:0; transition:all 0.8s ease; position:relative;}
 .product.visible{ transform:translateY(0); opacity:1;}
@@ -31,6 +34,7 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 .social-share{ display:flex; justify-content:center; gap:8px; margin-top:5px;}
 .social-share a{ color:#fff; font-size:18px; transition:0.3s;}
 .social-share a:hover{ color:#FF6600; transform:scale(1.2);}
+
 .cart{ position:fixed; top:20px; left:-350px; width:300px; background:#111; border:2px solid #FF6600; border-radius:15px; padding:20px; box-shadow:0 8px 35px rgba(255,102,0,0.4); transition:left 0.4s ease; z-index:999;}
 .cart.active{ left:20px;}
 .cart h3{ color:#FF6600; margin-top:0;margin-bottom:15px;}
@@ -40,14 +44,18 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 @keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
 .cart button{ margin-top:15px;width:100%; background:#FF6600; color:#fff; border:none; padding:12px; font-weight:bold; border-radius:12px; cursor:pointer;}
 .cart button:hover{ background:#e65c00;}
+
 .cart-toggle{ position:fixed; top:20px; left:20px; background:#FF6600; color:#fff; padding:12px 18px; border-radius:50px; cursor:pointer; font-weight:bold; box-shadow:0 4px 15px rgba(255,102,0,0.5); z-index:1000; transition:0.3s;}
 .cart-toggle:hover{ background:#e65c00; transform:scale(1.05);}
+
 .whatsapp-btn{ position:fixed; bottom:25px; right:25px; background:#FF6600; color:#fff; border-radius:50%; width:60px; height:60px; display:flex; justify-content:center; align-items:center; font-size:28px; text-decoration:none; box-shadow:0 6px 25px rgba(255,102,0,0.5); transition:0.3s; z-index:1000;}
 .whatsapp-btn:hover{ background:#e65c00; transform:scale(1.1);}
+
 .modal{ display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; overflow:auto; background:rgba(0,0,0,0.85);}
 .modal-content{ background:#111; margin:10% auto; padding:30px; border:2px solid #FF6600; border-radius:15px; width:80%; max-width:500px; color:#fff; text-align:center; position:relative;}
 .close-btn{ position:absolute; top:15px; right:20px; color:#FF6600; font-size:28px; font-weight:bold; cursor:pointer;}
 .close-btn:hover{ color:#e65c00;}
+
 @media(max-width:768px){ .products{ flex-direction:column; align-items:center;} .cart{width:260px;} .filter-search input{ width:100%; } header{ flex-direction:column; gap:10px; } .header-icons{ gap:8px; }}
 </style>
 </head>
@@ -77,48 +85,52 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 </div>
 
 <div class="products" id="products">
-  <!-- مثال المنتجات -->
-  <div class="product" data-type="shell">
-    <img src="images/peanut1.jpg" alt="فول سوداني بقشره">
-    <div class="product-footer">
-      <h2 data-lang-ar="فول سوداني بقشره" data-lang-en="Peanut with shell">فول سوداني بقشره</h2>
-      <p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
-      <button onclick="addToCart('فول سوداني بقشره')">أضف للسلة</button>
-      <div class="social-share">
-        <a href="#" onclick="share('whatsapp','فول سوداني بقشره')">📞</a>
-        <a href="#" onclick="share('facebook','فول سوداني بقشره')">📘</a>
-        <a href="#" onclick="share('twitter','فول سوداني بقشره')">🐦</a>
-      </div>
-    </div>
-  </div>
 
-  <div class="product" data-type="crushed">
-    <img src="images/peanut2.jpg" alt="فول سوداني مجروش">
-    <div class="product-footer">
-      <h2 data-lang-ar="فول سوداني مجروش" data-lang-en="Crushed Peanut">فول سوداني مجروش</h2>
-      <p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
-      <button onclick="addToCart('فول سوداني مجروش')">أضف للسلة</button>
-      <div class="social-share">
-        <a href="#" onclick="share('whatsapp','فول سوداني مجروش')">📞</a>
-        <a href="#" onclick="share('facebook','فول سوداني مجروش')">📘</a>
-        <a href="#" onclick="share('twitter','فول سوداني مجروش')">🐦</a>
-      </div>
+<!-- فول سوداني بقشره -->
+<div class="product" data-type="shell">
+  <img src="images/peanut1.jpg" alt="فول سوداني بقشره">
+  <div class="product-footer">
+    <h2 data-lang-ar="فول سوداني بقشره" data-lang-en="Peanut with shell">فول سوداني بقشره</h2>
+    <p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
+    <button onclick="addToCart('فول سوداني بقشره')">أضف للسلة</button>
+    <div class="social-share">
+      <a href="#" onclick="share('whatsapp','فول سوداني بقشره')">📞</a>
+      <a href="#" onclick="share('facebook','فول سوداني بقشره')">📘</a>
+      <a href="#" onclick="share('twitter','فول سوداني بقشره')">🐦</a>
     </div>
   </div>
+</div>
 
-  <div class="product" data-type="shelled">
-    <img src="images/peanut3.jpg" alt="فول سوداني مقشر">
-    <div class="product-footer">
-      <h2 data-lang-ar="فول سوداني مقشر" data-lang-en="Shelled Peanut">فول سوداني مقشر</h2>
-      <p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
-      <button onclick="addToCart('فول سوداني مقشر')">أضف للسلة</button>
-      <div class="social-share">
-        <a href="#" onclick="share('whatsapp','فول سوداني مقشر')">📞</a>
-        <a href="#" onclick="share('facebook','فول سوداني مقشر')">📘</a>
-        <a href="#" onclick="share('twitter','فول سوداني مقشر')">🐦</a>
-      </div>
+<!-- فول سوداني مجروش -->
+<div class="product" data-type="crushed">
+  <img src="images/peanut2.jpg" alt="فول سوداني مجروش">
+  <div class="product-footer">
+    <h2 data-lang-ar="فول سوداني مجروش" data-lang-en="Crushed Peanut">فول سوداني مجروش</h2>
+    <p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
+    <button onclick="addToCart('فول سوداني مجروش')">أضف للسلة</button>
+    <div class="social-share">
+      <a href="#" onclick="share('whatsapp','فول سوداني مجروش')">📞</a>
+      <a href="#" onclick="share('facebook','فول سوداني مجروش')">📘</a>
+      <a href="#" onclick="share('twitter','فول سوداني مجروش')">🐦</a>
     </div>
   </div>
+</div>
+
+<!-- فول سوداني مقشر -->
+<div class="product" data-type="shelled">
+  <img src="images/peanut3.jpg" alt="فول سوداني مقشر">
+  <div class="product-footer">
+    <h2 data-lang-ar="فول سوداني مقشر" data-lang-en="Shelled Peanut">فول سوداني مقشر</h2>
+    <p data-lang-ar="السعر عند الطلب" data-lang-en="Price on request">السعر عند الطلب</p>
+    <button onclick="addToCart('فول سوداني مقشر')">أضف للسلة</button>
+    <div class="social-share">
+      <a href="#" onclick="share('whatsapp','فول سوداني مقشر')">📞</a>
+      <a href="#" onclick="share('facebook','فول سوداني مقشر')">📘</a>
+      <a href="#" onclick="share('twitter','فول سوداني مقشر')">🐦</a>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <div class="cart-toggle" onclick="toggleCart()" data-lang-ar="السلة" data-lang-en="Cart">السلة</div>
@@ -138,13 +150,16 @@ header h1{ font-size:2rem; color:#FF6600; margin:0; letter-spacing:1px; display:
 </div>
 </div>
 
+<!-- زر التصدير -->
 <button id="exportBtn" style="position:fixed; bottom:100px; right:20px; padding:10px 15px; background:#ffd700; border:none; border-radius:5px; cursor:pointer; z-index:1000;">
 تصدير الطلبات
 </button>
 
+<!-- زر واتساب عائم -->
 <a class="whatsapp-btn" href="https://wa.me/201126773698" target="_blank">💬</a>
 
 <script>
+// ⚠️ مصفوفة السلة
 let cartItems = [];
 
 function addToCart(item){
@@ -179,7 +194,6 @@ function sendWhatsApp(){
 
 function openModal(){ document.getElementById('aboutModal').style.display="block"; }
 function closeModal(){ document.getElementById('aboutModal').style.display="none"; }
-
 window.onclick = function(e){ if(e.target == document.getElementById('aboutModal')) closeModal(); }
 
 window.addEventListener('scroll', revealProducts);
@@ -223,6 +237,7 @@ function share(platform, item){
     window.open(url,'_blank');
 }
 
+// تصدير الطلبات
 document.getElementById("exportBtn").addEventListener("click", function(){
     if(cartItems.length === 0){ alert("السلة فارغة!"); return; }
     let csv = "المنتج,الكمية,السعر\n";
