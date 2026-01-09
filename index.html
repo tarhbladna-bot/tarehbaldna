@@ -149,7 +149,9 @@ header h1{color:#ff6600;margin:0}
   text-decoration:none;
   color:#fff;
   box-shadow:0 6px 20px rgba(255,102,0,.6);
+  transition:.3s;
 }
+.whatsapp:hover{transform:scale(1.15)}
 
 /* ===== نافذة من نحن ===== */
 .modal{
@@ -184,6 +186,11 @@ header h1{color:#ff6600;margin:0}
   padding:10px 0;
   border-top:2px solid #ff6600;
   z-index:1000;
+  transition:all 0.3s ease-in-out;
+}
+.bottom-bar.sticky{
+  transform:translateY(-10px);
+  box-shadow:0 -3px 15px rgba(255,102,0,.4);
 }
 .bottom-icon{
   display:flex;
@@ -195,7 +202,7 @@ header h1{color:#ff6600;margin:0}
   transition:transform 0.3s, color 0.3s;
 }
 .bottom-icon:hover{
-  transform:scale(1.15);
+  transform:scale(1.2) translateY(-3px);
   color:#ff6600;
 }
 .bottom-icon .icon-label{
@@ -296,7 +303,7 @@ header h1{color:#ff6600;margin:0}
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
 
 <!-- ===== شريط أيقونات أسفل الصفحة ===== -->
-<div class="bottom-bar">
+<div class="bottom-bar" id="bottomBar">
   <div class="bottom-icon" onclick="toggleCart()">
     🛒
     <span class="icon-label">السلة (<span id="cart-count">0</span>)</span>
@@ -343,12 +350,20 @@ function send(){
 }
 function openAbout(){document.getElementById('about').style.display='block'}
 function closeAbout(){document.getElementById('about').style.display='none'}
-
-// تحديث عدد المنتجات في السلة بالشريط السفلي
 function updateCartCount(){
   document.getElementById('cart-count').textContent = cart.length;
 }
 updateCartCount();
+
+// تأثير ظهور الشريط عند التمرير
+window.addEventListener('scroll', ()=>{
+  const bar=document.getElementById('bottomBar');
+  if(window.scrollY>50){
+    bar.classList.add('sticky');
+  } else{
+    bar.classList.remove('sticky');
+  }
+});
 </script>
 
 </body>
