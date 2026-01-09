@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>طرح بلدنا</title>
+<title>طرح بلدنا | Tarh Baldna</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
@@ -36,39 +36,26 @@ header h1{color:#ff6600;margin:0}
 }
 .product{
     background:#111;
-    width:260px;
+    width:240px;
     border-radius:18px;
     padding:15px;
     text-align:center;
     box-shadow:0 6px 20px rgba(255,102,0,.4);
+    transition:.3s;
 }
-.gallery img{
+.product:hover{
+    transform:translateY(-8px) scale(1.04);
+}
+.product img{
     width:100%;
     border-radius:12px;
-    display:none;
 }
-.gallery img.active{display:block}
+.product h2{
+    color:#ff6600;
+    margin:10px 0 5px;
+}
+.product p{margin:0 0 10px}
 
-.thumbs{
-    display:flex;
-    justify-content:center;
-    gap:6px;
-    margin-top:8px;
-}
-.thumbs img{
-    width:45px;
-    height:45px;
-    border-radius:6px;
-    cursor:pointer;
-    opacity:.6;
-    border:2px solid transparent;
-}
-.thumbs img.active{
-    opacity:1;
-    border-color:#ff6600;
-}
-
-.product h2{color:#ff6600;margin:10px 0 5px}
 .product button{
     background:#ff6600;
     border:none;
@@ -77,7 +64,6 @@ header h1{color:#ff6600;margin:0}
     border-radius:12px;
     cursor:pointer;
     font-weight:bold;
-    margin-top:8px;
 }
 
 .cart-toggle{
@@ -140,6 +126,19 @@ header h1{color:#ff6600;margin:0}
     font-size:28px;
     text-decoration:none;
     color:#fff;
+    box-shadow:0 6px 20px rgba(255,102,0,.5);
+}
+
+.about{
+    background:#111;
+    padding:30px;
+    text-align:center;
+    border-top:2px solid #ff6600;
+}
+.about h2{color:#ff6600}
+
+@media(max-width:768px){
+    .products{flex-direction:column;align-items:center}
 }
 </style>
 </head>
@@ -155,61 +154,31 @@ header h1{color:#ff6600;margin:0}
 
 <div class="products">
 
-<!-- بقشره -->
 <div class="product">
-<div class="gallery">
-<img src="images/peanut-shell-1.jpg" class="active">
-<img src="images/peanut-shell-2.jpg">
-<img src="images/peanut-shell-3.jpg">
-</div>
-<div class="thumbs">
-<img src="images/peanut-shell-1.jpg" class="active" onclick="show(this,0)">
-<img src="images/peanut-shell-2.jpg" onclick="show(this,1)">
-<img src="images/peanut-shell-3.jpg" onclick="show(this,2)">
-</div>
+<img src="images/peanut-shell-1.jpg">
 <h2>فول سوداني بقشره</h2>
+<p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني بقشره')">أضف للسلة</button>
 </div>
 
-<!-- مقشر -->
 <div class="product">
-<div class="gallery">
-<img src="images/peanut-shelled-1.jpg" class="active">
-<img src="images/peanut-shelled-2.jpg">
-</div>
-<div class="thumbs">
-<img src="images/peanut-shelled-1.jpg" class="active" onclick="show(this,0)">
-<img src="images/peanut-shelled-2.jpg" onclick="show(this,1)">
-</div>
+<img src="images/peanut-shelled-1.jpg">
 <h2>فول سوداني مقشر</h2>
+<p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني مقشر')">أضف للسلة</button>
 </div>
 
-<!-- مجروش -->
 <div class="product">
-<div class="gallery">
-<img src="images/peanut-crushed-1.jpg" class="active">
-<img src="images/peanut-crushed-2.jpg">
-</div>
-<div class="thumbs">
-<img src="images/peanut-crushed-1.jpg" class="active" onclick="show(this,0)">
-<img src="images/peanut-crushed-2.jpg" onclick="show(this,1)">
-</div>
+<img src="images/peanut-crushed-1.jpg">
 <h2>فول سوداني مجروش</h2>
+<p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني مجروش')">أضف للسلة</button>
 </div>
 
-<!-- حلواني -->
 <div class="product">
-<div class="gallery">
-<img src="images/peanut-halawani-1.jpg" class="active">
-<img src="images/peanut-halawani-2.jpg">
-</div>
-<div class="thumbs">
-<img src="images/peanut-halawani-1.jpg" class="active" onclick="show(this,0)">
-<img src="images/peanut-halawani-2.jpg" onclick="show(this,1)">
-</div>
+<img src="images/peanut-halawani-1.jpg">
 <h2>فول سوداني حلواني</h2>
+<p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني حلواني')">أضف للسلة</button>
 </div>
 
@@ -219,6 +188,15 @@ header h1{color:#ff6600;margin:0}
 <h3>سلة الطلب</h3>
 <ul id="items"></ul>
 <button onclick="send()">اطلب واتساب</button>
+</div>
+
+<div class="about">
+<h2>نبذة عن الشركة</h2>
+<p>
+شركة طرح بلدنا متخصصة في إنتاج وتوريد الفول السوداني بجميع أنواعه بأعلى جودة.
+</p>
+<p>📞 01126773698 / 01020508423</p>
+<p>✉️ tarhbladna@gmail.com</p>
 </div>
 
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
@@ -246,19 +224,12 @@ function toggleCart(){
 }
 
 function send(){
-    if(cart.length===0){alert('السلة فارغة');return;}
-    let msg='طلب:\n'+cart.join('\n');
+    if(cart.length===0){
+        alert('السلة فارغة');
+        return;
+    }
+    let msg='طلب فول سوداني:\n'+cart.join('\n');
     window.open('https://wa.me/201126773698?text='+encodeURIComponent(msg),'_blank');
-}
-
-function show(el,index){
-    let product=el.closest('.product');
-    let imgs=product.querySelectorAll('.gallery img');
-    let thumbs=product.querySelectorAll('.thumbs img');
-    imgs.forEach(i=>i.classList.remove('active'));
-    thumbs.forEach(t=>t.classList.remove('active'));
-    imgs[index].classList.add('active');
-    el.classList.add('active');
 }
 </script>
 
