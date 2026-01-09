@@ -27,41 +27,6 @@ header{
 }
 header h1{color:#ff6600;margin:0}
 
-/* ===== أيقونات احترافية ===== */
-.header-icons{
-  display:flex;
-  gap:18px;
-}
-.icon-item{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-decoration:none;
-  color:#fff;
-  font-size:12px;
-}
-.icon-circle{
-  width:46px;
-  height:46px;
-  background:#ff6600;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  color:#fff;
-  box-shadow:0 6px 15px rgba(255,102,0,.6);
-  transition:.3s;
-}
-.icon-item:hover .icon-circle{
-  background:#fff;
-  color:#ff6600;
-  transform:scale(1.15);
-}
-.icon-label{
-  margin-top:6px;
-}
-
 /* ===== المنتجات ===== */
 .products{
   display:flex;
@@ -174,46 +139,26 @@ header h1{color:#ff6600;margin:0}
 }
 .close{color:#ff6600;font-size:28px;cursor:pointer}
 
-/* ===== شريط أيقونات أسفل الصفحة ===== */
-.bottom-bar{
+/* ===== شريط نصي أسفل الصفحة ===== */
+.bottom-text{
   position:fixed;
   bottom:0;
   left:0;
   width:100%;
   background:#111;
+  border-top:2px solid #ff6600;
+  padding:10px 0;
+  text-align:center;
   display:flex;
   justify-content:space-around;
-  padding:10px 0;
-  border-top:2px solid #ff6600;
   z-index:1000;
-  transition:all 0.3s ease-in-out;
+  font-size:14px;
 }
-.bottom-bar.sticky{
-  transform:translateY(-10px);
-  box-shadow:0 -3px 15px rgba(255,102,0,.4);
-}
-.bottom-icon{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  color:#fff;
-  font-size:20px;
+.bottom-text div{
   cursor:pointer;
-  transition:transform 0.3s, color 0.3s;
+  transition:color 0.3s;
 }
-.bottom-icon:hover{
-  transform:scale(1.2) translateY(-3px);
-  color:#ff6600;
-}
-.bottom-icon .icon-label{
-  font-size:12px;
-  margin-top:4px;
-}
-
-@media(max-width:768px){
-  .products{flex-direction:column;align-items:center}
-  .header-icons{gap:12px}
-}
+.bottom-text div:hover{color:#ff6600;}
 </style>
 </head>
 
@@ -221,33 +166,6 @@ header h1{color:#ff6600;margin:0}
 
 <header>
 <h1>طرح بلدنا</h1>
-
-<div class="header-icons">
-<a class="icon-item" href="javascript:void(0)" onclick="toggleCart()">
-<div class="icon-circle">🛒</div>
-<div class="icon-label">السلة</div>
-</a>
-
-<a class="icon-item" href="#products">
-<div class="icon-circle">📦</div>
-<div class="icon-label">المنتجات</div>
-</a>
-
-<a class="icon-item" href="javascript:void(0)" onclick="openAbout()">
-<div class="icon-circle">ℹ</div>
-<div class="icon-label">من نحن</div>
-</a>
-
-<a class="icon-item" href="mailto:tarhbladna@gmail.com">
-<div class="icon-circle">✉</div>
-<div class="icon-label">الإيميل</div>
-</a>
-
-<a class="icon-item" href="https://wa.me/201126773698" target="_blank">
-<div class="icon-circle">📞</div>
-<div class="icon-label">واتساب</div>
-</a>
-</div>
 </header>
 
 <div class="cart-toggle" onclick="toggleCart()">🛒 السلة</div>
@@ -302,28 +220,13 @@ header h1{color:#ff6600;margin:0}
 
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
 
-<!-- ===== شريط أيقونات أسفل الصفحة ===== -->
-<div class="bottom-bar" id="bottomBar">
-  <div class="bottom-icon" onclick="toggleCart()">
-    🛒
-    <span class="icon-label">السلة (<span id="cart-count">0</span>)</span>
-  </div>
-  <a class="bottom-icon" href="#products">
-    📦
-    <span class="icon-label">المنتجات</span>
-  </a>
-  <div class="bottom-icon" onclick="openAbout()">
-    ℹ
-    <span class="icon-label">من نحن</span>
-  </div>
-  <a class="bottom-icon" href="mailto:tarhbladna@gmail.com">
-    ✉
-    <span class="icon-label">الإيميل</span>
-  </a>
-  <a class="bottom-icon" href="https://wa.me/201126773698" target="_blank">
-    📞
-    <span class="icon-label">واتساب</span>
-  </a>
+<!-- ===== شريط نصي أسفل الصفحة ===== -->
+<div class="bottom-text">
+  <div onclick="toggleCart()">السلة (<span id="cart-count">0</span>)</div>
+  <div onclick="window.scrollTo({top:document.getElementById('products').offsetTop, behavior:'smooth'})">المنتجات</div>
+  <div onclick="openAbout()">من نحن</div>
+  <div onclick="window.location='mailto:tarhbladna@gmail.com'">الإيميل: tarhbladna@gmail.com</div>
+  <div onclick="window.open('https://wa.me/201126773698','_blank')">واتساب: 01020508423</div>
 </div>
 
 <script>
@@ -354,16 +257,6 @@ function updateCartCount(){
   document.getElementById('cart-count').textContent = cart.length;
 }
 updateCartCount();
-
-// تأثير ظهور الشريط عند التمرير
-window.addEventListener('scroll', ()=>{
-  const bar=document.getElementById('bottomBar');
-  if(window.scrollY>50){
-    bar.classList.add('sticky');
-  } else{
-    bar.classList.remove('sticky');
-  }
-});
 </script>
 
 </body>
