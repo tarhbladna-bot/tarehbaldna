@@ -115,10 +115,10 @@ border-radius:8px;
 object-fit:cover;
 cursor:pointer;
 transition:.3s;
+border:2px solid transparent;
 }
-.product-gallery img:hover{
-transform:scale(1.2);
-box-shadow:0 4px 15px rgba(255,102,0,.6);
+.product-gallery img.selected{
+border:2px solid #ff6600;
 }
 
 /* ===== السلة ===== */
@@ -158,6 +158,7 @@ padding:10px;
 color:#fff;
 border-radius:12px;
 font-weight:bold;
+margin-bottom:5px;
 }
 
 /* ===== واتساب ===== */
@@ -256,6 +257,13 @@ flex-wrap:wrap;
 
 <div class="cart-toggle" onclick="toggleCart()">🛒 السلة</div>
 
+<div class="cart" id="cart">
+<h3>سلة الطلب</h3>
+<ul id="items"></ul>
+<button onclick="send()">اطلب واتساب</button>
+<button onclick="clearCart()">تفريغ السلة</button>
+</div>
+
 <div class="products">
 
 <!-- فول سوداني بقشره -->
@@ -265,7 +273,7 @@ flex-wrap:wrap;
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني بقشره')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-shell-2.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-shell-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-shell-3.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
@@ -277,7 +285,7 @@ flex-wrap:wrap;
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني مقشر')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-shelled-2.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-shelled-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-shelled-3.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
@@ -289,7 +297,7 @@ flex-wrap:wrap;
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني مجروش')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-crushed-2.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-crushed-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-crushed-3.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
@@ -301,7 +309,7 @@ flex-wrap:wrap;
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني حلواني')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-halawani-2.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-halawani-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-halawani-3.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
@@ -342,11 +350,33 @@ let cart=[];
 
 function add(item){
 cart.push(item);
+renderCart();
+}
+
+function renderCart(){
+let ul=document.getElementById('items');
+ul.innerHTML='';
+cart.forEach(i=>{
+let li=document.createElement('li');
+li.textContent=i;
+ul.appendChild(li);
+});
 document.getElementById('footer-count').textContent=cart.length;
 }
 
+function clearCart(){
+cart=[];
+renderCart();
+}
+
 function toggleCart(){
-document.getElementById('cart')?.classList.toggle('active');
+document.getElementById('cart').classList.toggle('active');
+}
+
+function send(){
+if(cart.length===0){alert('السلة فارغة');return;}
+let msg='طلب:\n'+cart.join('\n');
+window.open('https://wa.me/201126773698?text='+encodeURIComponent(msg),'_blank');
 }
 
 function openLightbox(el){
@@ -360,6 +390,10 @@ document.getElementById('lightbox').style.display='none';
 function changeMainImage(el){
 let product = el.closest('.product');
 product.querySelector('.main-img').src = el.src;
+// إزالة تحديد جميع الصور
+product.querySelectorAll('.product-gallery img').forEach(img=>img.classList.remove('selected'));
+// إضافة التحديد للصورة المضغوطة
+el.classList.add('selected');
 }
 
 function exportCart(){
