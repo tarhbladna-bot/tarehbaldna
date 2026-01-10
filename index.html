@@ -60,9 +60,7 @@ background:#fff;
 color:#ff6600;
 transform:scale(1.15);
 }
-.icon-label{
-margin-top:6px;
-}
+.icon-label{margin-top:6px}
 
 /* ===== المنتجات ===== */
 .products{
@@ -82,7 +80,13 @@ box-shadow:0 6px 20px rgba(255,102,0,.4);
 transition:.3s;
 }
 .product:hover{transform:translateY(-8px) scale(1.04)}
-.product img{width:100%;border-radius:12px}
+.product img{
+width:100%;
+border-radius:12px;
+cursor:pointer;
+transition:.4s;
+}
+.product img:hover{transform:scale(1.08)}
 .product h2{color:#ff6600;margin:10px 0 5px}
 .product p{margin:0 0 10px}
 .product button{
@@ -94,6 +98,7 @@ border-radius:12px;
 cursor:pointer;
 font-weight:bold;
 }
+
 /* ===== معرض الصور المصغر ===== */
 .product-gallery{
 display:flex;
@@ -107,11 +112,11 @@ height:60px;
 border-radius:8px;
 object-fit:cover;
 cursor:pointer;
-transition:0.3s;
+transition:.3s;
 }
 .product-gallery img:hover{
 transform:scale(1.2);
-box-shadow:0 4px 15px rgba(255,102,0,0.6);
+box-shadow:0 4px 15px rgba(255,102,0,.6);
 }
 
 /* ===== السلة ===== */
@@ -153,7 +158,7 @@ border-radius:12px;
 font-weight:bold;
 }
 
-/* ===== واتساب ===== */
+/* ===== واتساب عائم (محسن بدون تغيير لون) ===== */
 .whatsapp{
 position:fixed;
 right:20px;
@@ -168,7 +173,45 @@ align-items:center;
 font-size:28px;
 text-decoration:none;
 color:#fff;
-box-shadow:0 6px 20px rgba(255,102,0,0.6);
+box-shadow:0 6px 20px rgba(255,102,0,.6);
+transition:.3s;
+z-index:1000;
+}
+.whatsapp:hover{transform:scale(1.1)}
+
+/* ===== زر Export عائم ===== */
+.export-float{
+position:fixed;
+left:20px;
+bottom:20px;
+background:#ff6600;
+color:#fff;
+padding:12px 18px;
+border-radius:40px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 6px 20px rgba(255,102,0,.6);
+z-index:1000;
+transition:.3s;
+}
+.export-float:hover{transform:scale(1.08)}
+
+/* ===== Lightbox ===== */
+.lightbox{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:3000;
+}
+.lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:15px;
+box-shadow:0 0 30px rgba(255,102,0,.5);
 }
 
 /* ===== نافذة من نحن ===== */
@@ -191,19 +234,6 @@ border-radius:15px;
 text-align:center;
 }
 .close{color:#ff6600;font-size:28px;cursor:pointer}
-
-/* ===== أسفل الصفحة كتابة الأيقونات ===== */
-.footer-icons{
-display:flex;
-justify-content:center;
-gap:25px;
-margin-top:30px;
-padding:20px;
-border-top:2px solid #ff6600;
-flex-wrap:wrap;
-}
-.footer-item{text-align:center;font-size:14px;}
-.footer-item p{margin:4px 0;}
 </style>
 </head>
 
@@ -213,24 +243,19 @@ flex-wrap:wrap;
 <h1>طرح بلدنا</h1>
 <div class="header-icons">
 <a class="icon-item" href="javascript:void(0)" onclick="toggleCart()">
-<div class="icon-circle">🛒</div>
-<div class="icon-label">السلة</div>
+<div class="icon-circle">🛒</div><div class="icon-label">السلة</div>
 </a>
 <a class="icon-item" href="#products">
-<div class="icon-circle">📦</div>
-<div class="icon-label">المنتجات</div>
+<div class="icon-circle">📦</div><div class="icon-label">المنتجات</div>
 </a>
 <a class="icon-item" href="javascript:void(0)" onclick="openAbout()">
-<div class="icon-circle">ℹ</div>
-<div class="icon-label">من نحن</div>
+<div class="icon-circle">ℹ</div><div class="icon-label">من نحن</div>
 </a>
 <a class="icon-item" href="mailto:tarhbladna@gmail.com">
-<div class="icon-circle">✉</div>
-<div class="icon-label">الإيميل</div>
+<div class="icon-circle">✉</div><div class="icon-label">الإيميل</div>
 </a>
 <a class="icon-item" href="https://wa.me/201126773698" target="_blank">
-<div class="icon-circle">📞</div>
-<div class="icon-label">واتساب</div>
+<div class="icon-circle">📞</div><div class="icon-label">واتساب</div>
 </a>
 </div>
 </header>
@@ -239,51 +264,47 @@ flex-wrap:wrap;
 
 <div class="products" id="products">
 
-<!-- فول سوداني بقشره -->
 <div class="product">
-<img src="images/peanut-shell-1.jpg">
+<img src="images/peanut-shell-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني بقشره</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني بقشره')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-shell-2.jpg">
-<img src="images/peanut-shell-3.jpg">
+<img src="images/peanut-shell-2.jpg" onclick="openLightbox(this)">
+<img src="images/peanut-shell-3.jpg" onclick="openLightbox(this)">
 </div>
 </div>
 
-<!-- فول سوداني مقشر -->
 <div class="product">
-<img src="images/peanut-shelled-1.jpg">
+<img src="images/peanut-shelled-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني مقشر</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني مقشر')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-shelled-2.jpg">
-<img src="images/peanut-shelled-3.jpg">
+<img src="images/peanut-shelled-2.jpg" onclick="openLightbox(this)">
+<img src="images/peanut-shelled-3.jpg" onclick="openLightbox(this)">
 </div>
 </div>
 
-<!-- فول سوداني مجروش -->
 <div class="product">
-<img src="images/peanut-crushed-1.jpg">
+<img src="images/peanut-crushed-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني مجروش</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني مجروش')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-crushed-2.jpg">
-<img src="images/peanut-crushed-3.jpg">
+<img src="images/peanut-crushed-2.jpg" onclick="openLightbox(this)">
+<img src="images/peanut-crushed-3.jpg" onclick="openLightbox(this)">
 </div>
 </div>
 
-<!-- فول سوداني حلواني -->
 <div class="product">
-<img src="images/peanut-halawani-1.jpg">
+<img src="images/peanut-halawani-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني حلواني</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني حلواني')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-halawani-2.jpg">
-<img src="images/peanut-halawani-3.jpg">
+<img src="images/peanut-halawani-2.jpg" onclick="openLightbox(this)">
+<img src="images/peanut-halawani-3.jpg" onclick="openLightbox(this)">
 </div>
 </div>
 
@@ -306,27 +327,10 @@ flex-wrap:wrap;
 </div>
 
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
+<div class="export-float" onclick="exportCart()">📤 Export</div>
 
-<!-- ===== أسفل الصفحة كتابة الأيقونات ===== -->
-<div class="footer-icons">
-<div class="footer-item">
-<p>🛒 السلة</p>
-<p>عدد المنتجات: <span id="footer-count">0</span></p>
-</div>
-<div class="footer-item">
-<p>📦 المنتجات</p>
-<p>عدد أنواع الفول: 4</p>
-</div>
-<div class="footer-item">
-<p>ℹ من نحن</p>
-<p>نبذة عن الشركة</p>
-</div>
-<div class="footer-item">
-<p>✉ tarhbladna@gmail.com</p>
-</div>
-<div class="footer-item">
-<p>📞 واتساب 01020508423</p>
-</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
 </div>
 
 <script>
@@ -340,7 +344,6 @@ let li=document.createElement('li');
 li.textContent=i;
 ul.appendChild(li);
 });
-document.getElementById('footer-count').textContent=cart.length;
 }
 function toggleCart(){document.getElementById('cart').classList.toggle('active')}
 function send(){
@@ -350,6 +353,18 @@ window.open('https://wa.me/201126773698?text='+encodeURIComponent(msg),'_blank')
 }
 function openAbout(){document.getElementById('about').style.display='block'}
 function closeAbout(){document.getElementById('about').style.display='none'}
+
+function openLightbox(el){
+document.getElementById('lightbox-img').src=el.src;
+document.getElementById('lightbox').style.display='flex';
+}
+function closeLightbox(){
+document.getElementById('lightbox').style.display='none';
+}
+function exportCart(){
+if(cart.length===0){alert('السلة فارغة');return;}
+alert(cart.join('\n'));
+}
 </script>
 
 </body>
