@@ -29,7 +29,7 @@ z-index:1000;
 }
 header h1{color:#ff6600;margin:0}
 
-/* ===== أيقونات احترافية ===== */
+/* ===== أيقونات الهيدر ===== */
 .header-icons{
 display:flex;
 gap:18px;
@@ -80,13 +80,15 @@ box-shadow:0 6px 20px rgba(255,102,0,.4);
 transition:.3s;
 }
 .product:hover{transform:translateY(-8px) scale(1.04)}
-.product img{
+
+.product img.main-img{
 width:100%;
 border-radius:12px;
 cursor:pointer;
 transition:.4s;
 }
-.product img:hover{transform:scale(1.08)}
+.product img.main-img:hover{transform:scale(1.08)}
+
 .product h2{color:#ff6600;margin:10px 0 5px}
 .product p{margin:0 0 10px}
 .product button{
@@ -99,11 +101,11 @@ cursor:pointer;
 font-weight:bold;
 }
 
-/* ===== معرض الصور المصغر ===== */
+/* ===== معرض الصور ===== */
 .product-gallery{
 display:flex;
 justify-content:center;
-gap:5px;
+gap:6px;
 margin-top:10px;
 }
 .product-gallery img{
@@ -158,7 +160,7 @@ border-radius:12px;
 font-weight:bold;
 }
 
-/* ===== واتساب عائم (محسن بدون تغيير لون) ===== */
+/* ===== واتساب ===== */
 .whatsapp{
 position:fixed;
 right:20px;
@@ -179,7 +181,7 @@ z-index:1000;
 }
 .whatsapp:hover{transform:scale(1.1)}
 
-/* ===== زر Export عائم ===== */
+/* ===== Export ===== */
 .export-float{
 position:fixed;
 left:20px;
@@ -214,26 +216,18 @@ border-radius:15px;
 box-shadow:0 0 30px rgba(255,102,0,.5);
 }
 
-/* ===== نافذة من نحن ===== */
-.modal{
-display:none;
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,.85);
-z-index:2000;
+/* ===== فوتر ===== */
+.footer-icons{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:30px;
+padding:20px;
+border-top:2px solid #ff6600;
+flex-wrap:wrap;
 }
-.modal-content{
-background:#111;
-width:90%;
-max-width:500px;
-margin:10% auto;
-padding:25px;
-border:2px solid #ff6600;
-border-radius:15px;
-text-align:center;
-}
-.close{color:#ff6600;font-size:28px;cursor:pointer}
+.footer-item{text-align:center;font-size:14px;}
+.footer-item p{margin:4px 0;}
 </style>
 </head>
 
@@ -262,68 +256,21 @@ text-align:center;
 
 <div class="cart-toggle" onclick="toggleCart()">🛒 السلة</div>
 
-<div class="products" id="products">
+<div class="products">
 
 <div class="product">
-<img src="images/peanut-shell-1.jpg" onclick="openLightbox(this)">
+<img class="main-img" src="images/peanut-shell-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني بقشره</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني بقشره')">أضف للسلة</button>
 <div class="product-gallery">
-<img src="images/peanut-shell-2.jpg" onclick="openLightbox(this)">
-<img src="images/peanut-shell-3.jpg" onclick="openLightbox(this)">
+<img src="images/peanut-shell-2.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-shell-3.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
-<div class="product">
-<img src="images/peanut-shelled-1.jpg" onclick="openLightbox(this)">
-<h2>فول سوداني مقشر</h2>
-<p>السعر عند الطلب</p>
-<button onclick="add('فول سوداني مقشر')">أضف للسلة</button>
-<div class="product-gallery">
-<img src="images/peanut-shelled-2.jpg" onclick="openLightbox(this)">
-<img src="images/peanut-shelled-3.jpg" onclick="openLightbox(this)">
-</div>
-</div>
+<!-- كرر باقي المنتجات بنفس الشكل -->
 
-<div class="product">
-<img src="images/peanut-crushed-1.jpg" onclick="openLightbox(this)">
-<h2>فول سوداني مجروش</h2>
-<p>السعر عند الطلب</p>
-<button onclick="add('فول سوداني مجروش')">أضف للسلة</button>
-<div class="product-gallery">
-<img src="images/peanut-crushed-2.jpg" onclick="openLightbox(this)">
-<img src="images/peanut-crushed-3.jpg" onclick="openLightbox(this)">
-</div>
-</div>
-
-<div class="product">
-<img src="images/peanut-halawani-1.jpg" onclick="openLightbox(this)">
-<h2>فول سوداني حلواني</h2>
-<p>السعر عند الطلب</p>
-<button onclick="add('فول سوداني حلواني')">أضف للسلة</button>
-<div class="product-gallery">
-<img src="images/peanut-halawani-2.jpg" onclick="openLightbox(this)">
-<img src="images/peanut-halawani-3.jpg" onclick="openLightbox(this)">
-</div>
-</div>
-
-</div>
-
-<div class="cart" id="cart">
-<h3>سلة الطلب</h3>
-<ul id="items"></ul>
-<button onclick="send()">اطلب واتساب</button>
-</div>
-
-<div class="modal" id="about">
-<div class="modal-content">
-<span class="close" onclick="closeAbout()">&times;</span>
-<h2 style="color:#ff6600">نبذة عن شركة طرح بلدنا</h2>
-<p>شركة متخصصة في إنتاج وتوريد الفول السوداني بجميع أنواعه بأعلى جودة.</p>
-<p>📞 01126773698 / 01020508423</p>
-<p>✉️ tarhbladna@gmail.com</p>
-</div>
 </div>
 
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
@@ -333,26 +280,39 @@ text-align:center;
 <img id="lightbox-img">
 </div>
 
+<!-- ===== الفوتر ===== -->
+<div class="footer-icons">
+<div class="footer-item">
+<p>🛒 السلة</p>
+<p>عدد المنتجات: <span id="footer-count">0</span></p>
+</div>
+<div class="footer-item">
+<p>📦 المنتجات</p>
+<p>عدد أنواع الفول: 4</p>
+</div>
+<div class="footer-item">
+<p>ℹ من نحن</p>
+<p>نبذة عن الشركة</p>
+</div>
+<div class="footer-item">
+<p>✉ tarhbladna@gmail.com</p>
+</div>
+<div class="footer-item">
+<p>📞 واتساب 01020508423</p>
+</div>
+</div>
+
 <script>
 let cart=[];
-function add(item){cart.push(item);render();}
-function render(){
-let ul=document.getElementById('items');
-ul.innerHTML='';
-cart.forEach(i=>{
-let li=document.createElement('li');
-li.textContent=i;
-ul.appendChild(li);
-});
+
+function add(item){
+cart.push(item);
+document.getElementById('footer-count').textContent=cart.length;
 }
-function toggleCart(){document.getElementById('cart').classList.toggle('active')}
-function send(){
-if(cart.length===0){alert('السلة فارغة');return;}
-let msg='طلب:\n'+cart.join('\n');
-window.open('https://wa.me/201126773698?text='+encodeURIComponent(msg),'_blank');
+
+function toggleCart(){
+document.getElementById('cart')?.classList.toggle('active');
 }
-function openAbout(){document.getElementById('about').style.display='block'}
-function closeAbout(){document.getElementById('about').style.display='none'}
 
 function openLightbox(el){
 document.getElementById('lightbox-img').src=el.src;
@@ -361,6 +321,12 @@ document.getElementById('lightbox').style.display='flex';
 function closeLightbox(){
 document.getElementById('lightbox').style.display='none';
 }
+
+function changeMainImage(el){
+let product = el.closest('.product');
+product.querySelector('.main-img').src = el.src;
+}
+
 function exportCart(){
 if(cart.length===0){alert('السلة فارغة');return;}
 alert(cart.join('\n'));
