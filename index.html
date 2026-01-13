@@ -15,6 +15,30 @@ background:#000;
 color:#fff;
 }
 
+/* ===== شريط أعلى الصفحة (TOP BAR) - جديد ===== */
+.top-bar{
+background:#111;
+color:#fff;
+display:flex;
+justify-content:center;
+gap:40px;
+padding:8px 0;
+border-bottom:2px solid #ff6600;
+font-size:14px;
+position:fixed;
+top:0;
+width:100%;
+z-index:2000;
+}
+.top-bar a{
+color:#fff;
+text-decoration:none;
+transition:.3s;
+}
+.top-bar a:hover{
+color:#ff6600;
+}
+
 /* ===== الهيدر ===== */
 header{
 background:#111;
@@ -24,7 +48,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 position:sticky;
-top:0;
+top:28px; /* أسفل الشريط العلوي */
 z-index:1000;
 }
 header h1{color:#ff6600;margin:0}
@@ -69,6 +93,7 @@ flex-wrap:wrap;
 justify-content:center;
 gap:25px;
 padding:30px;
+margin-top:20px;
 }
 .product{
 background:#111;
@@ -101,13 +126,12 @@ cursor:pointer;
 font-weight:bold;
 }
 
-/* ===== معرض الصور أسفل الصورة الرئيسية ===== */
+/* ===== معرض الصور المصغرة تحت الصورة الرئيسية ===== */
 .product-gallery{
 display:flex;
 justify-content:center;
 gap:6px;
 margin-top:10px;
-flex-wrap:wrap;
 }
 .product-gallery img{
 width:60px;
@@ -235,6 +259,14 @@ flex-wrap:wrap;
 
 <body>
 
+<!-- ===== شريط أعلى الصفحة (TOP BAR) ===== -->
+<div class="top-bar">
+<a href="#">عندك أي أسئلة؟ كل حاجة هنا</a>
+<a href="#">الفئات</a>
+<a href="#">عن الشركة</a>
+<a href="#">المساعدة</a>
+</div>
+
 <header>
 <h1>طرح بلدنا</h1>
 <div class="header-icons">
@@ -267,7 +299,7 @@ flex-wrap:wrap;
 
 <div class="products">
 
-<!-- فول سوداني بقشره -->
+<!-- المنتجات مع الصور المصغرة تحت الصورة الرئيسية -->
 <div class="product">
 <img class="main-img" src="images/peanut-shell-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني بقشره</h2>
@@ -276,11 +308,9 @@ flex-wrap:wrap;
 <div class="product-gallery">
 <img src="images/peanut-shell-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-shell-3.jpg" onclick="changeMainImage(this)">
-<img src="images/peanut-shell-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
-<!-- فول سوداني مقشر -->
 <div class="product">
 <img class="main-img" src="images/peanut-shelled-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني مقشر</h2>
@@ -289,11 +319,9 @@ flex-wrap:wrap;
 <div class="product-gallery">
 <img src="images/peanut-shelled-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-shelled-3.jpg" onclick="changeMainImage(this)">
-<img src="images/peanut-shelled-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
-<!-- فول سوداني مجروش -->
 <div class="product">
 <img class="main-img" src="images/peanut-crushed-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني مجروش</h2>
@@ -302,11 +330,9 @@ flex-wrap:wrap;
 <div class="product-gallery">
 <img src="images/peanut-crushed-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-crushed-3.jpg" onclick="changeMainImage(this)">
-<img src="images/peanut-crushed-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
-<!-- فول سوداني حلواني -->
 <div class="product">
 <img class="main-img" src="images/peanut-halawani-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني حلواني</h2>
@@ -315,7 +341,6 @@ flex-wrap:wrap;
 <div class="product-gallery">
 <img src="images/peanut-halawani-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-halawani-3.jpg" onclick="changeMainImage(this)">
-<img src="images/peanut-halawani-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
@@ -353,33 +378,20 @@ flex-wrap:wrap;
 <script>
 let cart=[];
 
-function add(item){
-cart.push(item);
-renderCart();
-}
+function add(item){ cart.push(item); renderCart(); }
 
 function renderCart(){
-let ul=document.getElementById('items');
-ul.innerHTML='';
-cart.forEach(i=>{
-let li=document.createElement('li');
-li.textContent=i;
-ul.appendChild(li);
-});
+let ul=document.getElementById('items'); ul.innerHTML='';
+cart.forEach(i=>{ let li=document.createElement('li'); li.textContent=i; ul.appendChild(li); });
 document.getElementById('footer-count').textContent=cart.length;
 }
 
-function clearCart(){
-cart=[];
-renderCart();
-}
+function clearCart(){ cart=[]; renderCart(); }
 
-function toggleCart(){
-document.getElementById('cart').classList.toggle('active');
-}
+function toggleCart(){ document.getElementById('cart').classList.toggle('active'); }
 
 function send(){
-if(cart.length===0){alert('السلة فارغة');return;}
+if(cart.length===0){alert('السلة فارغة'); return;}
 let msg='طلب:\n'+cart.join('\n');
 window.open('https://wa.me/201126773698?text='+encodeURIComponent(msg),'_blank');
 }
@@ -388,18 +400,13 @@ function openLightbox(el){
 document.getElementById('lightbox-img').src=el.src;
 document.getElementById('lightbox').style.display='flex';
 }
-function closeLightbox(){
-document.getElementById('lightbox').style.display='none';
-}
+function closeLightbox(){ document.getElementById('lightbox').style.display='none'; }
 
 function changeMainImage(el){
   const product = el.closest('.product');
   const mainImg = product.querySelector('.main-img');
   mainImg.src = el.src;
-
-  product.querySelectorAll('.product-gallery img')
-    .forEach(img => img.classList.remove('selected'));
-
+  product.querySelectorAll('.product-gallery img').forEach(img => img.classList.remove('selected'));
   el.classList.add('selected');
 }
 
@@ -409,14 +416,17 @@ alert(cart.join('\n'));
 }
 </script>
 
-<!-- ===== Google Analytics + عداد زوار حقيقي ===== -->
+<!-- ===== Google Analytics ===== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDZS95FPK9"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-RDZS95FPK9', { anonymize_ip: true });
+</script>
 
+<!-- ===== عداد الزوار الحقيقي ===== -->
+<script>
 document.addEventListener("DOMContentLoaded", function () {
   fetch("https://api.countapi.xyz/hit/tarh-baldna/visitors")
     .then(res => res.json())
