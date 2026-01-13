@@ -101,7 +101,7 @@ cursor:pointer;
 font-weight:bold;
 }
 
-/* ===== معرض الصور ===== */
+/* ===== معرض الصور أسفل الصورة الرئيسية ===== */
 .product-gallery{
 display:flex;
 justify-content:center;
@@ -243,6 +243,9 @@ flex-wrap:wrap;
 <a class="icon-item" href="#products">
 <div class="icon-circle">📦</div><div class="icon-label">المنتجات</div>
 </a>
+<a class="icon-item" href="javascript:void(0)" onclick="openAbout()">
+<div class="icon-circle">ℹ</div><div class="icon-label">من نحن</div>
+</a>
 <a class="icon-item" href="mailto:tarhbladna@gmail.com">
 <div class="icon-circle">✉</div><div class="icon-label">الإيميل</div>
 </a>
@@ -263,32 +266,52 @@ flex-wrap:wrap;
 
 <div class="products">
 
+<!-- فول سوداني بقشره -->
 <div class="product">
 <img class="main-img" src="images/peanut-shell-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني بقشره</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني بقشره')">أضف للسلة</button>
+<div class="product-gallery">
+<img src="images/peanut-shell-2.jpg" class="selected" onclick="changeMainImage(this)">
+<img src="images/peanut-shell-3.jpg" onclick="changeMainImage(this)">
+</div>
 </div>
 
+<!-- فول سوداني مقشر -->
 <div class="product">
 <img class="main-img" src="images/peanut-shelled-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني مقشر</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني مقشر')">أضف للسلة</button>
+<div class="product-gallery">
+<img src="images/peanut-shelled-2.jpg" class="selected" onclick="changeMainImage(this)">
+<img src="images/peanut-shelled-3.jpg" onclick="changeMainImage(this)">
+</div>
 </div>
 
+<!-- فول سوداني مجروش -->
 <div class="product">
 <img class="main-img" src="images/peanut-crushed-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني مجروش</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني مجروش')">أضف للسلة</button>
+<div class="product-gallery">
+<img src="images/peanut-crushed-2.jpg" class="selected" onclick="changeMainImage(this)">
+<img src="images/peanut-crushed-3.jpg" onclick="changeMainImage(this)">
+</div>
 </div>
 
+<!-- فول سوداني حلواني -->
 <div class="product">
 <img class="main-img" src="images/peanut-halawani-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني حلواني</h2>
 <p>السعر عند الطلب</p>
 <button onclick="add('فول سوداني حلواني')">أضف للسلة</button>
+<div class="product-gallery">
+<img src="images/peanut-halawani-2.jpg" class="selected" onclick="changeMainImage(this)">
+<img src="images/peanut-halawani-3.jpg" onclick="changeMainImage(this)">
+</div>
 </div>
 
 </div>
@@ -300,10 +323,25 @@ flex-wrap:wrap;
 <img id="lightbox-img">
 </div>
 
+<!-- ===== الفوتر ===== -->
 <div class="footer-icons">
 <div class="footer-item">
 <p>🛒 السلة</p>
 <p>عدد المنتجات: <span id="footer-count">0</span></p>
+</div>
+<div class="footer-item">
+<p>📦 المنتجات</p>
+<p>عدد أنواع الفول: 4</p>
+</div>
+<div class="footer-item">
+<p>ℹ من نحن</p>
+<p>نبذة عن الشركة</p>
+</div>
+<div class="footer-item">
+<p>✉ tarhbladna@gmail.com</p>
+</div>
+<div class="footer-item">
+<p>📞 واتساب 01020508423</p>
 </div>
 </div>
 
@@ -314,6 +352,7 @@ function add(item){
 cart.push(item);
 renderCart();
 }
+
 function renderCart(){
 let ul=document.getElementById('items');
 ul.innerHTML='';
@@ -324,13 +363,22 @@ ul.appendChild(li);
 });
 document.getElementById('footer-count').textContent=cart.length;
 }
-function clearCart(){cart=[];renderCart();}
-function toggleCart(){document.getElementById('cart').classList.toggle('active');}
+
+function clearCart(){
+cart=[];
+renderCart();
+}
+
+function toggleCart(){
+document.getElementById('cart').classList.toggle('active');
+}
+
 function send(){
 if(cart.length===0){alert('السلة فارغة');return;}
 let msg='طلب:\n'+cart.join('\n');
 window.open('https://wa.me/201126773698?text='+encodeURIComponent(msg),'_blank');
 }
+
 function openLightbox(el){
 document.getElementById('lightbox-img').src=el.src;
 document.getElementById('lightbox').style.display='flex';
@@ -338,6 +386,15 @@ document.getElementById('lightbox').style.display='flex';
 function closeLightbox(){
 document.getElementById('lightbox').style.display='none';
 }
+
+function changeMainImage(el){
+  const product = el.closest('.product');
+  const mainImg = product.querySelector('.main-img');
+  mainImg.src = el.src;
+  product.querySelectorAll('.product-gallery img').forEach(img => img.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
 function exportCart(){
 if(cart.length===0){alert('السلة فارغة');return;}
 alert(cart.join('\n'));
@@ -353,26 +410,29 @@ gtag('js', new Date());
 gtag('config', 'G-RDZS95FPK9', { anonymize_ip: true });
 </script>
 
-<!-- ===== عداد زوار حقيقي ===== -->
+<!-- ===== عداد زوار حقيقي مرئي ===== -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   fetch("https://api.countapi.xyz/hit/tarh-baldna/visitors")
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => {
       const counter = document.createElement("div");
-      counter.innerHTML = "👁️ عدد زوار الموقع: <b>" + data.value + "</b>";
-      counter.style.position="fixed";
-      counter.style.bottom="85px";
-      counter.style.right="15px";
-      counter.style.background="#111";
-      counter.style.color="#fff";
-      counter.style.padding="10px 16px";
-      counter.style.borderRadius="25px";
-      counter.style.border="2px solid #ff6600";
-      counter.style.fontSize="14px";
-      counter.style.zIndex="9999";
+      counter.innerHTML = `👁️ عدد زوار الموقع: <b>${data.value}</b>`;
+      counter.style.position = "fixed";
+      counter.style.bottom = "85px";
+      counter.style.right = "15px";
+      counter.style.background = "#111";
+      counter.style.color = "#fff";
+      counter.style.padding = "10px 16px";
+      counter.style.borderRadius = "25px";
+      counter.style.border = "2px solid #ff6600";
+      counter.style.fontFamily = "Cairo, sans-serif";
+      counter.style.fontSize = "14px";
+      counter.style.boxShadow = "0 5px 15px rgba(255,102,0,.6)";
+      counter.style.zIndex = "9999";
       document.body.appendChild(counter);
-    });
+    })
+    .catch(err => console.error("Counter error", err));
 });
 </script>
 
