@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>طرح بلدنا | Tarh Baldna</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
 body{
   margin:0;
@@ -32,7 +30,7 @@ body{
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 .top-bar-left { cursor: default; }
-.top-bar-right{ position:relative; }
+.top-bar-right{ position:relative; display:flex; align-items:center;}
 .menu-dots{ cursor:pointer; font-size:24px; padding:0 8px; user-select:none; }
 .dropdown{
   display:none;
@@ -57,6 +55,32 @@ body{
 }
 .dropdown span:hover{
   background:#ff6600;
+  color:#fff;
+}
+
+/* ===== Modal ===== */
+.modal{
+  display:none;
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:#111;
+  border:2px solid #ff6600;
+  padding:20px;
+  border-radius:15px;
+  z-index:4000;
+  width:90%;
+  max-width:400px;
+}
+.modal h3{color:#ff6600;margin-top:0; text-align:center;}
+.modal p, .modal li{margin:8px 0;}
+.modal ul{padding:0 15px; list-style:disc;}
+.modal .close-btn{
+  position:absolute;
+  top:8px;
+  right:12px;
+  cursor:pointer;
+  font-size:18px;
   color:#fff;
 }
 
@@ -146,7 +170,7 @@ header h1{color:#ff6600;margin:0}
   font-weight:bold;
 }
 
-/* ===== معرض الصور المصغرة أسفل الصورة الرئيسية ===== */
+/* ===== معرض الصور المصغرة ===== */
 .product-gallery{
   display:flex;
   justify-content:center;
@@ -262,50 +286,6 @@ header h1{color:#ff6600;margin:0}
   box-shadow:0 0 30px rgba(255,102,0,.5);
 }
 
-/* ===== Form استفسار ===== */
-#question-form{
-  display:none;
-  position:fixed;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  background:#111;
-  border:2px solid #ff6600;
-  padding:20px;
-  border-radius:15px;
-  z-index:4000;
-  width:90%;
-  max-width:400px;
-}
-#question-form h3{color:#ff6600;margin-top:0;}
-#question-form textarea{
-  width:100%;
-  padding:8px;
-  border-radius:8px;
-  border:1px solid #ff6600;
-  background:#000;
-  color:#fff;
-  resize:none;
-}
-#question-form button{
-  margin-top:10px;
-  background:#ff6600;
-  border:none;
-  padding:10px;
-  color:#fff;
-  border-radius:12px;
-  font-weight:bold;
-  width:100%;
-  cursor:pointer;
-}
-#question-form .close-btn{
-  position:absolute;
-  top:8px;
-  right:12px;
-  cursor:pointer;
-  font-size:18px;
-  color:#fff;
-}
-
 /* ===== الفوتر ===== */
 .footer-icons{
   display:flex;
@@ -328,10 +308,10 @@ header h1{color:#ff6600;margin:0}
   <div class="top-bar-right">
     <div class="menu-dots" onclick="toggleDropdown()">⋮</div>
     <div class="dropdown" id="dropdown-menu">
-      <span onclick="showCategories()">الفئات</span>
-      <span onclick="openAbout()">عن الشركة</span>
-      <span onclick="showHelp()">المساعدة</span>
-      <span onclick="askQuestion()">عندك أي سؤال؟</span>
+      <span onclick="openModal('categories-modal')">الفئات</span>
+      <span onclick="openModal('about-modal')">عن الشركة</span>
+      <span onclick="openModal('help-modal')">المساعدة</span>
+      <span onclick="openModal('question-modal')">عندك سؤال؟</span>
     </div>
   </div>
 </div>
@@ -345,7 +325,7 @@ header h1{color:#ff6600;margin:0}
 <a class="icon-item" href="#products">
 <div class="icon-circle">📦</div><div class="icon-label">المنتجات</div>
 </a>
-<a class="icon-item" href="javascript:void(0)" onclick="openAbout()">
+<a class="icon-item" href="javascript:void(0)" onclick="openModal('about-modal')">
 <div class="icon-circle">ℹ</div><div class="icon-label">من نحن</div>
 </a>
 <a class="icon-item" href="mailto:tarhbladna@gmail.com">
@@ -418,17 +398,39 @@ header h1{color:#ff6600;margin:0}
 
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
 <div class="export-float" onclick="exportCart()">📤 Export</div>
-
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
 <img id="lightbox-img">
 </div>
 
-<!-- ===== Form سؤال العميل ===== -->
-<div id="question-form">
-  <div class="close-btn" onclick="closeQuestionForm()">×</div>
-  <h3>ارسل استفسارك</h3>
-  <textarea id="question-text" rows="4" placeholder="اكتب سؤالك هنا..."></textarea>
-  <button onclick="sendQuestion()">إرسال عبر واتساب</button>
+<!-- ===== Modals ===== -->
+<div class="modal" id="categories-modal">
+<div class="close-btn" onclick="closeModal('categories-modal')">×</div>
+<h3>الفئات</h3>
+<ul>
+<li>فول سوداني بقشره</li>
+<li>فول سوداني مقشر</li>
+<li>فول سوداني مجروش</li>
+<li>فول سوداني حلواني</li>
+</ul>
+</div>
+
+<div class="modal" id="about-modal">
+<div class="close-btn" onclick="closeModal('about-modal')">×</div>
+<h3>عن الشركة</h3>
+<p>طرح بلدنا هي شركة متخصصة في بيع الفول السوداني بجميع أنواعه وبأعلى جودة.</p>
+</div>
+
+<div class="modal" id="help-modal">
+<div class="close-btn" onclick="closeModal('help-modal')">×</div>
+<h3>المساعدة</h3>
+<p>يمكنك التصفح وإضافة المنتجات للسلة، ثم الطلب عبر واتساب.</p>
+</div>
+
+<div class="modal" id="question-modal">
+<div class="close-btn" onclick="closeModal('question-modal')">×</div>
+<h3>ارسال استفسارك</h3>
+<textarea id="question-text" rows="4" placeholder="اكتب سؤالك هنا..."></textarea>
+<button onclick="sendQuestion()">إرسال عبر واتساب</button>
 </div>
 
 <!-- ===== الفوتر ===== -->
@@ -482,38 +484,30 @@ function changeMainImage(el){
 }
 function exportCart(){if(cart.length===0){alert('السلة فارغة');return;} alert(cart.join('\n'));}
 
-/* ===== شريط النقاط الثلاث ===== */
+/* Dropdown */
 function toggleDropdown(){
   const menu = document.getElementById('dropdown-menu');
   menu.style.display = (menu.style.display==='flex')?'none':'flex';
 }
-function showCategories(){ alert("هنا قائمة الفئات"); toggleDropdown();}
-function openAbout(){ alert("نبذة عن الشركة"); toggleDropdown();}
-function showHelp(){ alert("صفحة المساعدة"); toggleDropdown();}
-function askQuestion(){ 
-  document.getElementById('question-form').style.display='block'; 
-  toggleDropdown();
+function openModal(id){
+  document.getElementById(id).style.display='block';
 }
-function closeQuestionForm(){
-  document.getElementById('question-form').style.display='none';
+function closeModal(id){
+  document.getElementById(id).style.display='none';
 }
+
+/* ارسال سؤال */
 function sendQuestion(){
   const text = document.getElementById('question-text').value.trim();
   if(!text){ alert("اكتب سؤالك أولاً"); return; }
   const url = 'https://wa.me/201126773698?text=' + encodeURIComponent("لدي سؤال/استفسار: " + text);
   window.open(url,'_blank');
   document.getElementById('question-text').value='';
-  closeQuestionForm();
 }
 
-/* إغلاق القائمة إذا ضغط المستخدم خارجها */
-document.addEventListener('click', function(e){
-  const menu = document.getElementById('dropdown-menu');
-  const dots = document.querySelector('.menu-dots');
-  if(!menu.contains(e.target) && !dots.contains(e.target)){
-    menu.style.display='none';
-  }
-});
+/* Google Analytics */
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
 </script>
 
 </body>
