@@ -388,13 +388,20 @@ document.getElementById('lightbox').style.display='none';
 }
 
 function changeMainImage(el){
-let product = el.closest('.product');
-product.querySelector('.main-img').src = el.src;
-// إزالة تحديد جميع الصور
-product.querySelectorAll('.product-gallery img').forEach(img=>img.classList.remove('selected'));
-// إضافة التحديد للصورة المضغوطة
-el.classList.add('selected');
+  const product = el.closest('.product');
+
+  // تغيير الصورة الرئيسية
+  const mainImg = product.querySelector('.main-img');
+  mainImg.src = el.src;
+
+  // إزالة التحديد من كل الصور المصغرة
+  product.querySelectorAll('.product-gallery img')
+    .forEach(img => img.classList.remove('selected'));
+
+  // تحديد الصورة المختارة
+  el.classList.add('selected');
 }
+
 
 function exportCart(){
 if(cart.length===0){alert('السلة فارغة');return;}
