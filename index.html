@@ -107,6 +107,7 @@ display:flex;
 justify-content:center;
 gap:6px;
 margin-top:10px;
+flex-wrap:wrap;
 }
 .product-gallery img{
 width:60px;
@@ -275,6 +276,7 @@ flex-wrap:wrap;
 <div class="product-gallery">
 <img src="images/peanut-shell-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-shell-3.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-shell-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
@@ -287,6 +289,7 @@ flex-wrap:wrap;
 <div class="product-gallery">
 <img src="images/peanut-shelled-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-shelled-3.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-shelled-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
@@ -299,6 +302,7 @@ flex-wrap:wrap;
 <div class="product-gallery">
 <img src="images/peanut-crushed-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-crushed-3.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-crushed-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
@@ -311,6 +315,7 @@ flex-wrap:wrap;
 <div class="product-gallery">
 <img src="images/peanut-halawani-2.jpg" class="selected" onclick="changeMainImage(this)">
 <img src="images/peanut-halawani-3.jpg" onclick="changeMainImage(this)">
+<img src="images/peanut-halawani-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
 
@@ -391,7 +396,10 @@ function changeMainImage(el){
   const product = el.closest('.product');
   const mainImg = product.querySelector('.main-img');
   mainImg.src = el.src;
-  product.querySelectorAll('.product-gallery img').forEach(img => img.classList.remove('selected'));
+
+  product.querySelectorAll('.product-gallery img')
+    .forEach(img => img.classList.remove('selected'));
+
   el.classList.add('selected');
 }
 
@@ -401,20 +409,17 @@ alert(cart.join('\n'));
 }
 </script>
 
-<!-- ===== Google Analytics ===== -->
+<!-- ===== Google Analytics + عداد زوار حقيقي ===== -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDZS95FPK9"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-RDZS95FPK9', { anonymize_ip: true });
-</script>
 
-<!-- ===== عداد زوار حقيقي مرئي ===== -->
-<script>
 document.addEventListener("DOMContentLoaded", function () {
   fetch("https://api.countapi.xyz/hit/tarh-baldna/visitors")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
       const counter = document.createElement("div");
       counter.innerHTML = `👁️ عدد زوار الموقع: <b>${data.value}</b>`;
@@ -431,8 +436,7 @@ document.addEventListener("DOMContentLoaded", function () {
       counter.style.boxShadow = "0 5px 15px rgba(255,102,0,.6)";
       counter.style.zIndex = "9999";
       document.body.appendChild(counter);
-    })
-    .catch(err => console.error("Counter error", err));
+    });
 });
 </script>
 
