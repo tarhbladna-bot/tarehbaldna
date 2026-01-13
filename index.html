@@ -15,7 +15,7 @@ body{
   color:#fff;
 }
 
-/* ===== شريط أعلى الصفحة ===== */
+/* ===== شريط أعلى الصفحة مع ثلاث نقاط ===== */
 .top-bar {
   width: 100%;
   background: #ff6600;
@@ -24,24 +24,40 @@ body{
   justify-content: space-between;
   align-items: center;
   padding: 6px 20px;
-  font-family: 'Cairo', sans-serif;
   font-weight: bold;
   font-size: 14px;
   position: sticky;
   top: 0;
-  z-index: 1002; /* أعلى من الهيدر */
+  z-index: 1002; 
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
-.top-bar-left {
-  cursor: default;
+.top-bar-left { cursor: default; }
+.top-bar-right{ position:relative; }
+.menu-dots{ cursor:pointer; font-size:24px; padding:0 8px; user-select:none; }
+.dropdown{
+  display:none;
+  position:absolute;
+  top:36px;
+  right:0;
+  background:#111;
+  border:2px solid #ff6600;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(255,102,0,.6);
+  padding:10px 0;
+  flex-direction:column;
+  min-width:180px;
+  z-index:1003;
 }
-.top-bar-right span {
-  cursor: pointer;
-  margin: 0 6px;
-  transition: 0.3s;
+.dropdown span{
+  display:block;
+  padding:8px 16px;
+  cursor:pointer;
+  color:#fff;
+  transition:0.3s;
 }
-.top-bar-right span:hover {
-  text-decoration: underline;
+.dropdown span:hover{
+  background:#ff6600;
+  color:#fff;
 }
 
 /* ===== الهيدر ===== */
@@ -53,7 +69,7 @@ header{
   justify-content:space-between;
   align-items:center;
   position:sticky;
-  top:36px; /* تحت الشريط العلوي */
+  top:36px;
   z-index:1000;
 }
 header h1{color:#ff6600;margin:0}
@@ -246,7 +262,51 @@ header h1{color:#ff6600;margin:0}
   box-shadow:0 0 30px rgba(255,102,0,.5);
 }
 
-/* ===== فوتر ===== */
+/* ===== Form استفسار ===== */
+#question-form{
+  display:none;
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:#111;
+  border:2px solid #ff6600;
+  padding:20px;
+  border-radius:15px;
+  z-index:4000;
+  width:90%;
+  max-width:400px;
+}
+#question-form h3{color:#ff6600;margin-top:0;}
+#question-form textarea{
+  width:100%;
+  padding:8px;
+  border-radius:8px;
+  border:1px solid #ff6600;
+  background:#000;
+  color:#fff;
+  resize:none;
+}
+#question-form button{
+  margin-top:10px;
+  background:#ff6600;
+  border:none;
+  padding:10px;
+  color:#fff;
+  border-radius:12px;
+  font-weight:bold;
+  width:100%;
+  cursor:pointer;
+}
+#question-form .close-btn{
+  position:absolute;
+  top:8px;
+  right:12px;
+  cursor:pointer;
+  font-size:18px;
+  color:#fff;
+}
+
+/* ===== الفوتر ===== */
 .footer-icons{
   display:flex;
   justify-content:center;
@@ -260,16 +320,19 @@ header h1{color:#ff6600;margin:0}
 .footer-item p{margin:4px 0;}
 </style>
 </head>
-
 <body>
 
 <!-- ===== شريط أعلى الصفحة ===== -->
 <div class="top-bar">
-  <div class="top-bar-left">عندك أي أسئلة؟ كل حاجة هنا</div>
+  <div class="top-bar-left">طرح بلدنا</div>
   <div class="top-bar-right">
-    <span>الفئات</span> | 
-    <span>عن الشركة</span> | 
-    <span>المساعدة</span>
+    <div class="menu-dots" onclick="toggleDropdown()">⋮</div>
+    <div class="dropdown" id="dropdown-menu">
+      <span onclick="showCategories()">الفئات</span>
+      <span onclick="openAbout()">عن الشركة</span>
+      <span onclick="showHelp()">المساعدة</span>
+      <span onclick="askQuestion()">عندك أي سؤال؟</span>
+    </div>
   </div>
 </div>
 
@@ -295,7 +358,6 @@ header h1{color:#ff6600;margin:0}
 </header>
 
 <div class="cart-toggle" onclick="toggleCart()">🛒 السلة</div>
-
 <div class="cart" id="cart">
 <h3>سلة الطلب</h3>
 <ul id="items"></ul>
@@ -304,8 +366,7 @@ header h1{color:#ff6600;margin:0}
 </div>
 
 <div class="products" id="products">
-
-<!-- أمثلة المنتجات -->
+<!-- المنتجات -->
 <div class="product">
 <img class="main-img" src="images/peanut-shell-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني بقشره</h2>
@@ -353,7 +414,6 @@ header h1{color:#ff6600;margin:0}
 <img src="images/peanut-halawani-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
-
 </div>
 
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
@@ -361,6 +421,14 @@ header h1{color:#ff6600;margin:0}
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
 <img id="lightbox-img">
+</div>
+
+<!-- ===== Form سؤال العميل ===== -->
+<div id="question-form">
+  <div class="close-btn" onclick="closeQuestionForm()">×</div>
+  <h3>ارسل استفسارك</h3>
+  <textarea id="question-text" rows="4" placeholder="اكتب سؤالك هنا..."></textarea>
+  <button onclick="sendQuestion()">إرسال عبر واتساب</button>
 </div>
 
 <!-- ===== الفوتر ===== -->
@@ -413,39 +481,38 @@ function changeMainImage(el){
   el.classList.add('selected');
 }
 function exportCart(){if(cart.length===0){alert('السلة فارغة');return;} alert(cart.join('\n'));}
-</script>
 
-<!-- ===== Google Analytics ===== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDZS95FPK9"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-RDZS95FPK9', { anonymize_ip: true });
-</script>
+/* ===== شريط النقاط الثلاث ===== */
+function toggleDropdown(){
+  const menu = document.getElementById('dropdown-menu');
+  menu.style.display = (menu.style.display==='flex')?'none':'flex';
+}
+function showCategories(){ alert("هنا قائمة الفئات"); toggleDropdown();}
+function openAbout(){ alert("نبذة عن الشركة"); toggleDropdown();}
+function showHelp(){ alert("صفحة المساعدة"); toggleDropdown();}
+function askQuestion(){ 
+  document.getElementById('question-form').style.display='block'; 
+  toggleDropdown();
+}
+function closeQuestionForm(){
+  document.getElementById('question-form').style.display='none';
+}
+function sendQuestion(){
+  const text = document.getElementById('question-text').value.trim();
+  if(!text){ alert("اكتب سؤالك أولاً"); return; }
+  const url = 'https://wa.me/201126773698?text=' + encodeURIComponent("لدي سؤال/استفسار: " + text);
+  window.open(url,'_blank');
+  document.getElementById('question-text').value='';
+  closeQuestionForm();
+}
 
-<!-- ===== عداد زوار حقيقي ===== -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("https://api.countapi.xyz/hit/tarh-baldna/visitors")
-    .then(res => res.json())
-    .then(data => {
-      const counter = document.createElement("div");
-      counter.innerHTML = `👁️ عدد زوار الموقع: <b>${data.value}</b>`;
-      counter.style.position = "fixed";
-      counter.style.bottom = "85px";
-      counter.style.right = "15px";
-      counter.style.background = "#111";
-      counter.style.color = "#fff";
-      counter.style.padding = "10px 16px";
-      counter.style.borderRadius = "25px";
-      counter.style.border = "2px solid #ff6600";
-      counter.style.fontFamily = "Cairo, sans-serif";
-      counter.style.fontSize = "14px";
-      counter.style.boxShadow = "0 5px 15px rgba(255,102,0,.6)";
-      counter.style.zIndex = "9999";
-      document.body.appendChild(counter);
-    });
+/* إغلاق القائمة إذا ضغط المستخدم خارجها */
+document.addEventListener('click', function(e){
+  const menu = document.getElementById('dropdown-menu');
+  const dots = document.querySelector('.menu-dots');
+  if(!menu.contains(e.target) && !dots.contains(e.target)){
+    menu.style.display='none';
+  }
 });
 </script>
 
