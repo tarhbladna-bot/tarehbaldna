@@ -387,61 +387,20 @@ function closeLightbox(){
 document.getElementById('lightbox').style.display='none';
 }
 
+// ===== هنا دالة تغيير الصورة الرئيسية =====
 function changeMainImage(el){
   const product = el.closest('.product');
-
-  // تغيير الصورة الرئيسية
   const mainImg = product.querySelector('.main-img');
   mainImg.src = el.src;
-
-  // إزالة التحديد من كل الصور المصغرة
-  product.querySelectorAll('.product-gallery img')
-    .forEach(img => img.classList.remove('selected'));
-
-  // تحديد الصورة المختارة
+  product.querySelectorAll('.product-gallery img').forEach(img=>img.classList.remove('selected'));
   el.classList.add('selected');
 }
-
 
 function exportCart(){
 if(cart.length===0){alert('السلة فارغة');return;}
 alert(cart.join('\n'));
 }
 </script>
-<!-- ===== Google Analytics + عداد زوار مرئي ===== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDZS95FPK9"></script>
-<script>
-  // Google Analytics بدون بيانات شخصية
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RDZS95FPK9', { anonymize_ip: true });
-
-  // عداد زائر محلي (آمن)
-  document.addEventListener("DOMContentLoaded", function () {
-    let visits = localStorage.getItem("tarh_baldna_visits");
-    visits = visits ? parseInt(visits) + 1 : 1;
-    localStorage.setItem("tarh_baldna_visits", visits);
-
-    const counter = document.createElement("div");
-    counter.innerHTML = "👁️ عدد زياراتك: <b>" + visits + "</b>";
-    counter.style.position = "fixed";
-    counter.style.bottom = "85px";
-    counter.style.right = "15px";
-    counter.style.background = "#111";
-    counter.style.color = "#fff";
-    counter.style.padding = "10px 16px";
-    counter.style.borderRadius = "25px";
-    counter.style.border = "2px solid #ff6600";
-    counter.style.fontFamily = "Cairo, sans-serif";
-    counter.style.fontSize = "14px";
-    counter.style.boxShadow = "0 5px 15px rgba(255,102,0,.6)";
-    counter.style.zIndex = "9999";
-
-    document.body.appendChild(counter);
-  });
-</script>
-<!-- ===== نهاية العداد ===== -->
 
 </body>
 </html>
