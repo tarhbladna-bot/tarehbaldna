@@ -1,278 +1,104 @@
+بردو ناقص  ده الكود الاصلى 
+
 <!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>طرح بلدنا | Tarh Baldna</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
-body{
-  margin:0;
-  font-family:'Cairo',sans-serif;
-  background:#000;
-  color:#fff;
-}
+body{margin:0;font-family:'Cairo',sans-serif;background:#000;color:#fff;}
 
-/* ===== شريط أعلى الصفحة ===== */
-.top-bar {
-  width: 100%;
-  background: #ff6600;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 20px;
-  font-family: 'Cairo', sans-serif;
-  font-weight: bold;
-  font-size: 14px;
-  position: sticky;
-  top: 0;
-  z-index: 1002; /* أعلى من الهيدر */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-.top-bar-left {
-  cursor: default;
-}
-.top-bar-right span {
-  cursor: pointer;
-  margin: 0 6px;
-  transition: 0.3s;
-}
-.top-bar-right span:hover {
-  text-decoration: underline;
-}
+/* ===== شريط أعلى الصفحة مع ثلاث نقاط ===== */
+.top-bar{width:100%;background:#ff6600;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:6px 20px;font-weight:bold;font-size:14px;position:sticky;top:0;z-index:1002;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+.top-bar-left{cursor:default;}
+.top-bar-right{position:relative;display:flex;align-items:center;}
+.menu-dots{cursor:pointer;font-size:28px;padding:0 8px;user-select:none;}
+.dropdown{display:none;position:absolute;top:36px;right:0;background:#111;border:2px solid #ff6600;border-radius:12px;box-shadow:0 5px 15px rgba(255,102,0,.6);padding:10px 0;flex-direction:column;min-width:180px;z-index:1003;}
+.dropdown span{display:block;padding:10px 16px;cursor:pointer;color:#fff;transition:0.3s;}
+.dropdown span:hover{background:#ff6600;color:#fff;}
+
+/* ===== Modal ===== */
+.modal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111;border:2px solid #ff6600;padding:20px;border-radius:15px;z-index:4000;width:90%;max-width:400px;}
+.modal h3{color:#ff6600;margin-top:0;text-align:center;}
+.modal p,.modal li{margin:8px 0;}
+.modal ul{padding:0 15px;list-style:disc;}
+.modal .close-btn{position:absolute;top:8px;right:12px;cursor:pointer;font-size:18px;color:#fff;}
 
 /* ===== الهيدر ===== */
-header{
-  background:#111;
-  padding:15px 25px;
-  border-bottom:2px solid #ff6600;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:36px; /* تحت الشريط العلوي */
-  z-index:1000;
-}
-header h1{color:#ff6600;margin:0}
+header{background:#111;padding:15px 20px;border-bottom:2px solid #ff6600;display:flex;justify-content:space-between;align-items:center;position:sticky;top:36px;z-index:1000;}
+header h1{color:#ff6600;margin:0;font-size:20px}
 
 /* ===== أيقونات الهيدر ===== */
-.header-icons{
-  display:flex;
-  gap:18px;
-}
-.icon-item{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-decoration:none;
-  color:#fff;
-  font-size:12px;
-}
-.icon-circle{
-  width:46px;
-  height:46px;
-  background:#ff6600;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  color:#fff;
-  box-shadow:0 6px 15px rgba(255,102,0,.6);
-  transition:.3s;
-}
-.icon-item:hover .icon-circle{
-  background:#fff;
-  color:#ff6600;
-  transform:scale(1.15);
-}
-.icon-label{margin-top:6px}
+.header-icons{display:flex;gap:12px;}
+.icon-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#fff;font-size:10px;}
+.icon-circle{width:38px;height:38px;background:#ff6600;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;box-shadow:0 5px 12px rgba(255,102,0,.6);transition:.3s;}
+.icon-item:hover .icon-circle{background:#fff;color:#ff6600;transform:scale(1.15);}
+.icon-label{margin-top:4px}
 
 /* ===== المنتجات ===== */
-.products{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:25px;
-  padding:30px;
-}
-.product{
-  background:#111;
-  width:240px;
-  border-radius:18px;
-  padding:15px;
-  text-align:center;
-  box-shadow:0 6px 20px rgba(255,102,0,.4);
-  transition:.3s;
-}
-.product:hover{transform:translateY(-8px) scale(1.04)}
+.products{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;padding:20px;}
+.product{background:#111;width:180px;border-radius:15px;padding:12px;text-align:center;box-shadow:0 6px 20px rgba(255,102,0,.4);transition:.3s;}
+.product:hover{transform:translateY(-6px) scale(1.02);}
+.product img.main-img{width:100%;border-radius:10px;cursor:pointer;transition:.4s;}
+.product img.main-img:hover{transform:scale(1.06);}
+.product h2{color:#ff6600;margin:8px 0 4px;font-size:14px}
+.product p{margin:0 0 6px;font-size:12px}
+.product button{background:#ff6600;border:none;padding:6px 10px;color:#fff;border-radius:10px;cursor:pointer;font-weight:bold;font-size:12px;}
 
-.product img.main-img{
-  width:100%;
-  border-radius:12px;
-  cursor:pointer;
-  transition:.4s;
-}
-.product img.main-img:hover{transform:scale(1.08)}
-
-.product h2{color:#ff6600;margin:10px 0 5px}
-.product p{margin:0 0 10px}
-.product button{
-  background:#ff6600;
-  border:none;
-  padding:8px 14px;
-  color:#fff;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-/* ===== معرض الصور المصغرة أسفل الصورة الرئيسية ===== */
-.product-gallery{
-  display:flex;
-  justify-content:center;
-  gap:6px;
-  margin-top:10px;
-}
-.product-gallery img{
-  width:60px;
-  height:60px;
-  border-radius:8px;
-  object-fit:cover;
-  cursor:pointer;
-  transition:.3s;
-  border:2px solid transparent;
-}
-.product-gallery img.selected{
-  border:2px solid #ff6600;
-}
+/* ===== معرض الصور المصغرة ===== */
+.product-gallery{display:flex;justify-content:center;gap:4px;margin-top:6px;}
+.product-gallery img{width:45px;height:45px;border-radius:6px;object-fit:cover;cursor:pointer;transition:.3s;border:2px solid transparent;}
+.product-gallery img.selected{border:2px solid #ff6600;}
 
 /* ===== السلة ===== */
-.cart-toggle{
-  position:fixed;
-  top:20px;
-  left:20px;
-  background:#ff6600;
-  padding:10px 18px;
-  border-radius:50px;
-  cursor:pointer;
-  font-weight:bold;
-  z-index:999;
-}
-.cart{
-  position:fixed;
-  left:-320px;
-  top:80px;
-  width:280px;
-  background:#111;
-  border:2px solid #ff6600;
-  border-radius:15px;
-  padding:15px;
-  transition:.4s;
-  z-index:999;
-}
-.cart.active{left:20px}
-.cart h3{color:#ff6600;margin-top:0}
-.cart ul{padding:0;list-style:none}
-.cart li{background:#222;margin-bottom:6px;padding:6px;border-radius:8px}
-.cart button{
-  width:100%;
-  margin-top:10px;
-  background:#ff6600;
-  border:none;
-  padding:10px;
-  color:#fff;
-  border-radius:12px;
-  font-weight:bold;
-  margin-bottom:5px;
-}
+.cart-toggle{position:fixed;top:15px;left:15px;background:#ff6600;padding:8px 14px;border-radius:50px;cursor:pointer;font-weight:bold;z-index:999;font-size:12px;}
+.cart{position:fixed;left:-280px;top:70px;width:250px;background:#111;border:2px solid #ff6600;border-radius:12px;padding:12px;transition:.4s;z-index:999;}
+.cart.active{left:15px}
+.cart h3{color:#ff6600;margin-top:0;font-size:14px}
+.cart ul{padding:0;list-style:none;font-size:12px}
+.cart li{background:#222;margin-bottom:5px;padding:5px;border-radius:6px}
+.cart button{width:100%;margin-top:6px;background:#ff6600;border:none;padding:8px;color:#fff;border-radius:10px;font-weight:bold;margin-bottom:4px;font-size:12px;}
 
 /* ===== واتساب ===== */
-.whatsapp{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  width:60px;
-  height:60px;
-  background:#ff6600;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:28px;
-  text-decoration:none;
-  color:#fff;
-  box-shadow:0 6px 20px rgba(255,102,0,.6);
-  transition:.3s;
-  z-index:1000;
-}
+.whatsapp{position:fixed;right:15px;bottom:15px;width:50px;height:50px;background:#ff6600;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:24px;text-decoration:none;color:#fff;box-shadow:0 6px 20px rgba(255,102,0,.6);transition:.3s;z-index:1000;}
 .whatsapp:hover{transform:scale(1.1)}
 
 /* ===== Export ===== */
-.export-float{
-  position:fixed;
-  left:20px;
-  bottom:20px;
-  background:#ff6600;
-  color:#fff;
-  padding:12px 18px;
-  border-radius:40px;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 6px 20px rgba(255,102,0,.6);
-  z-index:1000;
-  transition:.3s;
-}
+.export-float{position:fixed;left:15px;bottom:15px;background:#ff6600;color:#fff;padding:10px 14px;border-radius:35px;font-weight:bold;cursor:pointer;box-shadow:0 6px 20px rgba(255,102,0,.6);z-index:1000;transition:.3s;}
 .export-float:hover{transform:scale(1.08)}
 
 /* ===== Lightbox ===== */
-.lightbox{
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  background:rgba(0,0,0,.9);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:3000;
-}
-.lightbox img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:15px;
-  box-shadow:0 0 30px rgba(255,102,0,.5);
-}
+.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);display:none;justify-content:center;align-items:center;z-index:3000;}
+.lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 25px rgba(255,102,0,.5);}
 
-/* ===== فوتر ===== */
-.footer-icons{
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin-top:30px;
-  padding:20px;
-  border-top:2px solid #ff6600;
-  flex-wrap:wrap;
-}
-.footer-item{text-align:center;font-size:14px;}
-.footer-item p{margin:4px 0;}
+/* ===== الفوتر ===== */
+.footer-icons{display:flex;justify-content:center;gap:15px;margin-top:20px;padding:15px;border-top:2px solid #ff6600;flex-wrap:wrap;font-size:12px;}
+.footer-item{text-align:center;font-size:12px;}
+.footer-item p{margin:2px 0;}
+textarea{width:100%;border-radius:8px;padding:6px;background:#222;color:#fff;border:1px solid #ff6600;font-family:'Cairo',sans-serif;}
+textarea:focus{outline:none;border:1px solid #fff;}
+button{cursor:pointer;}
 </style>
 </head>
-
 <body>
 
-<!-- ===== شريط أعلى الصفحة ===== -->
+<!-- شريط أعلى الصفحة -->
 <div class="top-bar">
-  <div class="top-bar-left">عندك أي أسئلة؟ كل حاجة هنا</div>
+  <div class="top-bar-left">طرح بلدنا</div>
   <div class="top-bar-right">
-    <span>الفئات</span> | 
-    <span>عن الشركة</span> | 
-    <span>المساعدة</span>
+    <div class="menu-dots" onclick="toggleDropdown()">⋮</div>
+    <div class="dropdown" id="dropdown-menu">
+      <span onclick="openModal('categories-modal')">الفئات</span>
+      <span onclick="openModal('about-modal')">عن الشركة</span>
+      <span onclick="openModal('help-modal')">المساعدة</span>
+      <span onclick="openModal('question-modal')">عندك سؤال؟</span>
+    </div>
   </div>
 </div>
 
+<!-- الهيدر -->
 <header>
 <h1>طرح بلدنا</h1>
 <div class="header-icons">
@@ -282,7 +108,7 @@ header h1{color:#ff6600;margin:0}
 <a class="icon-item" href="#products">
 <div class="icon-circle">📦</div><div class="icon-label">المنتجات</div>
 </a>
-<a class="icon-item" href="javascript:void(0)" onclick="openAbout()">
+<a class="icon-item" href="javascript:void(0)" onclick="openModal('about-modal')">
 <div class="icon-circle">ℹ</div><div class="icon-label">من نحن</div>
 </a>
 <a class="icon-item" href="mailto:tarhbladna@gmail.com">
@@ -295,7 +121,6 @@ header h1{color:#ff6600;margin:0}
 </header>
 
 <div class="cart-toggle" onclick="toggleCart()">🛒 السلة</div>
-
 <div class="cart" id="cart">
 <h3>سلة الطلب</h3>
 <ul id="items"></ul>
@@ -303,9 +128,9 @@ header h1{color:#ff6600;margin:0}
 <button onclick="clearCart()">تفريغ السلة</button>
 </div>
 
+<!-- المنتجات كاملة -->
 <div class="products" id="products">
-
-<!-- أمثلة المنتجات -->
+<!-- إضافة كل المنتجات كما في النسخة السابقة مع الصور المصغرة -->
 <div class="product">
 <img class="main-img" src="images/peanut-shell-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني بقشره</h2>
@@ -353,100 +178,52 @@ header h1{color:#ff6600;margin:0}
 <img src="images/peanut-halawani-4.jpg" onclick="changeMainImage(this)">
 </div>
 </div>
-
 </div>
 
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
 <div class="export-float" onclick="exportCart()">📤 Export</div>
-
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
 <img id="lightbox-img">
 </div>
 
-<!-- ===== الفوتر ===== -->
+<!-- Modals -->
+<div class="modal" id="categories-modal"><div class="close-btn" onclick="closeModal('categories-modal')">×</div><h3>الفئات</h3><ul><li>فول سوداني بقشره</li><li>فول سوداني مقشر</li><li>فول سوداني مجروش</li><li>فول سوداني حلواني</li></ul></div>
+<div class="modal" id="about-modal"><div class="close-btn" onclick="closeModal('about-modal')">×</div><h3>عن الشركة</h3><p>طرح بلدنا هي شركة متخصصة في بيع الفول السوداني بجميع أنواعه وبأعلى جودة.</p></div>
+<div class="modal" id="help-modal"><div class="close-btn" onclick="closeModal('help-modal')">×</div><h3>المساعدة</h3><p>يمكنك التصفح وإضافة المنتجات للسلة، ثم الطلب عبر واتساب.</p></div>
+<div class="modal" id="question-modal"><div class="close-btn" onclick="closeModal('question-modal')">×</div><h3>ارسال استفسارك</h3><textarea id="question-text" rows="4" placeholder="اكتب سؤالك هنا..."></textarea><button onclick="sendQuestion()">إرسال عبر واتساب</button></div>
+
+<!-- الفوتر -->
 <div class="footer-icons">
-<div class="footer-item">
-<p>🛒 السلة</p>
-<p>عدد المنتجات: <span id="footer-count">0</span></p>
-</div>
-<div class="footer-item">
-<p>📦 المنتجات</p>
-<p>عدد أنواع الفول: 4</p>
-</div>
-<div class="footer-item">
-<p>ℹ من نحن</p>
-<p>نبذة عن الشركة</p>
-</div>
-<div class="footer-item">
-<p>✉ tarhbladna@gmail.com</p>
-</div>
-<div class="footer-item">
-<p>📞 واتساب 01020508423</p>
-</div>
+<div class="footer-item"><p>🛒 السلة</p><p>عدد المنتجات: <span id="footer-count">0</span></p></div>
+<div class="footer-item"><p>📦 المنتجات</p><p>عدد أنواع الفول: 4</p></div>
+<div class="footer-item"><p>ℹ من نحن</p><p>نبذة عن الشركة</p></div>
+<div class="footer-item"><p>✉ tarhbladna@gmail.com</p></div>
+<div class="footer-item"><p>📞 واتساب 01020508423</p></div>
 </div>
 
 <script>
 let cart=[];
 function add(item){cart.push(item); renderCart();}
 function renderCart(){
-let ul=document.getElementById('items');
-ul.innerHTML='';
-cart.forEach(i=>{
-let li=document.createElement('li'); li.textContent=i; ul.appendChild(li);
-});
+let ul=document.getElementById('items'); ul.innerHTML='';
+cart.forEach(i=>{let li=document.createElement('li'); li.textContent=i; ul.appendChild(li);});
 document.getElementById('footer-count').textContent=cart.length;
 }
 function clearCart(){cart=[]; renderCart();}
 function toggleCart(){document.getElementById('cart').classList.toggle('active');}
-function send(){
-if(cart.length===0){alert('السلة فارغة');return;}
-let msg='طلب:\n'+cart.join('\n');
-window.open('https://wa.me/201126773698?text='+encodeURIComponent(msg),'_blank');
-}
+function send(){if(cart.length===0){alert('السلة فارغة');return;} let msg='طلب:\n'+cart.join('\n'); window.open('https://wa.me/201126773698?text='+encodeURIComponent(msg),'_blank');}
 function openLightbox(el){document.getElementById('lightbox-img').src=el.src; document.getElementById('lightbox').style.display='flex';}
 function closeLightbox(){document.getElementById('lightbox').style.display='none';}
-function changeMainImage(el){
-  const product = el.closest('.product');
-  const mainImg = product.querySelector('.main-img');
-  mainImg.src = el.src;
-  product.querySelectorAll('.product-gallery img').forEach(img => img.classList.remove('selected'));
-  el.classList.add('selected');
-}
+function changeMainImage(el){const product = el.closest('.product'); const mainImg = product.querySelector('.main-img'); mainImg.src = el.src; product.querySelectorAll('.product-gallery img').forEach(img => img.classList.remove('selected')); el.classList.add('selected');}
 function exportCart(){if(cart.length===0){alert('السلة فارغة');return;} alert(cart.join('\n'));}
-</script>
 
-<!-- ===== Google Analytics ===== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDZS95FPK9"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-RDZS95FPK9', { anonymize_ip: true });
-</script>
+/* Dropdown & Modals */
+function toggleDropdown(){const menu = document.getElementById('dropdown-menu'); menu.style.display = (menu.style.display==='flex')?'none':'flex';}
+function openModal(id){document.getElementById(id).style.display='block';}
+function closeModal(id){document.getElementById(id).style.display='none';}
 
-<!-- ===== عداد زوار حقيقي ===== -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("https://api.countapi.xyz/hit/tarh-baldna/visitors")
-    .then(res => res.json())
-    .then(data => {
-      const counter = document.createElement("div");
-      counter.innerHTML = `👁️ عدد زوار الموقع: <b>${data.value}</b>`;
-      counter.style.position = "fixed";
-      counter.style.bottom = "85px";
-      counter.style.right = "15px";
-      counter.style.background = "#111";
-      counter.style.color = "#fff";
-      counter.style.padding = "10px 16px";
-      counter.style.borderRadius = "25px";
-      counter.style.border = "2px solid #ff6600";
-      counter.style.fontFamily = "Cairo, sans-serif";
-      counter.style.fontSize = "14px";
-      counter.style.boxShadow = "0 5px 15px rgba(255,102,0,.6)";
-      counter.style.zIndex = "9999";
-      document.body.appendChild(counter);
-    });
-});
+/* ارسال سؤال */
+function sendQuestion(){const text=document.getElementById('question-text').value.trim(); if(!text){alert("اكتب سؤالك أولاً"); return;} window.open('https://wa.me/201126773698?text='+encodeURIComponent("لدي سؤال/استفسار: "+text),'_blank'); document.getElementById('question-text').value='';}
 </script>
 
 </body>
