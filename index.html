@@ -447,44 +447,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.appendChild(counter);
     });
 });
- /* ===== FORCE MOBILE FIX ===== */
-@media (max-width: 768px) {
-
-  /* كسر العرض الثابت */
-  .product {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  /* إجبار Grid */
-  .products {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-    padding: 12px !important;
-  }
-
-  /* الهيدر */
-  header {
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-  }
-
-  .header-icons {
-    justify-content: center !important;
-    flex-wrap: wrap !important;
-  }
-
-}
-
-/* موبايل صغير */
-@media (max-width: 420px) {
-  .products {
-    grid-template-columns: 1fr !important;
-  }
-}
- 
 </script>
 
 </body>
