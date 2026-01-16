@@ -222,6 +222,94 @@ function closeModal(id){document.getElementById(id).style.display='none';}
 
 /* ارسال سؤال */
 function sendQuestion(){const text=document.getElementById('question-text').value.trim(); if(!text){alert("اكتب سؤالك أولاً"); return;} window.open('https://wa.me/201126773698?text='+encodeURIComponent("لدي سؤال/استفسار: "+text),'_blank'); document.getElementById('question-text').value='';}
+  /* ===============================
+   Responsive Fixes (ADD ONLY)
+   =============================== */
+
+/* تابلت */
+@media (max-width: 992px) {
+  .products {
+    justify-content: center;
+  }
+
+  header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .header-icons {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* موبايل */
+@media (max-width: 600px) {
+
+  .top-bar {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  header h1 {
+    font-size: 18px;
+  }
+
+  .header-icons {
+    gap: 8px;
+  }
+
+  .icon-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .products {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .product {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .cart {
+    top: 120px;
+    width: 220px;
+  }
+
+  .cart-toggle {
+    top: 80px;
+    left: 10px;
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .export-float {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .whatsapp {
+    width: 46px;
+    height: 46px;
+    font-size: 22px;
+  }
+
+  .footer-icons {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
 </script>
 
 </body>
