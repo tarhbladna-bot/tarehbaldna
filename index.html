@@ -10,15 +10,15 @@
 body{
   margin:0;
   font-family:'Cairo',sans-serif;
-  background:#fdfdfd;
+  background:#f5f5f5;
   color:#333;
 }
 
 /* ===== شريط أعلى الصفحة ===== */
 .top-bar {
   width: 100%;
-  background: #FFD700;
-  color: #333;
+  background: #FF7F50;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,7 +39,7 @@ body{
 header{
   background:#fff;
   padding:15px 25px;
-  border-bottom:2px solid #FFD700;
+  border-bottom:2px solid #FF7F50;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -47,7 +47,7 @@ header{
   top:36px;
   z-index:1000;
 }
-header h1{color:#FFD700;margin:0}
+header h1{color:#FF7F50;margin:0}
 
 /* ===== أيقونات الهيدر ===== */
 .header-icons{
@@ -65,19 +65,19 @@ header h1{color:#FFD700;margin:0}
 .icon-circle{
   width:46px;
   height:46px;
-  background:#FFD700;
+  background: linear-gradient(135deg,#FF7F50,#FFA07A);
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:20px;
-  color:#333;
-  box-shadow:0 6px 15px rgba(255,215,0,.6);
+  color:#fff;
+  box-shadow:0 6px 15px rgba(255,127,80,.6);
   transition:.3s;
 }
 .icon-item:hover .icon-circle{
   background:#333;
-  color:#FFD700;
+  color:#FF7F50;
   transform:scale(1.15);
 }
 .icon-label{margin-top:6px}
@@ -96,10 +96,10 @@ header h1{color:#FFD700;margin:0}
   border-radius:18px;
   padding:15px;
   text-align:center;
-  box-shadow:0 6px 20px rgba(255,215,0,.4);
+  box-shadow:0 8px 25px rgba(255,127,80,.3);
   transition:.3s;
 }
-.product:hover{transform:translateY(-8px) scale(1.04)}
+.product:hover{transform:translateY(-8px) scale(1.05)}
 
 .product img.main-img{
   width:100%;
@@ -109,16 +109,20 @@ header h1{color:#FFD700;margin:0}
 }
 .product img.main-img:hover{transform:scale(1.08)}
 
-.product h2{color:#FFD700;margin:10px 0 5px}
+.product h2{color:#FF7F50;margin:10px 0 5px}
 .product p{margin:0 0 10px}
 .product button{
-  background:#FFD700;
+  background: linear-gradient(135deg,#FF7F50,#FFA07A);
   border:none;
   padding:8px 14px;
-  color:#333;
+  color:#fff;
   border-radius:12px;
   cursor:pointer;
   font-weight:bold;
+  transition:.3s;
+}
+.product button:hover{
+  transform:scale(1.05);
 }
 
 /* ===== معرض الصور المصغرة ===== */
@@ -138,7 +142,7 @@ header h1{color:#FFD700;margin:0}
   border:2px solid transparent;
 }
 .product-gallery img.selected{
-  border:2px solid #FFD700;
+  border:2px solid #FF7F50;
 }
 
 /* ===== السلة ===== */
@@ -146,12 +150,12 @@ header h1{color:#FFD700;margin:0}
   position:fixed;
   top:20px;
   left:20px;
-  background:#FFD700;
+  background:#FF7F50;
   padding:10px 18px;
   border-radius:50px;
   cursor:pointer;
   font-weight:bold;
-  color:#333;
+  color:#fff;
   z-index:999;
 }
 .cart{
@@ -160,27 +164,29 @@ header h1{color:#FFD700;margin:0}
   top:80px;
   width:280px;
   background:#fff;
-  border:2px solid #FFD700;
+  border:2px solid #FF7F50;
   border-radius:15px;
   padding:15px;
   transition:.4s;
   z-index:999;
 }
 .cart.active{left:20px}
-.cart h3{color:#FFD700;margin-top:0}
+.cart h3{color:#FF7F50;margin-top:0}
 .cart ul{padding:0;list-style:none}
 .cart li{background:#f1f1f1;margin-bottom:6px;padding:6px;border-radius:8px}
 .cart button{
   width:100%;
   margin-top:10px;
-  background:#FFD700;
+  background:#FF7F50;
   border:none;
   padding:10px;
-  color:#333;
+  color:#fff;
   border-radius:12px;
   font-weight:bold;
   margin-bottom:5px;
+  transition:.3s;
 }
+.cart button:hover{transform:scale(1.05);}
 
 /* ===== واتساب ===== */
 .whatsapp{
@@ -189,15 +195,15 @@ header h1{color:#FFD700;margin:0}
   bottom:20px;
   width:60px;
   height:60px;
-  background:#FFD700;
+  background: linear-gradient(135deg,#FF7F50,#FFA07A);
   border-radius:50%;
   display:flex;
   justify-content:center;
   align-items:center;
   font-size:28px;
   text-decoration:none;
-  color:#333;
-  box-shadow:0 6px 20px rgba(255,215,0,.6);
+  color:#fff;
+  box-shadow:0 6px 20px rgba(255,127,80,.6);
   transition:.3s;
   z-index:1000;
 }
@@ -208,13 +214,13 @@ header h1{color:#FFD700;margin:0}
   position:fixed;
   left:20px;
   bottom:20px;
-  background:#FFD700;
-  color:#333;
+  background: linear-gradient(135deg,#FF7F50,#FFA07A);
+  color:#fff;
   padding:12px 18px;
   border-radius:40px;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 6px 20px rgba(255,215,0,.6);
+  box-shadow:0 6px 20px rgba(255,127,80,.6);
   z-index:1000;
   transition:.3s;
 }
@@ -235,7 +241,7 @@ header h1{color:#FFD700;margin:0}
   max-width:90%;
   max-height:90%;
   border-radius:15px;
-  box-shadow:0 0 30px rgba(255,215,0,.5);
+  box-shadow:0 0 30px rgba(255,127,80,.5);
 }
 
 /* ===== فوتر ===== */
@@ -245,7 +251,7 @@ header h1{color:#FFD700;margin:0}
   gap:25px;
   margin-top:30px;
   padding:20px;
-  border-top:2px solid #FFD700;
+  border-top:2px solid #FF7F50;
   flex-wrap:wrap;
 }
 .footer-item{text-align:center;font-size:14px;}
@@ -431,10 +437,10 @@ document.addEventListener("DOMContentLoaded", function () {
       counter.style.color = "#333";
       counter.style.padding = "10px 16px";
       counter.style.borderRadius = "25px";
-      counter.style.border = "2px solid #FFD700";
+      counter.style.border = "2px solid #FF7F50";
       counter.style.fontFamily = "Cairo, sans-serif";
       counter.style.fontSize = "14px";
-      counter.style.boxShadow = "0 5px 15px rgba(255,215,0,.6)";
+      counter.style.boxShadow = "0 5px 15px rgba(255,127,80,.6)";
       counter.style.zIndex = "9999";
       document.body.appendChild(counter);
     });
