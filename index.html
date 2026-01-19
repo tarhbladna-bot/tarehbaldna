@@ -5,41 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>طرح بلدنا | Tarh Baldna</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
 body{
   margin:0;
   font-family:'Cairo',sans-serif;
-  background:#f5f5f5;
+  background:#fdf6e3; /* خلفية فاتحة جذابة */
   color:#333;
 }
 
 /* ===== شريط أعلى الصفحة ===== */
 .top-bar {
   width: 100%;
-  background: #FF7F50;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 20px;
-  font-family: 'Cairo', sans-serif;
-  font-weight: bold;
-  font-size: 14px;
-  position: sticky;
-  top: 0;
-  z-index: 1002;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  background:#444;
+  color:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 20px;
+  font-weight:bold;
+  font-size:14px;
+  position:sticky;
+  top:0;
+  z-index:1002;
 }
-.top-bar-left { cursor: default; }
-.top-bar-right span { cursor: pointer; margin: 0 6px; transition: 0.3s; }
-.top-bar-right span:hover { text-decoration: underline; }
+.top-bar-left {cursor:default;}
+.menu-toggle{
+  cursor:pointer;
+  font-size:20px;
+  padding:5px 10px;
+  background:#888;
+  border-radius:5px;
+}
+.dropdown{
+  position:absolute;
+  top:36px;
+  right:20px;
+  background:#fff;
+  color:#333;
+  border:2px solid #888;
+  border-radius:10px;
+  padding:10px;
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  z-index:1003;
+}
+.dropdown a{
+  text-decoration:none;
+  color:#333;
+  padding:6px 10px;
+  border-radius:6px;
+}
+.dropdown a:hover{background:#f0e68c; color:#000;}
 
 /* ===== الهيدر ===== */
 header{
-  background:#fff;
+  background:#666;
   padding:15px 25px;
-  border-bottom:2px solid #FF7F50;
+  border-bottom:3px solid #f0e68c;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -47,7 +71,7 @@ header{
   top:36px;
   z-index:1000;
 }
-header h1{color:#FF7F50;margin:0}
+header h1{color:#f0e68c;margin:0}
 
 /* ===== أيقونات الهيدر ===== */
 .header-icons{
@@ -65,19 +89,19 @@ header h1{color:#FF7F50;margin:0}
 .icon-circle{
   width:46px;
   height:46px;
-  background: linear-gradient(135deg,#FF7F50,#FFA07A);
+  background:#f0e68c;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:20px;
-  color:#fff;
-  box-shadow:0 6px 15px rgba(255,127,80,.6);
+  color:#444;
+  box-shadow:0 4px 10px rgba(0,0,0,.3);
   transition:.3s;
 }
 .icon-item:hover .icon-circle{
-  background:#333;
-  color:#FF7F50;
+  background:#444;
+  color:#f0e68c;
   transform:scale(1.15);
 }
 .icon-label{margin-top:6px}
@@ -91,41 +115,33 @@ header h1{color:#FF7F50;margin:0}
   padding:30px;
 }
 .product{
-  background:#fff;
+  background:#eee;
   width:240px;
   border-radius:18px;
   padding:15px;
   text-align:center;
-  box-shadow:0 8px 25px rgba(255,127,80,.3);
+  box-shadow:0 6px 20px rgba(0,0,0,.1);
   transition:.3s;
 }
-.product:hover{transform:translateY(-8px) scale(1.05)}
-
+.product:hover{transform:translateY(-6px) scale(1.03)}
 .product img.main-img{
   width:100%;
   border-radius:12px;
   cursor:pointer;
   transition:.4s;
 }
-.product img.main-img:hover{transform:scale(1.08)}
-
-.product h2{color:#FF7F50;margin:10px 0 5px}
+.product img.main-img:hover{transform:scale(1.05)}
+.product h2{color:#444;margin:10px 0 5px}
 .product p{margin:0 0 10px}
 .product button{
-  background: linear-gradient(135deg,#FF7F50,#FFA07A);
+  background:#f0e68c;
   border:none;
   padding:8px 14px;
-  color:#fff;
+  color:#444;
   border-radius:12px;
   cursor:pointer;
   font-weight:bold;
-  transition:.3s;
 }
-.product button:hover{
-  transform:scale(1.05);
-}
-
-/* ===== معرض الصور المصغرة ===== */
 .product-gallery{
   display:flex;
   justify-content:center;
@@ -141,21 +157,18 @@ header h1{color:#FF7F50;margin:0}
   transition:.3s;
   border:2px solid transparent;
 }
-.product-gallery img.selected{
-  border:2px solid #FF7F50;
-}
+.product-gallery img.selected{border:2px solid #f0e68c;}
 
 /* ===== السلة ===== */
 .cart-toggle{
   position:fixed;
   top:20px;
   left:20px;
-  background:#FF7F50;
+  background:#f0e68c;
   padding:10px 18px;
   border-radius:50px;
   cursor:pointer;
   font-weight:bold;
-  color:#fff;
   z-index:999;
 }
 .cart{
@@ -164,29 +177,27 @@ header h1{color:#FF7F50;margin:0}
   top:80px;
   width:280px;
   background:#fff;
-  border:2px solid #FF7F50;
+  border:2px solid #f0e68c;
   border-radius:15px;
   padding:15px;
   transition:.4s;
   z-index:999;
 }
 .cart.active{left:20px}
-.cart h3{color:#FF7F50;margin-top:0}
+.cart h3{color:#444;margin-top:0}
 .cart ul{padding:0;list-style:none}
-.cart li{background:#f1f1f1;margin-bottom:6px;padding:6px;border-radius:8px}
+.cart li{background:#eee;margin-bottom:6px;padding:6px;border-radius:8px}
 .cart button{
   width:100%;
   margin-top:10px;
-  background:#FF7F50;
+  background:#f0e68c;
   border:none;
   padding:10px;
-  color:#fff;
+  color:#444;
   border-radius:12px;
   font-weight:bold;
   margin-bottom:5px;
-  transition:.3s;
 }
-.cart button:hover{transform:scale(1.05);}
 
 /* ===== واتساب ===== */
 .whatsapp{
@@ -195,43 +206,26 @@ header h1{color:#FF7F50;margin:0}
   bottom:20px;
   width:60px;
   height:60px;
-  background: linear-gradient(135deg,#FF7F50,#FFA07A);
+  background:#f0e68c;
   border-radius:50%;
   display:flex;
   justify-content:center;
   align-items:center;
   font-size:28px;
   text-decoration:none;
-  color:#fff;
-  box-shadow:0 6px 20px rgba(255,127,80,.6);
+  color:#444;
+  box-shadow:0 4px 15px rgba(0,0,0,.2);
   transition:.3s;
   z-index:1000;
 }
 .whatsapp:hover{transform:scale(1.1)}
-
-/* ===== Export ===== */
-.export-float{
-  position:fixed;
-  left:20px;
-  bottom:20px;
-  background: linear-gradient(135deg,#FF7F50,#FFA07A);
-  color:#fff;
-  padding:12px 18px;
-  border-radius:40px;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 6px 20px rgba(255,127,80,.6);
-  z-index:1000;
-  transition:.3s;
-}
-.export-float:hover{transform:scale(1.08)}
 
 /* ===== Lightbox ===== */
 .lightbox{
   position:fixed;
   top:0;left:0;
   width:100%;height:100%;
-  background:rgba(0,0,0,.9);
+  background:rgba(0,0,0,.8);
   display:none;
   justify-content:center;
   align-items:center;
@@ -241,7 +235,7 @@ header h1{color:#FF7F50;margin:0}
   max-width:90%;
   max-height:90%;
   border-radius:15px;
-  box-shadow:0 0 30px rgba(255,127,80,.5);
+  box-shadow:0 0 20px rgba(0,0,0,.5);
 }
 
 /* ===== فوتر ===== */
@@ -251,23 +245,25 @@ header h1{color:#FF7F50;margin:0}
   gap:25px;
   margin-top:30px;
   padding:20px;
-  border-top:2px solid #FF7F50;
+  border-top:3px solid #f0e68c;
   flex-wrap:wrap;
 }
 .footer-item{text-align:center;font-size:14px;}
-.footer-item p{margin:4px 0;color:#333;}
+.footer-item p{margin:4px 0;}
 </style>
 </head>
-
 <body>
 
 <!-- ===== شريط أعلى الصفحة ===== -->
 <div class="top-bar">
   <div class="top-bar-left">عندك أي أسئلة؟ كل حاجة هنا</div>
   <div class="top-bar-right">
-    <span>الفئات</span> | 
-    <span>عن الشركة</span> | 
-    <span>المساعدة</span>
+    <span class="menu-toggle" onclick="toggleDropdown()">☰</span>
+    <div class="dropdown" id="dropdown-menu">
+      <a href="#products">الفئات</a>
+      <a href="javascript:void(0)" onclick="openAbout()">عن الشركة</a>
+      <a href="#footer">المساعدة</a>
+    </div>
   </div>
 </div>
 
@@ -303,7 +299,7 @@ header h1{color:#FF7F50;margin:0}
 
 <div class="products" id="products">
 
-<!-- أمثلة المنتجات -->
+<!-- المنتجات كاملة كما هي -->
 <div class="product">
 <img class="main-img" src="images/peanut-shell-1.jpg" onclick="openLightbox(this)">
 <h2>فول سوداني بقشره</h2>
@@ -355,14 +351,13 @@ header h1{color:#FF7F50;margin:0}
 </div>
 
 <a class="whatsapp" href="https://wa.me/201126773698" target="_blank">💬</a>
-<div class="export-float" onclick="exportCart()">📤 Export</div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
 <img id="lightbox-img">
 </div>
 
 <!-- ===== الفوتر ===== -->
-<div class="footer-icons">
+<div class="footer-icons" id="footer">
 <div class="footer-item">
 <p>🛒 السلة</p>
 <p>عدد المنتجات: <span id="footer-count">0</span></p>
@@ -387,11 +382,8 @@ header h1{color:#FF7F50;margin:0}
 let cart=[];
 function add(item){cart.push(item); renderCart();}
 function renderCart(){
-let ul=document.getElementById('items');
-ul.innerHTML='';
-cart.forEach(i=>{
-let li=document.createElement('li'); li.textContent=i; ul.appendChild(li);
-});
+let ul=document.getElementById('items'); ul.innerHTML='';
+cart.forEach(i=>{let li=document.createElement('li'); li.textContent=i; ul.appendChild(li);});
 document.getElementById('footer-count').textContent=cart.length;
 }
 function clearCart(){cart=[]; renderCart();}
@@ -411,18 +403,15 @@ function changeMainImage(el){
   el.classList.add('selected');
 }
 function exportCart(){if(cart.length===0){alert('السلة فارغة');return;} alert(cart.join('\n'));}
+
+function toggleDropdown(){
+  const menu = document.getElementById('dropdown-menu');
+  menu.style.display = (menu.style.display==='flex')?'none':'flex';
+}
+function openAbout(){alert("نبذة عن الشركة: طرح بلدنا متخصص في بيع أنواع الفول السوداني عالي الجودة.");}
 </script>
 
-<!-- ===== Google Analytics ===== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDZS95FPK9"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-RDZS95FPK9', { anonymize_ip: true });
-</script>
-
-<!-- ===== عداد زوار حقيقي ===== -->
+<!-- ===== عداد زوار ===== -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   fetch("https://api.countapi.xyz/hit/tarh-baldna/visitors")
@@ -434,13 +423,13 @@ document.addEventListener("DOMContentLoaded", function () {
       counter.style.bottom = "85px";
       counter.style.right = "15px";
       counter.style.background = "#fff";
-      counter.style.color = "#333";
+      counter.style.color = "#444";
       counter.style.padding = "10px 16px";
       counter.style.borderRadius = "25px";
-      counter.style.border = "2px solid #FF7F50";
+      counter.style.border = "2px solid #f0e68c";
       counter.style.fontFamily = "Cairo, sans-serif";
       counter.style.fontSize = "14px";
-      counter.style.boxShadow = "0 5px 15px rgba(255,127,80,.6)";
+      counter.style.boxShadow = "0 5px 15px rgba(0,0,0,.3)";
       counter.style.zIndex = "9999";
       document.body.appendChild(counter);
     });
