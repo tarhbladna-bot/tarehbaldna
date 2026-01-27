@@ -280,7 +280,62 @@ footer{
 }
 </style>
 </head>
+:root{
+  --black:#0d0d0d;        /* خلفية أساسية سمراء */
+  --dark:#121212;         /* خلفية أقسام */
+  --blue:#003366;         /* كحلي للأيقونات والعناصر */
+  --light:#f0f0f0;        /* كتابة فاتحة */
+}
 
+/* تعديل البانر */
+.top-banner{
+  background: linear-gradient(90deg, var(--blue), #001a33, var(--black));
+  color: var(--light);
+}
+
+/* اللوجو */
+.logo{
+  color: var(--blue);
+}
+
+/* الروابط */
+nav a{
+  color: var(--light);
+}
+nav a:hover{
+  color: var(--blue);
+}
+
+/* العناوين */
+.section-title, .product h3, .trust-card h3{
+  color: var(--blue);
+}
+
+/* الأزرار */
+.add-cart, .hero .btn, .cart button, .contact a{
+  background: var(--blue);
+  color: var(--light);
+}
+.add-cart:hover, .hero .btn:hover, .cart button:hover, .contact a:hover{
+  background:#001a33;
+}
+
+/* النصوص */
+body, .product .info p, .trust-card p, .contact p, footer{
+  color: var(--light);
+}
+
+/* العلامة المائية */
+.product::after {
+  content: "طرح بلدنا";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  color: rgba(0,51,102,0.4); /* كحلي شفاف */
+  pointer-events: none;
+}
 <body>
 
 <div class="top-banner"><span>🌙 جودة نثق بها منذ أكثر من 15 عامًا</span></div>
