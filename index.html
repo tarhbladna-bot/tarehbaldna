@@ -13,7 +13,6 @@
   --dark:#121212;         /* خلفية أقسام */
   --blue:#003366;         /* كحلي للأيقونات والعناصر */
   --light:#f0f0f0;        /* كتابة فاتحة */
-  --gold:#d4af37;         /* ذهبي */
 }
 
 *{box-sizing:border-box}
@@ -112,47 +111,163 @@ nav a:hover{color:var(--blue)}
 }
 .hero .btn:hover{background:#001a33}
 
-/* قسم السلايدر */
-.slider-section {
-  background: var(--black);
-  padding: 50px 20px;
-  text-align: center;
+/* أقسام */
+section{
+  padding:70px 20px;
+  max-width:1200px;
+  margin:auto;
 }
 
-.slider {
-  max-width: 90%;
-  margin: auto;
-  overflow: hidden;
-  position: relative;
-  border: 2px solid var(--blue);
-  border-radius: 12px;
+.section-title{
+  text-align:center;
+  font-size:32px;
+  color:var(--blue);
+  margin-bottom:40px;
+  font-weight:900;
 }
 
-.slides {
-  display: flex;
-  width: 400%;
-  animation: slide 12s infinite;
+/* منتجات */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
 }
 
-.slides img {
-  width: 100%;
-  object-fit: cover;
+.product{
+  background:var(--dark);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,.5);
+  transition:.3s;
+  position:relative;
+}
+.product:hover{transform:translateY(-8px)}
+
+.product img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
 }
 
-@keyframes slide {
-  0%   {transform: translateX(0);}
-  25%  {transform: translateX(-100%);}
-  50%  {transform: translateX(-200%);}
-  75%  {transform: translateX(-300%);}
-  100% {transform: translateX(0);}
+.product .info{
+  padding:20px;
+  text-align:center;
 }
 
-.slider-caption {
-  margin-top: 20px;
-  font-size: 20px;
-  color: var(--gold);
+.product h3{color:var(--blue);margin-bottom:10px}
+
+.add-cart{
+  background:var(--blue);
+  color:var(--light);
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:700;
+  margin-top:10px;
+}
+.add-cart:hover{background:#001a33}
+
+/* صور إضافية */
+.product-gallery{
+  display:flex;
+  gap:10px;
+  padding:10px;
+  justify-content:center;
+}
+.product-gallery img{
+  width:30%;
+  height:100px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid #333;
+  cursor:pointer;
+}
+
+/* العلامة المائية */
+.product::after {
+  content: "طرح بلدنا";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 18px;
   font-weight: 900;
+  color: rgba(0,51,102,0.4); /* كحلي شفاف */
+  pointer-events: none;
 }
+
+/* السلة */
+.cart{
+  background:var(--dark);
+  padding:20px;
+  border-radius:20px;
+  margin-top:40px;
+}
+.cart h3{color:var(--blue)}
+.cart ul{list-style:none;padding:0}
+.cart li{margin:8px 0}
+.cart button{
+  background:var(--blue);
+  color:var(--light);
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  font-weight:900;
+  margin-top:15px;
+}
+.cart button:hover{background:#001a33}
+
+/* لماذا نحن */
+.trust{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+}
+
+.trust-card{
+  background:var(--dark);
+  padding:30px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  transition:.3s;
+}
+
+.trust-card:hover{
+  transform:translateY(-6px);
+}
+
+.trust-card h3{
+  color:var(--blue);
+  margin-bottom:10px;
+  font-size:22px;
+}
+
+.trust-card p{
+  font-size:15px;
+  color:var(--light);
+}
+
+/* تواصل */
+.contact{
+  background:var(--dark);
+  border-radius:20px;
+  padding:40px;
+  text-align:center;
+}
+
+.contact a{
+  display:inline-block;
+  margin-top:15px;
+  background:var(--blue);
+  padding:12px 25px;
+  border-radius:30px;
+  color:var(--light);
+  text-decoration:none;
+  font-weight:900;
+}
+.contact a:hover{background:#001a33}
 
 /* فوتر */
 footer{
@@ -161,49 +276,8 @@ footer{
   text-align:center;
   color:#888;
 }
-</style>
-</head>
-<body>
 
-<div class="top-banner"><span>مرحبا بكم في طرح بلدنا</span></div>
-
-<header>
-  <div class="header-inner">
-    <div class="logo">طرح بلدنا</div>
-    <nav>
-      <a href="#products">منتجات</a>
-      <a href="#trust">لماذا نحن</a>
-      <a href="#contact">تواصل</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div>
-    <h1>أفضل <span>المحاصيل الزراعية</span> من بلدنا</h1>
-    <p>نقدم لكم أجود أنواع الفول السوداني والمحاصيل الزراعية بأعلى جودة ومعايير.</p>
-    <a href="#products" class="btn">تسوق الآن</a>
-  </div>
-</section>
-<!-- قسم السلايدر -->
-<section class="slider-section">
-  <h2 class="section-title">بانرات منتجات طرح بلدنا</h2>
-  <div class="slider">
-    <div class="slides">
-      <img src="https://copilot.microsoft.com/th/id/BCO.881d3fff-2602-4dbb-8984-1de6cd9da290.png" alt="بانر 1">
-      <img src="https://copilot.microsoft.com/th/id/BCO.ef99397f-12a7-4262-b3e5-d2a075b541ba.png" alt="بانر 2">
-      <img src="https://copilot.microsoft.com/th/id/BCO.efb2a26e-4ef6-4270-ae66-e7ca01770006.png" alt="بانر 3">
-      <img src="https://copilot.microsoft.com/th/id/BCO.66d5a037-acc1-41cb-87d1-42951a0c1643.png" alt="بانر 4">
-    </div>
-  </div>
-  <div class="slider-caption">
-    اتصل بنا: 01020508423 - 01126773698
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 طرح بلدنا - جميع الحقوق محفوظة</p>
-</footer>
-
-</body>
-</html>
+/* موبايل */
+@media(max-width:768px){
+  .hero h1{font-size:30px}
+  nav{disp
