@@ -9,10 +9,10 @@
 
 <style>
 :root{
-  --black:#0d0d0d;
-  --dark:#161616;
-  --red:#c40000;
-  --light:#e5e5e5;
+  --black:#0d0d0d;        /* خلفية أساسية سمراء */
+  --dark:#121212;         /* خلفية أقسام */
+  --blue:#003366;         /* كحلي للأيقونات والعناصر */
+  --light:#f0f0f0;        /* كتابة فاتحة */
 }
 
 *{box-sizing:border-box}
@@ -27,11 +27,11 @@ body{
 
 /* بانر */
 .top-banner{
-  background: linear-gradient(90deg, #c40000, #600000, #000);
+  background: linear-gradient(90deg, var(--blue), #001a33, var(--black));
   text-align: center;
   padding: 15px;
   font-weight: 900;
-  color: #fff;
+  color: var(--light);
   font-size: 18px;
   letter-spacing: 1px;
   position: relative;
@@ -69,16 +69,16 @@ header{
 .logo{
   font-size:22px;
   font-weight:900;
-  color:var(--red);
+  color:var(--blue);
 }
 
 nav a{
-  color:#fff;
+  color:var(--light);
   text-decoration:none;
   margin-right:15px;
   font-weight:700;
 }
-nav a:hover{color:var(--red)}
+nav a:hover{color:var(--blue)}
 
 /* هيرو */
 .hero{
@@ -97,18 +97,19 @@ nav a:hover{color:var(--red)}
   font-size:42px;
   font-weight:900;
 }
-.hero span{color:var(--red)}
+.hero span{color:var(--blue)}
 .hero p{max-width:600px;margin:20px auto}
 
 .hero .btn{
-  background:var(--red);
+  background:var(--blue);
   padding:14px 30px;
-  color:#fff;
+  color:var(--light);
   text-decoration:none;
   border-radius:40px;
   font-weight:900;
   display:inline-block;
 }
+.hero .btn:hover{background:#001a33}
 
 /* أقسام */
 section{
@@ -120,7 +121,7 @@ section{
 .section-title{
   text-align:center;
   font-size:32px;
-  color:var(--red);
+  color:var(--blue);
   margin-bottom:40px;
   font-weight:900;
 }
@@ -138,7 +139,7 @@ section{
   overflow:hidden;
   box-shadow:0 15px 40px rgba(0,0,0,.5);
   transition:.3s;
-  position:relative; /* للعلامة المائية */
+  position:relative;
 }
 .product:hover{transform:translateY(-8px)}
 
@@ -153,11 +154,11 @@ section{
   text-align:center;
 }
 
-.product h3{color:var(--red);margin-bottom:10px}
+.product h3{color:var(--blue);margin-bottom:10px}
 
 .add-cart{
-  background:var(--red);
-  color:#fff;
+  background:var(--blue);
+  color:var(--light);
   padding:10px 20px;
   border:none;
   border-radius:20px;
@@ -165,6 +166,7 @@ section{
   font-weight:700;
   margin-top:10px;
 }
+.add-cart:hover{background:#001a33}
 
 /* صور إضافية */
 .product-gallery{
@@ -190,7 +192,7 @@ section{
   right: 10px;
   font-size: 18px;
   font-weight: 900;
-  color: rgba(255,255,255,0.4);
+  color: rgba(0,51,102,0.4); /* كحلي شفاف */
   pointer-events: none;
 }
 
@@ -201,12 +203,12 @@ section{
   border-radius:20px;
   margin-top:40px;
 }
-.cart h3{color:var(--red)}
+.cart h3{color:var(--blue)}
 .cart ul{list-style:none;padding:0}
 .cart li{margin:8px 0}
 .cart button{
-  background:var(--red);
-  color:#fff;
+  background:var(--blue);
+  color:var(--light);
   padding:12px 25px;
   border:none;
   border-radius:30px;
@@ -214,6 +216,7 @@ section{
   font-weight:900;
   margin-top:15px;
 }
+.cart button:hover{background:#001a33}
 
 /* لماذا نحن */
 .trust{
@@ -236,14 +239,14 @@ section{
 }
 
 .trust-card h3{
-  color:var(--red);
+  color:var(--blue);
   margin-bottom:10px;
   font-size:22px;
 }
 
 .trust-card p{
   font-size:15px;
-  color:#ccc;
+  color:var(--light);
 }
 
 /* تواصل */
@@ -257,13 +260,14 @@ section{
 .contact a{
   display:inline-block;
   margin-top:15px;
-  background:var(--red);
+  background:var(--blue);
   padding:12px 25px;
   border-radius:30px;
-  color:#fff;
+  color:var(--light);
   text-decoration:none;
   font-weight:900;
 }
+.contact a:hover{background:#001a33}
 
 /* فوتر */
 footer{
@@ -280,62 +284,7 @@ footer{
 }
 </style>
 </head>
-:root{
-  --black:#0d0d0d;        /* خلفية أساسية سمراء */
-  --dark:#121212;         /* خلفية أقسام */
-  --blue:#003366;         /* كحلي للأيقونات والعناصر */
-  --light:#f0f0f0;        /* كتابة فاتحة */
-}
 
-/* تعديل البانر */
-.top-banner{
-  background: linear-gradient(90deg, var(--blue), #001a33, var(--black));
-  color: var(--light);
-}
-
-/* اللوجو */
-.logo{
-  color: var(--blue);
-}
-
-/* الروابط */
-nav a{
-  color: var(--light);
-}
-nav a:hover{
-  color: var(--blue);
-}
-
-/* العناوين */
-.section-title, .product h3, .trust-card h3{
-  color: var(--blue);
-}
-
-/* الأزرار */
-.add-cart, .hero .btn, .cart button, .contact a{
-  background: var(--blue);
-  color: var(--light);
-}
-.add-cart:hover, .hero .btn:hover, .cart button:hover, .contact a:hover{
-  background:#001a33;
-}
-
-/* النصوص */
-body, .product .info p, .trust-card p, .contact p, footer{
-  color: var(--light);
-}
-
-/* العلامة المائية */
-.product::after {
-  content: "طرح بلدنا";
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  font-size: 18px;
-  font-weight: 900;
-  color: rgba(0,51,102,0.4); /* كحلي شفاف */
-  pointer-events: none;
-}
 <body>
 
 <div class="top-banner"><span>🌙 جودة نثق بها منذ أكثر من 15 عامًا</span></div>
@@ -376,11 +325,13 @@ body, .product .info p, .trust-card p, .contact p, footer{
         <img src="images/product1-3.jpg" alt="">
       </div>
     </div>
-    <!-- منتج 2 -->
+
+    <!-- منتج 2 (المقشر) -->
     <div class="product">
       <img class="main-img" src="images/product2.jpg" alt="فول سوداني مقشر">
       <div class="info">
         <h3>فول سوداني مقشر</h3>
+        <p>من 70 إلى 105</p>
         <button class="add-cart">أضف للسلة</button>
       </div>
       <div class="product-gallery">
@@ -389,6 +340,7 @@ body, .product .info p, .trust-card p, .contact p, footer{
         <img src="images/product2-3.jpg" alt="">
       </div>
     </div>
+
     <!-- منتج 3 -->
     <div class="product">
       <img class="main-img" src="images/product3.jpg" alt="فول سوداني حلواني">
@@ -403,6 +355,7 @@ body, .product .info p, .trust-card p, .contact p, footer{
         <img src="images/product3-3.jpg" alt="">
       </div>
     </div>
+
     <!-- منتج 4 -->
     <div class="product">
       <img class="main-img" src="images/product4.jpg" alt="فول سوداني مجروش">
