@@ -6,13 +6,15 @@
 <title>طرح بلدنا | للمحاصيل الزراعية</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
   --black:#0d0d0d;        /* خلفية أساسية سمراء */
-  --dark:#121212;         /* خلفية أقسام */
-  --blue:#003366;         /* كحلي للأيقونات والعناصر */
+  --dark:#121212;          /* خلفية أقسام */
+  --blue:#003366;          /* كحلي للأيقونات والعناصر */
   --light:#f0f0f0;        /* كتابة فاتحة */
+  --green:#25d366;        /* لون الواتساب */
 }
 
 *{box-sizing:border-box}
@@ -249,6 +251,28 @@ section{
   color:var(--light);
 }
 
+/* قسم آراء العملاء (جديد) */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.review-card {
+  background: var(--dark);
+  padding: 25px;
+  border-radius: 18px;
+  border-bottom: 3px solid var(--blue);
+  position: relative;
+}
+.review-card i { color: var(--blue); font-size: 20px; margin-bottom: 10px; }
+.review-card p { font-style: italic; font-size: 15px; }
+.review-card .client-name {
+  display: block;
+  margin-top: 15px;
+  font-weight: 900;
+  color: var(--blue);
+}
+
 /* تواصل */
 .contact{
   background:var(--dark);
@@ -277,6 +301,33 @@ footer{
   color:#888;
 }
 
+/* الأزرار العائمة (جديد) */
+.float-buttons {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 9999;
+}
+.float-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  transition: .3s;
+}
+.float-btn.whatsapp { background: var(--green); }
+.float-btn.phone { background: var(--blue); }
+.float-btn:hover { transform: scale(1.1); }
+
 /* موبايل */
 @media(max-width:768px){
   .hero h1{font-size:30px}
@@ -295,6 +346,7 @@ footer{
     <nav>
       <a href="#products">المنتجات</a>
       <a href="#why">لماذا نحن</a>
+      <a href="#reviews">آراء العملاء</a>
       <a href="#contact">اتصل بنا</a>
     </nav>
   </div>
@@ -311,68 +363,63 @@ footer{
 <section id="products">
   <h2 class="section-title">منتجاتنا</h2>
   <div class="products">
-    <!-- منتج 1 -->
     <div class="product">
-      <img class="main-img" src="images/product1.jpg" alt="فول سوداني بقشره">
+      <img class="main-img" src="images/product1.jpg" alt="فول سوداني بقشره" loading="lazy">
       <div class="info">
         <h3>فول سوداني بقشره</h3>
         <p>من 65 إلى 90</p>
         <button class="add-cart">أضف للسلة</button>
       </div>
       <div class="product-gallery">
-        <img src="images/product1-1.jpg" alt="">
-        <img src="images/product1-2.jpg" alt="">
-        <img src="images/product1-3.jpg" alt="">
+        <img src="images/product1-1.jpg" alt="" loading="lazy">
+        <img src="images/product1-2.jpg" alt="" loading="lazy">
+        <img src="images/product1-3.jpg" alt="" loading="lazy">
       </div>
     </div>
 
-    <!-- منتج 2 (المقشر) -->
     <div class="product">
-      <img class="main-img" src="images/product2.jpg" alt="فول سوداني مقشر">
+      <img class="main-img" src="images/product2.jpg" alt="فول سوداني مقشر" loading="lazy">
       <div class="info">
         <h3>فول سوداني مقشر</h3>
         <p>من 70 إلى 105</p>
         <button class="add-cart">أضف للسلة</button>
       </div>
       <div class="product-gallery">
-        <img src="images/product2-1.jpg" alt="">
-        <img src="images/product2-2.jpg" alt="">
-        <img src="images/product2-3.jpg" alt="">
+        <img src="images/product2-1.jpg" alt="" loading="lazy">
+        <img src="images/product2-2.jpg" alt="" loading="lazy">
+        <img src="images/product2-3.jpg" alt="" loading="lazy">
       </div>
     </div>
 
-    <!-- منتج 3 -->
     <div class="product">
-      <img class="main-img" src="images/product3.jpg" alt="فول سوداني حلواني">
+      <img class="main-img" src="images/product3.jpg" alt="فول سوداني حلواني" loading="lazy">
       <div class="info">
         <h3>فول سوداني حلواني</h3>
         <p>من 80 إلى 95</p>
         <button class="add-cart">أضف للسلة</button>
       </div>
       <div class="product-gallery">
-        <img src="images/product3-1.jpg" alt="">
-        <img src="images/product3-2.jpg" alt="">
-        <img src="images/product3-3.jpg" alt="">
+        <img src="images/product3-1.jpg" alt="" loading="lazy">
+        <img src="images/product3-2.jpg" alt="" loading="lazy">
+        <img src="images/product3-3.jpg" alt="" loading="lazy">
       </div>
     </div>
 
-    <!-- منتج 4 -->
     <div class="product">
-      <img class="main-img" src="images/product4.jpg" alt="فول سوداني مجروش">
+      <img class="main-img" src="images/product4.jpg" alt="فول سوداني مجروش" loading="lazy">
       <div class="info">
         <h3>فول سوداني مجروش</h3>
         <p>من 85 إلى 90</p>
         <button class="add-cart">أضف للسلة</button>
       </div>
       <div class="product-gallery">
-        <img src="images/product4-1.jpg" alt="">
-        <img src="images/product4-2.jpg" alt="">
-        <img src="images/product4-3.jpg" alt="">
+        <img src="images/product4-1.jpg" alt="" loading="lazy">
+        <img src="images/product4-2.jpg" alt="" loading="lazy">
+        <img src="images/product4-3.jpg" alt="" loading="lazy">
       </div>
     </div>
   </div>
 
-  <!-- السلة -->
   <div class="cart">
     <h3>🛒 السلة</h3>
     <ul id="cart-items"></ul>
@@ -386,25 +433,42 @@ footer{
     <div class="trust-card">
       <h3>خبرة طويلة</h3>
       <p>أكثر من 15 عامًا من الخبرة في تجارة وتوريد الفول السوداني، نفهم احتياجات السوق ونعرف كيف نلبيها بثبات.</p>
-      
     </div>
 
     <div class="trust-card">
       <h3>جودة مضمونة</h3>
       <p>نحرص على اختيار المحصول بعناية، مع فرز وتخزين جيد يضمن جودة ثابتة ترضي التجار والمستهلكين.</p>
-      
     </div>
 
     <div class="trust-card">
       <h3>أسعار تنافسية</h3>
       <p> نقدم أفضل سعر مقابل الجودة، مع مرونة في التعامل والكميات بما يناسب السوق المحلي والتصدير.</p>
-      
     </div>
 
     <div class="trust-card">
       <h3>التزام في التوريد</h3>
       <p>نلتزم بمواعيد التسليم والكميات المتفق عليها، لأن الثقة أساس التعامل المستمر.</p>
-      
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <h2 class="section-title">قالوا عن طرح بلدنا</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <i class="fas fa-quote-right"></i>
+      <p>"تعاملت مع طرح بلدنا في توريد كميات كبيرة لمصنعنا، الجودة والفرز كانوا ممتازين والالتزام بالمواعيد دقيق جداً."</p>
+      <span class="client-name">الحاج محمود (شركة الهدى للحلويات)</span>
+    </div>
+    <div class="review-card">
+      <i class="fas fa-quote-right"></i>
+      <p>"أفضل سعر جملة في أبورواش والجودة فعلاً ثابتة، الفول السوداني بقشره جودته تشرف أي تاجر."</p>
+      <span class="client-name">أستاذ أحمد (تاجر جملة)</span>
+    </div>
+    <div class="review-card">
+      <i class="fas fa-quote-right"></i>
+      <p>"خبرة 15 سنة واضحة في نظافة الحبة وطريقة التغليف، شكراً لفريق طرح بلدنا على المصداقية."</p>
+      <span class="client-name">م. إبراهيم (مصنع أغذية)</span>
     </div>
   </div>
 </section>
@@ -422,6 +486,11 @@ footer{
 <footer>
   © 2026 طرح بلدنا — جميع الحقوق محفوظة
 </footer>
+
+<div class="float-buttons">
+  <a href="tel:01126773698" class="float-btn phone" title="اتصل بنا"><i class="fas fa-phone"></i></a>
+  <a href="https://wa.me/201126773698" class="float-btn whatsapp" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+</div>
 
 <script>
 // تبديل الصور عند الضغط
