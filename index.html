@@ -176,6 +176,76 @@
     .miniLink:hover{color:#ffffff}
     .sep{color:rgba(255,255,255,.25)}
 
+    /* ✅ HERO SLIDER (NEW) */
+    .heroSlider{
+      position:relative;
+      border:1px solid rgba(10,61,145,.30);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 0 28px rgba(10,61,145,.18), 0 18px 60px rgba(0,0,0,.55);
+      min-height:380px;
+      background:rgba(255,255,255,.02);
+    }
+    .heroSlider__img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:0;
+      transform:scale(1.03);
+      transition:opacity .7s ease, transform 1.2s ease;
+      filter:saturate(1.05) contrast(1.05);
+    }
+    .heroSlider__img.active{opacity:1; transform:scale(1)}
+    .heroSlider__overlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(7,7,10,.86), rgba(7,7,10,.55), rgba(7,7,10,.25)),
+        radial-gradient(900px 500px at 80% 10%, rgba(10,61,145,.22), transparent 60%);
+    }
+    .heroSlider__content{
+      position:relative;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      height:100%;
+      gap:10px;
+    }
+    .heroSlider__title{font-size:20px;font-weight:1000}
+    .heroSlider__desc{color:rgba(244,244,245,.85);font-size:13px;line-height:1.7;max-width:52ch}
+    .heroSlider__dots{display:flex;gap:8px;margin-top:8px}
+    .heroSlider__dot{
+      width:10px;height:10px;border-radius:999px;
+      border:1px solid rgba(10,61,145,.35);
+      background:rgba(255,255,255,.06);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .heroSlider__dot.active{
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      border-color:rgba(10,61,145,.55);
+      box-shadow:0 0 14px rgba(10,61,145,.30);
+    }
+    .heroSlider__arrows{
+      position:absolute;
+      inset:auto 12px 12px 12px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      pointer-events:none;
+    }
+    .heroSlider__btn{
+      pointer-events:auto;
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid rgba(10,61,145,.30);
+      background:rgba(15,15,24,.75);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:1000;
+      box-shadow:0 0 18px rgba(10,61,145,.14);
+    }
+    .heroSlider__btn:hover{background:rgba(10,61,145,.18)}
+
     /* Sections */
     .section{padding:44px 0}
     .section--alt{
@@ -408,6 +478,7 @@
       .contactGrid{grid-template-columns:1fr}
       nav{display:none}
       header{top:0}
+      .heroSlider{min-height:320px}
     }
     @media (max-width: 560px){
       .products{grid-template-columns:1fr}
@@ -516,52 +587,26 @@
         </div>
       </div>
 
-      <aside class="hero__card">
-        <div class="hero__cardTop">
-          <div class="hero__cardTitle" data-i18n="hero.cardTitle">مميزات الشركة</div>
-          <div class="hero__cardSub" data-i18n="hero.cardSub">توريد • تعبئة • جملة • تصدير</div>
+      <!-- ✅ HERO SLIDER (replaces hero__card) -->
+      <aside class="heroSlider" aria-label="Hero slider">
+        <img class="heroSlider__img active" src="assets/hero/1.jpg" alt="Banner 1" loading="lazy">
+        <img class="heroSlider__img" src="assets/hero/2.jpg" alt="Banner 2" loading="lazy">
+        <img class="heroSlider__img" src="assets/hero/3.jpg" alt="Banner 3" loading="lazy">
+
+        <div class="heroSlider__overlay"></div>
+
+        <div class="heroSlider__content">
+          <div class="heroSlider__title" data-i18n="slider.title">توريد وتعبئة وتصدير</div>
+          <div class="heroSlider__desc" data-i18n="slider.desc">
+            ارفع صور البانر داخل: assets/hero/ — وسيتم تبديلها تلقائيًا.
+          </div>
+
+          <div class="heroSlider__dots" id="heroDots" aria-label="Slider dots"></div>
         </div>
 
-        <div class="hero__stats">
-          <div class="stat">
-            <div class="stat__icon">🚚</div>
-            <div>
-              <div class="stat__h" data-i18n="why.fast">سرعة التوصيل</div>
-              <div class="stat__p" data-i18n="why.fastDesc">استجابة سريعة وتجهيز الطلبات بأفضل وقت مع متابعة مستمرة.</div>
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat__icon">🏆</div>
-            <div>
-              <div class="stat__h" data-i18n="why.exp">خبرة طويلة</div>
-              <div class="stat__p" data-i18n="why.expDesc">خبرة في الفرز والتعبئة ومتطلبات التجار والمصانع.</div>
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat__icon">💰</div>
-            <div>
-              <div class="stat__h" data-i18n="why.price">أسعار تنافسية</div>
-              <div class="stat__p" data-i18n="why.priceDesc">أفضل سعر مقابل جودة ثابتة ومواصفات واضحة.</div>
-            </div>
-          </div>
-
-          <div class="stat">
-            <div class="stat__icon">✅</div>
-            <div>
-              <div class="stat__h" data-i18n="why.quality">جودة مضمونة</div>
-              <div class="stat__p" data-i18n="why.qualityDesc">فرز نظيف وتعبئة منظمة لضمان أفضل تجربة للعميل.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero__cardBottom">
-          <a class="miniLink" target="_blank" href="https://wa.me/201126773698?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%B7%D9%84%D8%A8%20%D9%88%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%20%D8%B7%D8%B1%D8%AD%20%D8%A8%D9%84%D8%AF%D9%86%D8%A7" data-i18n="hero.whats">
-            تواصل واتساب الآن
-          </a>
-          <span class="sep">•</span>
-          <a class="miniLink" href="tel:01126773698" data-i18n="hero.call">اتصال</a>
+        <div class="heroSlider__arrows">
+          <button class="heroSlider__btn" id="heroPrev" aria-label="Previous">‹</button>
+          <button class="heroSlider__btn" id="heroNext" aria-label="Next">›</button>
         </div>
       </aside>
     </div>
@@ -765,90 +810,24 @@
     const WHATSAPP_LOCAL = "01126773698";
 
     const PRODUCTS = [
-      {
-        id: "shell",
-        ar: "فول سوداني بقشره",
-        en: "Peanuts In Shell",
-        desc_ar: "مناسب للجملة والتوريد والتصدير",
-        desc_en: "Ideal for wholesale supply and export",
-        imgs: [
-          "assets/products/shell/1.jpg","assets/products/shell/2.jpg","assets/products/shell/3.jpg","assets/products/shell/4.jpg"
-        ]
-      },
-      {
-        id: "peeled",
-        ar: "فول سوداني مقشر",
-        en: "Peeled Peanuts",
-        desc_ar: "فرز نظيف وجودة ثابتة",
-        desc_en: "Clean sorting and consistent quality",
-        imgs: [
-          "assets/products/peeled/1.jpg","assets/products/peeled/2.jpg","assets/products/peeled/3.jpg","assets/products/peeled/4.jpg"
-        ]
-      },
-      {
-        id: "halwan",
-        ar: "فول سوداني حلوان",
-        en: "Halwan Peanuts",
-        desc_ar: "مقاس مناسب للتجزئة والمصانع",
-        desc_en: "Suitable sizing for retail and factories",
-        imgs: [
-          "assets/products/halwan/1.jpg","assets/products/halwan/2.jpg","assets/products/halwan/3.jpg","assets/products/halwan/4.jpg"
-        ]
-      },
-      {
-        id: "crushed",
-        ar: "فول سوداني مجروش",
-        en: "Crushed Peanuts",
-        desc_ar: "مثالي للمخابز والحلويات",
-        desc_en: "Perfect for bakeries and sweets",
-        imgs: [
-          "assets/products/crushed/1.jpg","assets/products/crushed/2.jpg","assets/products/crushed/3.jpg","assets/products/crushed/4.jpg"
-        ]
-      },
-      {
-        id: "choco",
-        ar: "فول سوداني للطعوم والشيكولاته",
-        en: "Peanuts for Flavors & Chocolate",
-        desc_ar: "تجهيز للمصانع وخطوط الإنتاج",
-        desc_en: "Prepared for factories and production lines",
-        imgs: [
-          "assets/products/choco/1.jpg","assets/products/choco/2.jpg","assets/products/choco/3.jpg","assets/products/choco/4.jpg"
-        ]
-      },
-      {
-        id: "butter",
-        ar: "فول سوداني لعمل الزبدة",
-        en: "Peanuts for Peanut Butter",
-        desc_ar: "خامة مناسبة لطحن الزبدة",
-        desc_en: "Suitable raw material for butter grinding",
-        imgs: [
-          "assets/products/butter/1.jpg","assets/products/butter/2.jpg","assets/products/butter/3.jpg","assets/products/butter/4.jpg"
-        ]
-      }
+      { id:"shell", ar:"فول سوداني بقشره", en:"Peanuts In Shell", desc_ar:"مناسب للجملة والتوريد والتصدير", desc_en:"Ideal for wholesale supply and export",
+        imgs:["assets/products/shell/1.jpg","assets/products/shell/2.jpg","assets/products/shell/3.jpg","assets/products/shell/4.jpg"] },
+      { id:"peeled", ar:"فول سوداني مقشر", en:"Peeled Peanuts", desc_ar:"فرز نظيف وجودة ثابتة", desc_en:"Clean sorting and consistent quality",
+        imgs:["assets/products/peeled/1.jpg","assets/products/peeled/2.jpg","assets/products/peeled/3.jpg","assets/products/peeled/4.jpg"] },
+      { id:"halwan", ar:"فول سوداني حلوان", en:"Halwan Peanuts", desc_ar:"مقاس مناسب للتجزئة والمصانع", desc_en:"Suitable sizing for retail and factories",
+        imgs:["assets/products/halwan/1.jpg","assets/products/halwan/2.jpg","assets/products/halwan/3.jpg","assets/products/halwan/4.jpg"] },
+      { id:"crushed", ar:"فول سوداني مجروش", en:"Crushed Peanuts", desc_ar:"مثالي للمخابز والحلويات", desc_en:"Perfect for bakeries and sweets",
+        imgs:["assets/products/crushed/1.jpg","assets/products/crushed/2.jpg","assets/products/crushed/3.jpg","assets/products/crushed/4.jpg"] },
+      { id:"choco", ar:"فول سوداني للطعوم والشيكولاته", en:"Peanuts for Flavors & Chocolate", desc_ar:"تجهيز للمصانع وخطوط الإنتاج", desc_en:"Prepared for factories and production lines",
+        imgs:["assets/products/choco/1.jpg","assets/products/choco/2.jpg","assets/products/choco/3.jpg","assets/products/choco/4.jpg"] },
+      { id:"butter", ar:"فول سوداني لعمل الزبدة", en:"Peanuts for Peanut Butter", desc_ar:"خامة مناسبة لطحن الزبدة", desc_en:"Suitable raw material for butter grinding",
+        imgs:["assets/products/butter/1.jpg","assets/products/butter/2.jpg","assets/products/butter/3.jpg","assets/products/butter/4.jpg"] },
     ];
 
     const REVIEWS = [
-      {
-        name_ar: "عميل جملة - القاهرة",
-        name_en: "Wholesale Client - Cairo",
-        stars: 5,
-        text_ar: "جودة ممتازة وفرز نظيف والتزام بالمواعيد.",
-        text_en: "Excellent quality, clean sorting, and on-time delivery."
-      },
-      {
-        name_ar: "مصنع حلويات",
-        name_en: "Sweets Factory",
-        stars: 5,
-        text_ar: "المجروش ثابت في المقاس وده فرق معانا في الإنتاج.",
-        text_en: "Crushed peanuts are consistent in size—great for production."
-      },
-      {
-        name_ar: "تاجر - الجيزة",
-        name_en: "Trader - Giza",
-        stars: 4,
-        text_ar: "أسعار مناسبة وخدمة محترمة وسرعة رد.",
-        text_en: "Good pricing, respectful service, and fast response."
-      }
+      { name_ar:"عميل جملة - القاهرة", name_en:"Wholesale Client - Cairo", stars:5, text_ar:"جودة ممتازة وفرز نظيف والتزام بالمواعيد.", text_en:"Excellent quality, clean sorting, and on-time delivery." },
+      { name_ar:"مصنع حلويات", name_en:"Sweets Factory", stars:5, text_ar:"المجروش ثابت في المقاس وده فرق معانا في الإنتاج.", text_en:"Crushed peanuts are consistent in size—great for production." },
+      { name_ar:"تاجر - الجيزة", name_en:"Trader - Giza", stars:4, text_ar:"أسعار مناسبة وخدمة محترمة وسرعة رد.", text_en:"Good pricing, respectful service, and fast response." },
     ];
 
     const I18N = {
@@ -871,10 +850,6 @@
         "hero.desc":"شركة طرح بلدنا للتجارة والتصنيع — توريد وتعبئة أنواع الفول السوداني بجودة مضمونة وأسعار تنافسية، مع استقبال الطلبات عبر واتساب.",
         "hero.cta1":"استعرض المنتجات",
         "hero.cta2":"اطلب عرض سعر",
-        "hero.cardTitle":"مميزات الشركة",
-        "hero.cardSub":"توريد • تعبئة • جملة • تصدير",
-        "hero.whats":"تواصل واتساب الآن",
-        "hero.call":"اتصال",
         "meta.visitors":"عدد الزوار",
         "meta.whats":"واتساب",
         "meta.addressLabel":"العنوان",
@@ -906,7 +881,11 @@
         "contact.callBtn":"اتصال",
         "contact.note":"للطلبات الكبيرة والتصدير: اكتب لنا تفاصيل الكميات والبلد وسيتم الرد بعرض سعر.",
         "assets.note":"ملاحظة الصور: ارفع صور المنتجات في فولدر assets/products لكل منتج (4 صور).",
-        "footer.rights":"© جميع الحقوق محفوظة"
+        "footer.rights":"© جميع الحقوق محفوظة",
+
+        /* ✅ SLIDER I18N */
+        "slider.title":"توريد وتعبئة وتصدير",
+        "slider.desc":"ارفع صور البانر داخل: assets/hero/ — وسيتم تبديلها تلقائيًا."
       },
       en: {
         "banner.text":"Export • Supply • Packing — WhatsApp: 01126773698",
@@ -927,10 +906,6 @@
         "hero.desc":"Tarh Baladna Trading & Manufacturing — supplying and packing peanuts with guaranteed quality and competitive prices. Orders via WhatsApp.",
         "hero.cta1":"View Products",
         "hero.cta2":"Request a Quote",
-        "hero.cardTitle":"Company Advantages",
-        "hero.cardSub":"Supply • Packing • Wholesale • Export",
-        "hero.whats":"WhatsApp Now",
-        "hero.call":"Call",
         "meta.visitors":"Visitors",
         "meta.whats":"WhatsApp",
         "meta.addressLabel":"Address",
@@ -962,7 +937,11 @@
         "contact.callBtn":"Call",
         "contact.note":"For export & large orders: send quantity details and destination country to receive a quote.",
         "assets.note":"Images note: upload product images under assets/products (4 images per product).",
-        "footer.rights":"© All rights reserved"
+        "footer.rights":"© All rights reserved",
+
+        /* ✅ SLIDER I18N */
+        "slider.title":"Supply, Packing & Export",
+        "slider.desc":"Upload hero images to: assets/hero/ — they will rotate automatically."
       }
     };
 
@@ -1185,6 +1164,49 @@
       }
       document.getElementById("visitorCount").textContent = total.toLocaleString();
     }
+
+    /* ✅ HERO SLIDER JS */
+    (function initHeroSlider(){
+      const imgs = Array.from(document.querySelectorAll(".heroSlider__img"));
+      const dotsWrap = document.getElementById("heroDots");
+      const btnPrev = document.getElementById("heroPrev");
+      const btnNext = document.getElementById("heroNext");
+      if(!imgs.length || !dotsWrap) return;
+
+      let i = 0;
+      let timer = null;
+
+      function renderDots(){
+        dotsWrap.innerHTML = "";
+        imgs.forEach((_, idx)=>{
+          const d = document.createElement("button");
+          d.className = "heroSlider__dot" + (idx===i ? " active":"");
+          d.type = "button";
+          d.setAttribute("aria-label", `slide ${idx+1}`);
+          d.addEventListener("click", ()=> go(idx, true));
+          dotsWrap.appendChild(d);
+        });
+      }
+
+      function go(next, reset=false){
+        imgs[i].classList.remove("active");
+        i = (next + imgs.length) % imgs.length;
+        imgs[i].classList.add("active");
+        renderDots();
+        if(reset) restart();
+      }
+
+      function restart(){
+        if(timer) clearInterval(timer);
+        timer = setInterval(()=>go(i+1), 4500);
+      }
+
+      btnNext && btnNext.addEventListener("click", ()=> go(i+1, true));
+      btnPrev && btnPrev.addEventListener("click", ()=> go(i-1, true));
+
+      renderDots();
+      restart();
+    })();
 
     document.addEventListener("DOMContentLoaded", ()=>{
       document.getElementById("langToggle").addEventListener("click", ()=>{
