@@ -6,7 +6,6 @@
   <title>طرح بلدنا | Tarh Baladna</title>
   <meta name="description" content="شركة طرح بلدنا للتجارة والتصنيع - فول سوداني بجودة تصدير وأسعار تنافسية" />
 
-  <!-- Social preview -->
   <meta property="og:title" content="طرح بلدنا | Tarh Baladna" />
   <meta property="og:description" content="توريد وتعبئة وتصدير الفول السوداني بجودة مضمونة وأسعار تنافسية" />
   <meta property="og:type" content="website" />
@@ -17,13 +16,15 @@
       --bg2:#0b0b10;
       --card:#0f0f18;
 
-      /* ✅ تم تحويل الذهبي إلى أزرق (نفس الاستايل - تغيير ألوان فقط) */
-      --gold:#003366;     /* كان Gold */
-      --gold2:#1a5aa8;    /* كان Gold light */
+      /* ✅ Black + Blue theme (blue stronger on edges) */
+      --blue:#0a3d91;
+      --blue2:#1a5aa8;
+      --blueGlow:rgba(10,61,145,.38);
+      --blueGlow2:rgba(26,90,168,.25);
 
       --text:#f4f4f5;
       --muted:#b7b7bf;
-      --line:rgba(0,51,102,.22);
+      --line:rgba(10,61,145,.22);
       --shadow:0 18px 60px rgba(0,0,0,.55);
       --r:18px;
     }
@@ -32,8 +33,8 @@
     html,body{margin:0;padding:0}
     body{
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(0,51,102,.14), transparent 60%),
-        radial-gradient(900px 500px at 100% 0%, rgba(26,90,168,.10), transparent 55%),
+        radial-gradient(1200px 700px at 20% -10%, rgba(10,61,145,.18), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(26,90,168,.12), transparent 55%),
         linear-gradient(180deg,var(--bg),var(--bg2));
       color:var(--text);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans Arabic",sans-serif;
@@ -42,31 +43,31 @@
     a{color:inherit;text-decoration:none}
     .ltr{direction:ltr; unicode-bidi:embed}
     .container{max-width:1200px;margin:0 auto;padding:0 18px}
-    .gold{color:var(--gold2)}
+    .accent{color:var(--blue2)}
 
     /* Sticky banner */
     .announce{
       position:sticky; top:0; z-index:80;
-      background:linear-gradient(90deg, rgba(0,51,102,.24), rgba(0,0,0,.72), rgba(26,90,168,.18));
-      border-bottom:1px solid rgba(0,51,102,.22);
+      background:linear-gradient(90deg, rgba(10,61,145,.28), rgba(0,0,0,.72), rgba(26,90,168,.22));
+      border-bottom:1px solid rgba(10,61,145,.25);
       backdrop-filter: blur(10px);
     }
     .announce__inner{
       display:flex;align-items:center;justify-content:space-between;gap:12px;
       padding:10px 0;font-size:13px;flex-wrap:wrap;
     }
-    .announce__text{color:var(--gold2);font-weight:900}
+    .announce__text{color:#d7e7ff;font-weight:900}
     .announce__right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .announce__link{color:rgba(244,244,245,.92);font-weight:800}
-    .announce__link:hover{color:var(--gold2)}
-    .dot{color:rgba(0,51,102,.55)}
+    .announce__link:hover{color:#d7e7ff}
+    .dot{color:rgba(10,61,145,.65)}
 
     /* Header */
     header{
       position:sticky; top:44px; z-index:70;
       background:rgba(7,7,10,.68);
       backdrop-filter: blur(10px);
-      border-bottom:1px solid rgba(0,51,102,.12);
+      border-bottom:1px solid rgba(10,61,145,.16);
     }
     .topbar{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
@@ -83,25 +84,35 @@
     nav a{
       font-size:14px;color:var(--muted);
       padding:8px 10px;border-radius:10px;
+      border:1px solid transparent;
     }
-    nav a:hover{color:var(--text);background:rgba(0,51,102,.10)}
+    nav a:hover{
+      color:var(--text);
+      background:rgba(10,61,145,.10);
+      border-color:rgba(10,61,145,.22);
+      box-shadow:0 0 14px var(--blueGlow2);
+    }
 
     .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
     .btn{
-      border:1px solid transparent;border-radius:14px;
+      border:1px solid rgba(10,61,145,.24);
+      border-radius:14px;
       padding:10px 14px;font-weight:900;cursor:pointer;
       display:inline-flex;gap:10px;align-items:center;justify-content:center;
       background:rgba(255,255,255,.03);color:var(--text);
-      border-color:rgba(0,51,102,.22);
+      box-shadow:0 0 16px rgba(10,61,145,.08);
     }
-    .btn:hover{background:rgba(0,51,102,.10)}
-    .btn--gold{
-      background:linear-gradient(135deg,var(--gold),var(--gold2));
+    .btn:hover{
+      background:rgba(10,61,145,.10);
+      box-shadow:0 0 18px var(--blueGlow2);
+    }
+    .btn--blue{
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
       color:#eaf3ff;border-color:transparent;
-      box-shadow:0 14px 35px rgba(0,51,102,.22);
+      box-shadow:0 14px 35px rgba(10,61,145,.22);
     }
-    .btn--gold:hover{filter:brightness(1.02)}
+    .btn--blue:hover{filter:brightness(1.02)}
     .badge{
       background:rgba(0,0,0,.45);
       border:1px solid rgba(255,255,255,.12);
@@ -112,8 +123,13 @@
     .hero{padding:52px 0 28px}
     .hero__grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:start}
     .pill{
-      display:inline-flex;padding:7px 10px;border:1px solid rgba(0,51,102,.28);
-      border-radius:999px;color:var(--gold2);background:rgba(0,51,102,.10);font-size:13px;font-weight:900;
+      display:inline-flex;padding:7px 10px;
+      border:1px solid rgba(10,61,145,.30);
+      border-radius:999px;
+      color:#d7e7ff;
+      background:rgba(10,61,145,.12);
+      font-size:13px;font-weight:900;
+      box-shadow:0 0 16px rgba(10,61,145,.18);
     }
     .hero__title{margin:14px 0 10px;line-height:1.15;font-size:44px;letter-spacing:.2px}
     .hero__desc{color:var(--muted);font-size:16px;max-width:62ch;line-height:1.8}
@@ -122,46 +138,50 @@
     .hero__meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
     .meta{
       background:rgba(255,255,255,.03);
-      border:1px solid rgba(0,51,102,.18);
+      border:1px solid rgba(10,61,145,.22);
       border-radius:16px;padding:12px;
+      box-shadow:0 0 18px rgba(10,61,145,.10);
     }
     .meta__label{font-size:12px;color:var(--muted)}
     .meta__value{margin-top:6px;font-size:16px;font-weight:1000}
 
     .hero__card{
       background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
-      border:1px solid rgba(0,51,102,.22);
+      border:1px solid rgba(10,61,145,.24);
       border-radius:var(--r);
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-    .hero__cardTop{padding:18px;border-bottom:1px solid rgba(0,51,102,.12)}
+    .hero__cardTop{padding:18px;border-bottom:1px solid rgba(10,61,145,.14)}
     .hero__cardTitle{font-weight:1000;font-size:18px}
     .hero__cardSub{color:var(--muted);font-size:13px;margin-top:4px}
 
     .hero__stats{padding:10px}
     .stat{display:flex;gap:12px;padding:12px;border-radius:14px}
-    .stat:hover{background:rgba(0,51,102,.10)}
+    .stat:hover{background:rgba(10,61,145,.10)}
     .stat__icon{
       width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
-      background:rgba(0,51,102,.12);border:1px solid rgba(0,51,102,.22)
+      background:rgba(10,61,145,.15);
+      border:1px solid rgba(10,61,145,.30);
+      box-shadow:0 0 16px var(--blueGlow2);
     }
     .stat__h{font-weight:1000}
     .stat__p{color:var(--muted);font-size:13px;margin-top:2px;line-height:1.6}
 
     .hero__cardBottom{
-      padding:14px;border-top:1px solid rgba(0,51,102,.12);
+      padding:14px;border-top:1px solid rgba(10,61,145,.14);
       display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;
     }
-    .miniLink{color:var(--gold2);font-weight:1000}
+    .miniLink{color:#d7e7ff;font-weight:1000}
+    .miniLink:hover{color:#ffffff}
     .sep{color:rgba(255,255,255,.25)}
 
     /* Sections */
     .section{padding:44px 0}
     .section--alt{
       background:rgba(255,255,255,.02);
-      border-top:1px solid rgba(0,51,102,.10);
-      border-bottom:1px solid rgba(0,51,102,.10)
+      border-top:1px solid rgba(10,61,145,.10);
+      border-bottom:1px solid rgba(10,61,145,.10)
     }
     .section__head{margin-bottom:18px}
     .section__head h2{margin:0;font-size:28px}
@@ -175,10 +195,18 @@
     /* Product cards */
     .product{
       background:rgba(255,255,255,.03);
-      border:1px solid rgba(0,51,102,.18);
+      border:1px solid rgba(10,61,145,.30);
       border-radius:var(--r);
       overflow:hidden;
-      box-shadow:0 10px 35px rgba(0,0,0,.35);
+      box-shadow:0 0 22px rgba(10,61,145,.16);
+      transition:.25s ease;
+    }
+    .product:hover{
+      transform:translateY(-4px);
+      box-shadow:
+        0 0 26px var(--blueGlow),
+        0 18px 55px rgba(0,0,0,.35);
+      border-color:rgba(26,90,168,.55);
     }
     .product__head{padding:14px 14px 10px}
     .product__name{font-weight:1000;font-size:18px}
@@ -187,26 +215,50 @@
     .product__gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:12px}
     .product__gallery img{
       width:100%;height:88px;object-fit:cover;border-radius:12px;
-      border:1px solid rgba(0,51,102,.14);
+      border:1px solid rgba(10,61,145,.20);
       background:rgba(0,0,0,.25);
+      cursor:pointer;
+      transition:.2s ease;
     }
+    .product__gallery img:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 18px rgba(10,61,145,.22);
+      border-color:rgba(26,90,168,.55);
+    }
+
     .product__foot{
       display:flex;gap:10px;align-items:center;justify-content:space-between;
-      padding:12px 14px 14px;border-top:1px solid rgba(0,51,102,.10);flex-wrap:wrap
+      padding:12px 14px 14px;border-top:1px solid rgba(10,61,145,.12);flex-wrap:wrap
     }
     .qty{display:flex;gap:8px;align-items:center}
     .qty button{
-      width:36px;height:36px;border-radius:12px;border:1px solid rgba(0,51,102,.28);
-      background:rgba(255,255,255,.03);color:var(--text);cursor:pointer;font-weight:1000;
+      width:36px;height:36px;border-radius:12px;
+      border:1px solid rgba(10,61,145,.32);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:1000;
+      box-shadow:0 0 14px rgba(10,61,145,.18);
+    }
+    .qty button:hover{
+      background:rgba(10,61,145,.12);
+      box-shadow:0 0 16px var(--blueGlow2);
     }
     .qty span{min-width:24px;text-align:center;font-weight:1000}
 
     /* Info cards */
     .card{
       background:rgba(255,255,255,.03);
-      border:1px solid rgba(0,51,102,.18);
+      border:1px solid rgba(10,61,145,.24);
       border-radius:var(--r);
       padding:16px;
+      box-shadow:0 0 18px rgba(10,61,145,.10);
+      transition:.25s ease;
+    }
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 0 22px rgba(10,61,145,.18);
+      border-color:rgba(26,90,168,.55);
     }
     .card__icon{font-size:22px}
     .card__h{margin-top:10px;font-weight:1000}
@@ -215,25 +267,33 @@
     /* Reviews */
     .review{
       background:rgba(255,255,255,.03);
-      border:1px solid rgba(0,51,102,.18);
+      border:1px solid rgba(10,61,145,.24);
       border-radius:var(--r);
       padding:16px;
+      box-shadow:0 0 18px rgba(10,61,145,.10);
+      transition:.25s ease;
+    }
+    .review:hover{
+      transform:translateY(-3px);
+      border-color:rgba(26,90,168,.55);
+      box-shadow:0 0 22px rgba(10,61,145,.18);
     }
     .review__name{font-weight:1000}
-    .review__stars{color:var(--gold2);letter-spacing:1px;margin-top:6px}
+    .review__stars{color:#d7e7ff;letter-spacing:1px;margin-top:6px}
     .review__text{color:var(--muted);margin-top:8px;font-size:14px;line-height:1.7}
 
     /* Contact */
     .contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .contactCard{
       background:rgba(255,255,255,.03);
-      border:1px solid rgba(0,51,102,.18);
+      border:1px solid rgba(10,61,145,.24);
       border-radius:var(--r);
       padding:16px;
+      box-shadow:0 0 18px rgba(10,61,145,.10);
     }
     .contactRow{
       display:flex;justify-content:space-between;gap:12px;
-      padding:10px 0;border-bottom:1px dashed rgba(0,51,102,.16)
+      padding:10px 0;border-bottom:1px dashed rgba(10,61,145,.18)
     }
     .contactRow:last-child{border-bottom:none}
     .k{color:var(--muted)}
@@ -243,7 +303,7 @@
 
     /* Footer */
     footer{
-      padding:18px 0;border-top:1px solid rgba(0,51,102,.10);
+      padding:18px 0;border-top:1px solid rgba(10,61,145,.12);
       background:rgba(0,0,0,.22)
     }
     .footer__inner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -263,7 +323,7 @@
     .floater{
       width:52px;height:52px;border-radius:18px;
       display:grid;place-items:center;
-      border:1px solid rgba(0,51,102,.22);
+      border:1px solid rgba(10,61,145,.30);
       background:rgba(15,15,24,.88);
       color:var(--text);
       box-shadow:0 18px 55px rgba(0,0,0,.5);
@@ -272,7 +332,7 @@
     }
     .floater:hover{transform:translateY(-1px)}
     .floater--whats{border-color:rgba(37,211,102,.35)}
-    .floater--call{border-color:rgba(0,51,102,.35)}
+    .floater--call{border-color:rgba(10,61,145,.40)}
     .floater--msg{border-color:rgba(0,132,255,.35)}
 
     /* Cart drawer */
@@ -283,14 +343,14 @@
       position:absolute; top:0; bottom:0;
       width:min(420px, 92vw);
       background:linear-gradient(180deg, rgba(15,15,24,.98), rgba(10,10,16,.98));
-      border:1px solid rgba(0,51,102,.22);
-      box-shadow:var(--shadow);
+      border:1px solid rgba(10,61,145,.32);
+      box-shadow:0 0 30px var(--blueGlow), var(--shadow);
       padding:14px;
     }
     html[dir="rtl"] .drawer__panel{left:0}
     html[dir="ltr"] .drawer__panel{right:0}
 
-    .drawer__head{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid rgba(0,51,102,.12)}
+    .drawer__head{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid rgba(10,61,145,.14)}
     .drawer__title{font-weight:1000}
     .iconBtn{border:none;background:transparent;color:var(--text);font-size:18px;cursor:pointer}
 
@@ -298,7 +358,7 @@
     .cartItem{
       display:flex;justify-content:space-between;gap:12px;
       padding:12px;border-radius:16px;
-      border:1px solid rgba(0,51,102,.12);
+      border:1px solid rgba(10,61,145,.18);
       background:rgba(255,255,255,.02);
       margin-bottom:10px;
     }
@@ -306,12 +366,17 @@
     .cartItem__meta{color:var(--muted);font-size:12px;margin-top:4px}
     .cartItem__actions{display:flex;gap:8px;align-items:center}
     .cartItem__actions button{
-      width:34px;height:34px;border-radius:12px;border:1px solid rgba(0,51,102,.28);
-      background:rgba(255,255,255,.03);color:var(--text);cursor:pointer;font-weight:1000;
+      width:34px;height:34px;border-radius:12px;
+      border:1px solid rgba(10,61,145,.32);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:1000;
+      box-shadow:0 0 14px rgba(10,61,145,.18);
     }
-    .cartEmpty{color:var(--muted);padding:18px 4px;text-align:center}
 
-    .drawer__foot{border-top:1px solid rgba(0,51,102,.12);padding-top:12px}
+    .cartEmpty{color:var(--muted);padding:18px 4px;text-align:center}
+    .drawer__foot{border-top:1px solid rgba(10,61,145,.14);padding-top:12px}
     .cartNote{color:var(--muted);font-size:12px;line-height:1.6;margin-bottom:10px}
     .w100{width:100%}
 
@@ -323,17 +388,17 @@
       position:absolute; inset:0; margin:auto;
       width:min(900px, 92vw); height:min(560px, 80vh);
       background:rgba(15,15,24,.98);
-      border:1px solid rgba(0,51,102,.22);
+      border:1px solid rgba(10,61,145,.28);
       border-radius:18px;
-      box-shadow:var(--shadow);
+      box-shadow:0 0 30px var(--blueGlow), var(--shadow);
       display:grid;
       grid-template-rows:auto 1fr;
       overflow:hidden;
     }
-    .imgModal__head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(0,51,102,.12)}
+    .imgModal__head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(10,61,145,.14)}
     .imgModal__title{font-weight:1000}
     .imgModal__body{display:grid;place-items:center;padding:12px}
-    .imgModal__body img{max-width:100%;max-height:100%;border-radius:14px;border:1px solid rgba(0,51,102,.12)}
+    .imgModal__body img{max-width:100%;max-height:100%;border-radius:14px;border:1px solid rgba(10,61,145,.16)}
 
     @media (max-width: 980px){
       .hero__grid{grid-template-columns:1fr}
@@ -372,11 +437,11 @@
   <header>
     <div class="container topbar">
       <a class="brand" href="#home" aria-label="Tarh Baladna">
-        <!-- Inline SVG Logo (نفسه - لونه اتغير تلقائي) -->
+        <!-- Inline SVG Logo -->
         <svg class="logo" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-label="Logo">
           <defs>
             <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#003366"/>
+              <stop offset="0" stop-color="#0a3d91"/>
               <stop offset="1" stop-color="#1a5aa8"/>
             </linearGradient>
           </defs>
@@ -406,7 +471,7 @@
         <button class="btn" id="langToggle" aria-label="Toggle Language">
           <span id="langLabel">EN</span>
         </button>
-        <button class="btn btn--gold" id="openCart">
+        <button class="btn btn--blue" id="openCart">
           <span data-i18n="cart.title">سلة الطلب</span>
           <span class="badge" id="cartCount">0</span>
         </button>
@@ -422,7 +487,7 @@
 
         <h1 class="hero__title">
           <span data-i18n="hero.t1">فول سوداني</span>
-          <span class="gold" data-i18n="hero.t2">فاخر</span>
+          <span class="accent" data-i18n="hero.t2">فاخر</span>
           <span data-i18n="hero.t3">للسوق المحلي والتصدير</span>
         </h1>
 
@@ -431,7 +496,7 @@
         </p>
 
         <div class="hero__cta">
-          <a class="btn btn--gold" href="#products" data-i18n="hero.cta1">استعرض المنتجات</a>
+          <a class="btn btn--blue" href="#products" data-i18n="hero.cta1">استعرض المنتجات</a>
           <a class="btn" href="#contact" data-i18n="hero.cta2">اطلب عرض سعر</a>
         </div>
 
@@ -588,7 +653,7 @@
           </div>
 
           <div class="contactBtns">
-            <a class="btn btn--gold" target="_blank"
+            <a class="btn btn--blue" target="_blank"
                href="https://wa.me/201126773698?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%B9%D8%B1%D8%B6%20%D8%B3%D8%B9%D8%B1%20%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%20%D8%B7%D8%B1%D8%AD%20%D8%A8%D9%84%D8%AF%D9%86%D8%A7"
                data-i18n="contact.whatsBtn">واتساب</a>
 
@@ -629,7 +694,7 @@
         <svg class="footer__logo" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-label="Logo small">
           <defs>
             <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#003366"/>
+              <stop offset="0" stop-color="#0a3d91"/>
               <stop offset="1" stop-color="#1a5aa8"/>
             </linearGradient>
           </defs>
@@ -653,7 +718,9 @@
     <a class="floater floater--whats" target="_blank"
        href="https://wa.me/201126773698?text=%D8%A3%D9%87%D9%84%D8%A7%20%D8%B7%D8%B1%D8%AD%20%D8%A8%D9%84%D8%AF%D9%86%D8%A7%20%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1"
        title="WhatsApp">WA</a>
+
     <a class="floater floater--call" href="tel:01126773698" title="Call">☎</a>
+
     <a class="floater floater--msg" target="_blank"
        href="https://www.facebook.com/share/1CsNFUADgR/" title="Messenger">M</a>
   </div>
@@ -674,7 +741,7 @@
 
       <div class="drawer__foot">
         <div class="cartNote" data-i18n="cart.note">سيتم إرسال الطلب عبر واتساب إلى رقم الاستقبال: 01126773698</div>
-        <button class="btn btn--gold w100" id="sendWhats" data-i18n="cart.send">إرسال الطلب واتساب</button>
+        <button class="btn btn--blue w100" id="sendWhats" data-i18n="cart.send">إرسال الطلب واتساب</button>
       </div>
     </aside>
   </div>
@@ -698,27 +765,90 @@
     const WHATSAPP_LOCAL = "01126773698";
 
     const PRODUCTS = [
-      { id:"shell",  ar:"فول سوداني بقشره", en:"Peanuts In Shell", desc_ar:"مناسب للجملة والتوريد والتصدير", desc_en:"Ideal for wholesale supply and export",
-        imgs:["assets/products/shell/1.jpg","assets/products/shell/2.jpg","assets/products/shell/3.jpg","assets/products/shell/4.jpg"] },
-      { id:"peeled", ar:"فول سوداني مقشر", en:"Peeled Peanuts", desc_ar:"فرز نظيف وجودة ثابتة", desc_en:"Clean sorting and consistent quality",
-        imgs:["assets/products/peeled/1.jpg","assets/products/peeled/2.jpg","assets/products/peeled/3.jpg","assets/products/peeled/4.jpg"] },
-      { id:"halwan", ar:"فول سوداني حلوان", en:"Halwan Peanuts", desc_ar:"مقاس مناسب للتجزئة والمصانع", desc_en:"Suitable sizing for retail and factories",
-        imgs:["assets/products/halwan/1.jpg","assets/products/halwan/2.jpg","assets/products/halwan/3.jpg","assets/products/halwan/4.jpg"] },
-      { id:"crushed", ar:"فول سوداني مجروش", en:"Crushed Peanuts", desc_ar:"مثالي للمخابز والحلويات", desc_en:"Perfect for bakeries and sweets",
-        imgs:["assets/products/crushed/1.jpg","assets/products/crushed/2.jpg","assets/products/crushed/3.jpg","assets/products/crushed/4.jpg"] },
-      { id:"choco", ar:"فول سوداني للطعوم والشيكولاته", en:"Peanuts for Flavors & Chocolate", desc_ar:"تجهيز للمصانع وخطوط الإنتاج", desc_en:"Prepared for factories and production lines",
-        imgs:["assets/products/choco/1.jpg","assets/products/choco/2.jpg","assets/products/choco/3.jpg","assets/products/choco/4.jpg"] },
-      { id:"butter", ar:"فول سوداني لعمل الزبدة", en:"Peanuts for Peanut Butter", desc_ar:"خامة مناسبة لطحن الزبدة", desc_en:"Suitable raw material for butter grinding",
-        imgs:["assets/products/butter/1.jpg","assets/products/butter/2.jpg","assets/products/butter/3.jpg","assets/products/butter/4.jpg"] }
+      {
+        id: "shell",
+        ar: "فول سوداني بقشره",
+        en: "Peanuts In Shell",
+        desc_ar: "مناسب للجملة والتوريد والتصدير",
+        desc_en: "Ideal for wholesale supply and export",
+        imgs: [
+          "assets/products/shell/1.jpg","assets/products/shell/2.jpg","assets/products/shell/3.jpg","assets/products/shell/4.jpg"
+        ]
+      },
+      {
+        id: "peeled",
+        ar: "فول سوداني مقشر",
+        en: "Peeled Peanuts",
+        desc_ar: "فرز نظيف وجودة ثابتة",
+        desc_en: "Clean sorting and consistent quality",
+        imgs: [
+          "assets/products/peeled/1.jpg","assets/products/peeled/2.jpg","assets/products/peeled/3.jpg","assets/products/peeled/4.jpg"
+        ]
+      },
+      {
+        id: "halwan",
+        ar: "فول سوداني حلوان",
+        en: "Halwan Peanuts",
+        desc_ar: "مقاس مناسب للتجزئة والمصانع",
+        desc_en: "Suitable sizing for retail and factories",
+        imgs: [
+          "assets/products/halwan/1.jpg","assets/products/halwan/2.jpg","assets/products/halwan/3.jpg","assets/products/halwan/4.jpg"
+        ]
+      },
+      {
+        id: "crushed",
+        ar: "فول سوداني مجروش",
+        en: "Crushed Peanuts",
+        desc_ar: "مثالي للمخابز والحلويات",
+        desc_en: "Perfect for bakeries and sweets",
+        imgs: [
+          "assets/products/crushed/1.jpg","assets/products/crushed/2.jpg","assets/products/crushed/3.jpg","assets/products/crushed/4.jpg"
+        ]
+      },
+      {
+        id: "choco",
+        ar: "فول سوداني للطعوم والشيكولاته",
+        en: "Peanuts for Flavors & Chocolate",
+        desc_ar: "تجهيز للمصانع وخطوط الإنتاج",
+        desc_en: "Prepared for factories and production lines",
+        imgs: [
+          "assets/products/choco/1.jpg","assets/products/choco/2.jpg","assets/products/choco/3.jpg","assets/products/choco/4.jpg"
+        ]
+      },
+      {
+        id: "butter",
+        ar: "فول سوداني لعمل الزبدة",
+        en: "Peanuts for Peanut Butter",
+        desc_ar: "خامة مناسبة لطحن الزبدة",
+        desc_en: "Suitable raw material for butter grinding",
+        imgs: [
+          "assets/products/butter/1.jpg","assets/products/butter/2.jpg","assets/products/butter/3.jpg","assets/products/butter/4.jpg"
+        ]
+      }
     ];
 
     const REVIEWS = [
-      { name_ar:"عميل جملة - القاهرة", name_en:"Wholesale Client - Cairo", stars:5,
-        text_ar:"جودة ممتازة وفرز نظيف والتزام بالمواعيد.", text_en:"Excellent quality, clean sorting, and on-time delivery." },
-      { name_ar:"مصنع حلويات", name_en:"Sweets Factory", stars:5,
-        text_ar:"المجروش ثابت في المقاس وده فرق معانا في الإنتاج.", text_en:"Crushed peanuts are consistent in size—great for production." },
-      { name_ar:"تاجر - الجيزة", name_en:"Trader - Giza", stars:4,
-        text_ar:"أسعار مناسبة وخدمة محترمة وسرعة رد.", text_en:"Good pricing, respectful service, and fast response." }
+      {
+        name_ar: "عميل جملة - القاهرة",
+        name_en: "Wholesale Client - Cairo",
+        stars: 5,
+        text_ar: "جودة ممتازة وفرز نظيف والتزام بالمواعيد.",
+        text_en: "Excellent quality, clean sorting, and on-time delivery."
+      },
+      {
+        name_ar: "مصنع حلويات",
+        name_en: "Sweets Factory",
+        stars: 5,
+        text_ar: "المجروش ثابت في المقاس وده فرق معانا في الإنتاج.",
+        text_en: "Crushed peanuts are consistent in size—great for production."
+      },
+      {
+        name_ar: "تاجر - الجيزة",
+        name_en: "Trader - Giza",
+        stars: 4,
+        text_ar: "أسعار مناسبة وخدمة محترمة وسرعة رد.",
+        text_en: "Good pricing, respectful service, and fast response."
+      }
     ];
 
     const I18N = {
